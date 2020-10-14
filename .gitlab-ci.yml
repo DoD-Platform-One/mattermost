@@ -1,0 +1,20 @@
+include:
+  - project: 'platform-one/private/big-bang/pipeline-templates'
+    ref: master
+    file: '/templates/generic-app.yml'
+
+variables:
+  DOCKERFILE_DIR: image
+  DOCKERFILE_NAME: "Dockerfile"
+
+build:
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/mattermost-worker
+
+scan container:
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/mattermost-worker
+
+promote:
+  variables:
+    IMAGE: $CI_REGISTRY_IMAGE/mattermost-worker
