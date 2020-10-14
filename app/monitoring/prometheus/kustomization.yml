@@ -1,0 +1,6 @@
+namespace: mattermost
+
+resources:
+- mattermostServiceMonitor.yaml
+- role.yaml
+- roleBinding.yaml

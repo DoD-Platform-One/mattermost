@@ -1,0 +1,6 @@
+namespace: mattermost
+
+resources:
+  - namespace.yaml
+  - operator/mattermost-operator.yaml
+  - instance/clusterinstallation.yaml

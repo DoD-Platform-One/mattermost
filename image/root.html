@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <title>P1 Enterprise Chat</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Mattermost">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" type="image/png" href="/static/images/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/static/images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/images/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="stylesheet" class="code_theme">
+    <style>
+        .error-screen {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            padding-top: 50px;
+            max-width: 750px;
+            font-size: 14px;
+            color: #333;
+            margin: auto;
+            display: none;
+            line-height: 1.5
+        }
+
+        .error-screen h2 {
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 1.2
+        }
+
+        .error-screen ul {
+            padding-left: 15px;
+            line-height: 1.7;
+            margin-top: 0;
+            margin-bottom: 10px
+        }
+
+        .error-screen hr {
+            color: #ddd;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #eee
+        }
+
+        .error-screen-visible {
+            display: block
+        }
+    </style>
+    <link href="/static/main.ecf9625ff83c4b737212.css" rel="stylesheet">
+    <script src="/static/main.fa0bf9e0a29a45463849.js"></script>
+    <meta name="apple-mobile-web-app-title" content="Mattermost" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/icon_76x76.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/icon_72x72.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/icon_60x60.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/icon_57x57.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/icon_152x152.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/icon_144x144.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/icon_120x120.png" />
+    <link rel="manifest" href="/static/manifest.json" />
+</head>
+
+<body class="font--open_sans enable-animations">
+    <div id="root">
+        <div class="error-screen">
+            <h2>Cannot connect to Mattermost</h2>
+            <hr />
+            <p>We're having trouble connecting to Mattermost. If refreshing this page (Ctrl+R or Command+R) does not
+                work, please verify that your computer is connected to the internet.</p><br />
+        </div>
+        <div class="loading-screen" style="position:relative">
+            <div class="loading__content">
+                <div class="round round-1"></div>
+                <div class="round round-2"></div>
+                <div class="round round-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="root-portal"></div><noscript>To use Mattermost, please enable JavaScript.</noscript>
+</body>
+
+<style>
+    .signup-team-all .signup-team-dir a {
+        color: white !important;
+    }
+
+    .signup-team-all {
+        color: white;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+        border-radius: 2px;
+        border: 1px solid #CECECE;
+        margin: 0 0 20px;
+        border-radius: 4px;
+        max-height: calc(75vh - (108px + 89px));
+    }
+
+    .signup-team-all .signup-team-dir {
+        *zoom: 1;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-top: 1px solid #CECECE;
+        position: relative;
+        padding-top: 3px;
+        height: 3.8em;
+        max-width: 100%;
+    }
+
+    .signup-team-all .signup-team-dir .icon,
+    .signup-team-all .signup-team-dir i.light {
+        opacity: .75;
+    }
+
+    .signup-team-all .signup-team__icon {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.5em;
+        position: relative;
+    }
+
+    .signup-team-all .signup-team-dir:hover {
+        -webkit-transition: background-color .15s ease;
+        -webkit-transition-delay: 0s;
+        -moz-transition: background-color .15s ease;
+        -o-transition: background-color .15s ease;
+        transition: background-color .15s ease false;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .signup-team__container:before {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: block;
+        content: " ";
+        z-index: -1;
+        background: rgb(3, 24, 33) url(/static/images/p1-bg.jpg);
+        background-size: cover;
+    }
+
+    .signup-team-all .signup-team-dir .icon svg {
+        fill: white;
+    }
+
+    .signup-header a,
+    .signup-team__container a {
+        color: #00ff7b !important;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+        text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.1);
+        word-break: break-word;
+    }
+
+    .signup-team__container.branded .markdown__heading {
+        font-weight: 400;
+    }
+
+    .signup-team__container .btn.btn-custom-login.gitlab:after {
+        content: "Platform One SSO"
+    }
+
+    .signup-team__container,
+    .signup-team__container {
+        color: white;
+    }
+
+    .signup-team__container .btn.btn-custom-login.gitlab span,
+    .signup-team__container .btn.btn-custom-login.saml .icon {
+        display: none;
+    }
+
+    .signup-team__container .btn.btn-custom-login.gitlab {
+        background-color: rgba(13, 169, 233, .55);
+        color: white !important;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, .75);
+        border-radius: 6px;
+    }
+
+    .signup-team__container .btn.btn-custom-login.gitlab:hover {
+        background-color: rgba(13, 169, 233, .85);
+    }
+
+    .signup-team__container .btn.btn-custom-login.saml {
+        background: rgba(85, 184, 206, .55);
+        color: white !important;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, .75);
+        border-radius: 6px;
+    }
+
+    .signup-team__container .btn.btn-custom-login.saml:hover {
+        background: rgba(85, 184, 206, .85);
+    }
+
+    .signup-team__container .color--light {
+        color: white;
+    }
+
+    #footer_section {
+        display: none !important;
+    }
+
+    .signup-header {
+        background: none !important;
+    }
+</style>
+
+</html>

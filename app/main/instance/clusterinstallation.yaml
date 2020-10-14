@@ -1,0 +1,21 @@
+apiVersion: mattermost.com/v1alpha1
+kind: ClusterInstallation
+metadata:
+  name: chat
+spec:
+  version: 5.27.0-ironbank-0.2.0
+  size: 100users
+  ingressName: chat.kube.dev
+  image: registry1.dsop.io/ironbank/opensource/mattermost/mattermost
+  # mattermostLicenseSecret: ""
+  database:
+    storageSize: 10Gi
+
+  minio:
+    storageSize: 50Gi
+
+  # Give MM enough time to keel over if needed
+  livenessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 120
+  elasticsearch: {}
