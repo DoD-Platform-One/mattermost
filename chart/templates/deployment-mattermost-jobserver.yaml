@@ -1,0 +1,67 @@
+{{- if .Values.global.features.jobserver.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mattermost-enterprise-edition.jobserver.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "mattermost-enterprise-edition.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/component: {{ .Values.global.features.jobserver.name }}
+    helm.sh/chart:  {{ include "mattermost-enterprise-edition.chart" . }}
+spec:
+  replicas: {{ .Values.global.features.jobserver.replicaCount }}
+  {{- with .Values.global.features.jobserver.strategy }}
+  strategy:
+    {{- . | toYaml | nindent 4 }}
+  {{- end }}
+  revisionHistoryLimit: {{ .Values.global.features.jobserver.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "mattermost-enterprise-edition.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      app.kubernetes.io/component: {{ .Values.global.features.jobserver.name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "mattermost-enterprise-edition.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/component: {{ .Values.global.features.jobserver.name }}
+        helm.sh/chart: {{ include "mattermost-enterprise-edition.chart" . }}
+      annotations:
+        {{- if .Values.mattermostApp.extraPodAnnotations }}
+        {{- .Values.mattermostApp.extraPodAnnotations | toYaml | nindent 8 }}
+        {{- end }}
+    spec:
+      initContainers:
+      - name: "init-mattermost-app"
+        image: "{{ .Values.initContainerImage.repository }}:{{ .Values.initContainerImage.tag }}"
+        imagePullPolicy: {{ .Values.initContainerImage.imagePullPolicy }}
+        command: [
+          "sh",
+          "-c",
+          "until curl --max-time 5 http://{{ include "mattermost-enterprise-edition.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.mattermostApp.service.internalPort }}/api/v4/system/ping ; do echo waiting for Mattermost App come up; sleep 5; done; echo init-mattermost-app finished"
+        ]
+      containers:
+      - name: {{ include "mattermost-enterprise-edition.name" . }}-jobserver
+        image: "{{ .Values.mattermostApp.image.repository }}:{{ .Values.mattermostApp.image.tag }}"
+        imagePullPolicy: {{ .Values.mattermostApp.image.pullPolicy }}
+        command: ["mattermost", "jobserver"]
+        env:
+        - name: MM_CONFIG
+{{- if .Values.global.features.database.useInternal }}
+          value: "mysql://{{ .Values.mysqlha.mysqlha.mysqlUser }}:{{ .Values.mysqlha.mysqlha.mysqlPassword }}@tcp({{ .Release.Name }}-mysqlha-0.{{ .Release.Name }}-mysqlha:3306)/{{ .Values.mysqlha.mysqlha.mysqlDatabase }}?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s"
+{{- else }}
+          value: "{{ .Values.global.features.database.external.driver }}://{{ .Values.global.features.database.external.dataSource }}"
+{{- end }}
+        volumeMounts:
+        - mountPath: /mattermost/mattermost.mattermost-license
+          name: mattermost-license
+          subPath: mattermost.mattermost-license
+      volumes:
+      - name: mattermost-license
+        secret:
+          secretName: {{ include "mattermost-enterprise-edition.fullname" . }}-mattermost-license
+{{- end -}}
