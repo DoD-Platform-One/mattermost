@@ -122,7 +122,7 @@ mattermostApp:
 
   ingress:
     # Used to create Ingress record (should be used with service.type: ClusterIP).
-    enabled: true
+    enabled: false
     hosts:
       - chat.bigbang.dev
     tls:
@@ -212,7 +212,7 @@ mattermostApp:
 # MySQL HA Section. Use this to configure MySQL.
 # If you are using an external DB, disable this.
 mysqlha:
-  enabled: true
+  enabled: false
   mysqlha:
     replicaCount: 2
     # Please update the root and regular passwords
