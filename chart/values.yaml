@@ -1,6 +1,8 @@
 global:
   siteUrl: "http://mattermost.example.com"  # REQUIRED SETTING, PLEASE UPDATE
   mattermostLicense: "THIS STRING SHOULD BE REPLACED WITH THE CONTENTS OF YOUR LICENSE FILE"  # REQUIRED SETTING, PLEASE UPDATE
+  imagePullSecrets: []
+  #  - name: private-registry
 
   # Settings for configuration of Mattermost
   # For more details: https://docs.mattermost.com/administration/config-settings.html
