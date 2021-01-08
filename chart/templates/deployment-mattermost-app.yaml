@@ -37,6 +37,10 @@ spec:
         {{- .Values.mattermostApp.extraPodAnnotations | toYaml | nindent 8 }}
         {{- end }}
     spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if .Values.mattermostApp.affinity}}
       {{- .Values.mattermostApp.affinity | toYaml | nindent 6 }}
       {{- end }}
