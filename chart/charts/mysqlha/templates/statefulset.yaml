@@ -27,6 +27,10 @@ spec:
 {{ toYaml .Values.mysqlha.podAnnotations | indent 8 }}
       {{- end }}
     spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if .Values.schedulerName }}
       schedulerName: "{{ .Values.schedulerName }}"
       {{- end }}
