@@ -11,11 +11,11 @@ Create Mattermost secret
   1. Create sso-creds.env
   2. Edit sso-creds.env
   ```
-  MM_GITLABSETTINGS_SECRET=
-  MM_GITLABSETTINGS_ID=
-  MM_GITLABSETTINGS_AUTHENDPOINT=
-  MM_GITLABSETTINGS_TOKENENDPOINT=
-  MM_GITLABSETTINGS_USERAPIENDPOINT=
+  MM_GITLABSETTINGS_SECRET=OID_SECRET
+  MM_GITLABSETTINGS_ID=OID_ID
+  MM_GITLABSETTINGS_AUTHENDPOINT=OID_AUTH_ENDPOINT
+  MM_GITLABSETTINGS_TOKENENDPOINT=OID_TOKEN_ENDPOINT
+  MM_GITLABSETTINGS_USERAPIENDPOINT=OID_USERAPI_ENDPOINT
   ```
   3. Encrypt the variables.  This can be done with `sops -e sso-creds.env > sso-creds.enc.env`
   4. Remove the unecrypted `sso-creds.env` file.
@@ -34,7 +34,12 @@ Create Mattermost secret
   ```
   6. Kustomize patch clusterinstallation.yaml with keyloak settings:
   ```
+  apiVersion: mattermost.com/v1alpha1
+  kind: ClusterInstallation
+  metadata:
+    name: chat
   spec:
+    mattermostEnv:
     # Keycloak Settings
     - name: MM_GITLABSETTINGS_ENABLE
       value: "true"
@@ -43,7 +48,6 @@ Create Mattermost secret
         secretKeyRef:
           name: sso-secret
           key: MM_GITLABSETTINGS_SECRET
-
     - name: MM_GITLABSETTINGS_ID
       valueFrom:
         secretKeyRef:
@@ -69,6 +73,11 @@ Create Mattermost secret
         secretKeyRef:
           name: sso-secret
           key: MM_GITLABSETTINGS_USERAPIENDPOINT
+  ```
+  In Kustomization.yaml
+  ```
+  patchesStrategicMerge:
+  - clusterinstallation.yaml
   ```
 Mattermost is now configured to use keycloak for SSO.  Any baby-yoda realm users created from the keycloak Admin Console will need
 a mattermostid attribute added to their user.  Users who register throuh an invite link or with a CAC will automatically had this
