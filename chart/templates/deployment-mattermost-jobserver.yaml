@@ -35,6 +35,10 @@ spec:
         {{- .Values.mattermostApp.extraPodAnnotations | toYaml | nindent 8 }}
         {{- end }}
     spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       initContainers:
       - name: "init-mattermost-app"
         image: "{{ .Values.initContainerImage.repository }}:{{ .Values.initContainerImage.tag }}"
