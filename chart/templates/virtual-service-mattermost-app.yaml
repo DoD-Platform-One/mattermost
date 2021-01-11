@@ -1,0 +1,17 @@
+## Need to templatetize this is for testing in bigbang.dev
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mattermost-mattermost-enterprise-edition
+spec:
+  hosts:
+  - "chat.bigbang.dev"
+  gateways:
+  - istio-system/main
+  http:
+  - route:
+    - destination:
+        host: mattermost-mattermost-enterprise-edition.mattermost.svc.cluster.local
+        port:
+          number: 8065
+
