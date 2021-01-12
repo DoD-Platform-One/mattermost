@@ -104,6 +104,18 @@ spec:
         - name: MM_ELASTICSEARCHSETTINGS_ENABLESEARCHING
           value: "true"
 {{- end }}
+{{- if .Values.sso.enabled }}
+        - name: MM_GITLABSETTINGS_ID
+          value: "{{ .Values.sso.id }}"
+        - name: MM_GITLABSETTINGS_SECRET
+          value: "{{ .Values.sso.secret }}"
+        - name: MM_GITLABSETTINGS_AUTHENDPOINT
+          value: "{{ .Values.sso.authendpoint }}"
+        - name: MM_GITLABSETTINGS_TOKENENDPOINT
+          value: "{{ .Values.sso.tokenendpoint }}"
+        - name: MM_GITLABSETTINGS_USERAPIENDPOINT
+          value: "{{ .Values.sso.userapiendpoint }}"
+{{- end }}
 {{- if .Values.minio.enabled }}
         - name: MM_FILESETTINGS_DRIVERNAME
           value: "amazons3"
