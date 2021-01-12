@@ -1,8 +1,8 @@
 ## mysql image version
 ## ref: https://hub.docker.com/r/library/mysql/tags/
 ##
-mysqlImage: mysql:5.7.29
-xtraBackupImage: gcr.io/google-samples/xtrabackup:1.0
+mysqlImage: registry.dso.mil/platform-one/big-bang/pipeline-templates/pipeline-templates/mysql:5.7.29
+xtraBackupImage: registry.dso.mil/platform-one/big-bang/pipeline-templates/pipeline-templates/xtrabackup:1.0
 
 ## Specify an imagePullPolicy (Required)
 ## It's recommended to change this to 'Always' if the image tag is 'latest'
