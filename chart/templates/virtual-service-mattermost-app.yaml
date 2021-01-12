@@ -4,7 +4,6 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: mattermost-mattermost-enterprise-edition
-  namespace: {{ .Release.Namespace }}
 spec:
   hosts:
   - "chat.bigbang.dev"
