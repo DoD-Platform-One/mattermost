@@ -1,3 +1,21 @@
+# Keycloak SSO helm config
+
+Modify your values.yaml to enable sso:
+```
+# SSO Additions
+sso:
+  enabled: true
+  secret: secret
+  id: platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost
+  authendpoint: https://login.dso.mil/oauth/authorize
+  tokenendpoint: https://login.dso.mil/oauth/token
+  userapiendpoint: https://login.dso.mil/api/v4/user
+```
+Example install:
+```
+helm upgrade -i mattermost chart -n mattermost --create-namespace -f tests/test-values.yml
+```
+
 # Keycloak SSO Kustomize config
 
 Generate secret for client:
@@ -97,21 +115,3 @@ Add mattermostid to user
 
 This mattermostid needs to be unique per user, so it's a bad idea to generate these by hand.  The registration process will
 automatically generate these for users, but in the case that you generated a test user it can be handy to add a mattermostid.
-
-# Keycloak SSO helm config
-
-Modify your values.yaml to enable sso:
-```
-# SSO Additions
-sso:
-  enabled: true
-  secret: secret
-  id: platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost
-  authendpoint: https://login.dso.mil/oauth/authorize
-  tokenendpoint: https://login.dso.mil/oauth/token
-  userapiendpoint: https://login.dso.mil/api/v4/user
-```
-Example install:
-```
-helm upgrade -i mattermost chart -n mattermost --create-namespace -f tests/test-values.yml
-```
