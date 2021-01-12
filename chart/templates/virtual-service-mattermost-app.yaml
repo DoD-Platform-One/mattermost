@@ -1,8 +1,10 @@
-## Need to templatetize this is for testing in bigbang.dev
+{{- if .Values.istio.enabled -}}
+## Need to templatize this is for testing in bigbang.dev
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: mattermost-mattermost-enterprise-edition
+  namespace: {{ .Release.Namespace }}
 spec:
   hosts:
   - "chat.bigbang.dev"
@@ -14,4 +16,4 @@ spec:
         host: mattermost-mattermost-enterprise-edition.mattermost.svc.cluster.local
         port:
           number: 8065
-
+{{- end }}
