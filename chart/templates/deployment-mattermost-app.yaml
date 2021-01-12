@@ -105,6 +105,8 @@ spec:
           value: "true"
 {{- end }}
 {{- if .Values.sso.enabled }}
+        - name: MM_GITLABSETTINGS_ENABLE
+          value: {{ .Values.sso.enabled }}
         - name: MM_GITLABSETTINGS_ID
           value: "{{ .Values.sso.id }}"
         - name: MM_GITLABSETTINGS_SECRET
