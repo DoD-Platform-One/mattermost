@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mattermost-operator
+  annotations:
+    sidecar.istio.io/inject: 'false'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mattermost-operator
+  template:
+    metadata:
+      labels:
+        name: mattermost-operator
+    spec:
+      serviceAccountName: mattermost-operator
+      containers:
+        - name: mattermost-operator
+          image: registry1.dsop.io/ironbank/opensource/mattermost/mattermost-operator:v1.5.0
+          command:
+          - mattermost-operator
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WATCH_NAMESPACE
+              value: ""
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "mattermost-operator"
