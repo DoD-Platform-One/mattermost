@@ -6,7 +6,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: mattermost-operator
-  namespace: mattermost
+  namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: mattermost-operator
