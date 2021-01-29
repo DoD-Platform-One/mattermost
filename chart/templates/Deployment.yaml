@@ -18,7 +18,7 @@ spec:
       serviceAccountName: mattermost-operator
       containers:
         - name: mattermost-operator
-          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          image: {{ .Values.image.name }}
           command:
           - mattermost-operator
           imagePullPolicy: {{ .Values.image.imagePullPolicy }}
