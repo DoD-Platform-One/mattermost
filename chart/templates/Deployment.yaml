@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mattermost-operator
+  namespace: {{ .Release.Namespace }}
   annotations:
     sidecar.istio.io/inject: 'false'
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas.count }}
   selector:
     matchLabels:
       name: mattermost-operator
@@ -17,13 +18,13 @@ spec:
       serviceAccountName: mattermost-operator
       containers:
         - name: mattermost-operator
-          image: registry1.dsop.io/ironbank/opensource/mattermost/mattermost-operator:v1.5.0
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
           command:
           - mattermost-operator
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: {{ .Values.image.imagePullPolicy }}
           env:
             - name: WATCH_NAMESPACE
-              value: ""
+              value: {{ .Values.watchedNamespace }}
             - name: POD_NAME
               valueFrom:
                 fieldRef:
