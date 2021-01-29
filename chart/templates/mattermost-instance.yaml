@@ -1,0 +1,9 @@
+apiVersion: mattermost.com/v1alpha1
+kind: ClusterInstallation
+metadata:
+  name: chat
+spec:
+  version: 5.27.0
+  size: 100users
+  ingressName: chat.kube.dev
+  image: registry1.dsop.io/ironbank/opensource/mattermost/mattermost
