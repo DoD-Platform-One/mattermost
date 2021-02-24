@@ -1,9 +1,9 @@
 mattermostoperator:
   git: "https://repo1.dso.mil/platform-one/big-bang/apps/collaboration-tools/mattermost-operator.git"
   namespace: "mattermost-operator"
-  branch: "bb-1162"
+  branch: "1.12.0-bb.0"
 
 miniooperator:
   git: "https://repo1.dso.mil/platform-one/big-bang/apps/application-utilities/minio-operator.git"
   namespace: "minio-operator"
-  branch: "bb-1233"
+  branch: "2.0.9-bb.1"
