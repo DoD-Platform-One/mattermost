@@ -1,0 +1,96 @@
+apiVersion: installation.mattermost.com/v1beta1
+kind: Mattermost
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{ include "mattermost.labels" . | nindent 4 }}
+    app.kubernetes.io/component: "instance"
+spec:
+  image: {{ .Values.image.name }}
+  imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+
+  size: {{ .Values.users }}users
+  version: {{ .Values.image.tag }}
+  replicas: {{ .Values.replicaCount }}
+
+  {{- if .Values.istio.chat.hosts }}
+  ingressName: {{ tpl (index .Values.istio.chat.hosts 0) $ }}
+  {{- else }}
+  ingressName: "chat.bigbang.dev"
+  {{- end }}
+
+  {{- if and .Values.enterprise.enabled .Values.enterprise.license }}
+  licenseSecret: "mattermost-license"
+  {{- end }}
+
+  {{- if or .Values.mattermostEnvs .Values.sso.enabled }}
+  mattermostEnv:
+  {{- range $k, $v := .Values.mattermostEnvs }}
+  - name: {{ $k }}
+    value: {{ $v | quote }}
+  {{- end }}
+  {{- if .Values.sso.enabled }}
+  - name: MM_GITLABSETTINGS_ENABLE
+    value: "{{ .Values.sso.enabled }}"
+  - name: MM_GITLABSETTINGS_ID
+    value: "{{ .Values.sso.client_id }}"
+  - name: MM_GITLABSETTINGS_SECRET
+    value: "{{ .Values.sso.client_secret }}"
+  - name: MM_GITLABSETTINGS_AUTHENDPOINT
+    value: "{{ .Values.sso.auth_endpoint }}"
+  - name: MM_GITLABSETTINGS_TOKENENDPOINT
+    value: "{{ .Values.sso.token_endpoint }}"
+  - name: MM_GITLABSETTINGS_USERAPIENDPOINT
+    value: "{{ .Values.sso.user_api_endpoint }}"
+  {{- end }}
+  {{- end }}
+
+  # Give MM enough time to keel over if needed
+  probes:
+    livenessProbe:
+      initialDelaySeconds: 120
+      periodSeconds: 120
+
+  scheduling:
+    resources:
+    {{- toYaml .Values.resources | nindent 6 }}
+
+    {{- if or .Values.antiAffinity .Values.nodeAffinity }}
+    affinity:
+      {{- if eq .Values.antiAffinity "hard" }}
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: "kubernetes.io/hostname"
+            labelSelector:
+              matchLabels:
+                app: mattermost
+                installation.mattermost.com/installation: mattermost
+                installation.mattermost.com/resource: mattermost
+      {{- else if eq .Values.antiAffinity "soft" }}
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          podAffinityTerm:
+            topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app: mattermost
+                installation.mattermost.com/installation: mattermost
+                installation.mattermost.com/resource: mattermost
+      {{- end }}
+      {{- with .Values.nodeAffinity }}
+      nodeAffinity:
+      {{ toYaml . | nindent 8 }}
+      {{- end }}
+    {{- end }}
+
+  database:
+    external:
+      secret: {{ .Values.database.secret | default (printf "%s-dbcreds" (include "mattermost.fullname" .)) }}
+
+  fileStore:
+    external:
+      url: {{ .Values.fileStore.url | default "minio-service:9000" }}
+      bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
+      secret: {{ .Values.fileStore.secret | default "minio-creds-secret" }}

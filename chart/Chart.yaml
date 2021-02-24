@@ -1,16 +1,21 @@
 --- 
 apiVersion: v2
-appVersion: "5.27.0"
-dependencies: ~
-description: "Deployment of mattermost operator using Helm"
+name: mattermost
+type: application
+version: "0.1.0-bb.0"
+appVersion: "5.31.0"
+description: "Deployment of mattermost"
 keywords: 
   - Mattermost
   - Instance
 kubeVersion: ">=1.12.0-0"
-maintainers: 
-  - 
-    email: ~
-    name: ~
-name: mattermost-operator
-type: application
-version: "1.5.0"
+
+dependencies:
+  - name: postgresql
+    version: 10.3.5
+    alias: postgresql
+    condition: postgresql.install
+  - name: minio
+    version: 0.1.0-bb.0
+    alias: minio
+    condition: minio.install
