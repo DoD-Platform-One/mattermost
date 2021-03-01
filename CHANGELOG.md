@@ -4,8 +4,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.0-bb.2] - 2021-02-26
+### Fixed
+- Bumped Minio image version to the newest IB image to fix an issue
+
+## [0.1.0-bb.1] - 2021-02-25
+### Fixed
+- Fixed issue with the dependency listing in the chart, Flux did not properly install
+
 ## [0.1.0-bb.0] - 2021-02-24
-
 ### Added
-
 - Initial chart built from operator v1.12.0 using Ironbank images
