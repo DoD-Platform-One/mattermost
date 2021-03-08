@@ -1,126 +1,16 @@
-hostname: bigbang.dev
-
 istio:
-  # Toggle istio integration
   enabled: true
-  chat:
-    # Toggle vs creation
-    enabled: true
-    annotations: {}
-    labels: {}
-    gateways:
-      - istio-system/main
-    hosts:
-      - chat.{{ .Values.hostname }}
-
-# NOTE: Requires enterprise.enabled to have any effect
-monitoring:
-  enabled: true
-  namespace: monitoring
-
-sso:
-  enabled: false
-  client_id: platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost
-  client_secret: nothing # Change to your Keycloak client secret
-  auth_endpoint: https://login.dso.mil/oauth/authorize
-  token_endpoint: https://login.dso.mil/oauth/token
-  user_api_endpoint: https://login.dso.mil/api/v4/user
-
-# Repo and image tag 
-image:
-  name: registry.dso.mil/platform-one/big-bang/apps/collaboration-tools/mattermost/mattermost
-  tag: 5.31.0
-  imagePullPolicy: IfNotPresent
 
 global:
   imagePullSecrets:
     - name: private-registry-mil
 
-# Mattermost instance desired replicas
-replicaCount: 1
-
-users: 100 # Allowable: 100, 1000, 5000, 10000, 25000
-
-enterprise:
-  enabled: false
-  license: ""
-  # Example:
-  # license: |
-  #   LICENSE HERE
-
-nameOverride: ""
-
-resources: {}
-  # limits:
-  #   cpu: 500m
-  #   memory: 512Mi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
-
-# Available options are "soft" and "hard"
-antiAffinity: ""
-
-nodeAffinity: {}
-  # requiredDuringSchedulingIgnoredDuringExecution:
-  #   nodeSelectorTerms:
-  #   - matchExpressions:
-  #     - key: type
-  #       operator: In
-  #       values:
-  #       - "mattermost-optimized"
-
-mattermostEnvs: {}
-  # Add any Mattermost Envs as a map to customize the install, examples:
-  # MM_TEAMSETTINGS_SITENAME: "DoD Platform One"
-  # MM_TEAMSETTINGS_CUSTOMDESCRIPTIONTEXT: "Enterprise collaboration services to support DoD telework users"
-  # MM_SUPPORTSETTINGS_PRIVACYPOLICYLINK: "https://www.privacy.af.mil/Policy-and-Guidelines/"
-  # MM_SUPPORTSETTINGS_ABOUTLINK: "https://software.af.mil/"
-  # MM_SUPPORTSETTINGS_CUSTOMTERMSOFSERVICEENABLED: "false"
-
 minio:
   install: true
-
-  accessKey: minio
-  secretKey: minio#123 # default key, change this!
 
 postgresql:
   install: true
 
   image:
-    registry: "registry1.dso.mil/ironbank"
-    repository: "opensource/postgres/postgresql11"
-    tag: "11.10"
-
     pullSecrets:
       - private-registry-mil
-
-  postgresqlUsername: "mattermost"
-  postgresqlPassword: "bigbang" # default password, change this!
-  postgresqlDatabase: "mattermost"
-
-  fullnameOverride: "mattermost-postgresql" # Overrides the name used for resource creation
-
-  securityContext:
-    fsGroup: 26
-  containerSecurityContext:
-    runAsUser: 26
-
-  # Set the configs to allow listening and connecting from other pods
-  postgresqlConfiguration: {"listen_addresses": "*"}
-  pgHbaConfiguration: |-
-    local all all md5
-    host all all all md5
-
-database:
-  # Name of an existing secret to pull credentials from, leave empty for chart created database
-  # Must at minimum contain DB_CONNECTION_STRING
-  secret: ""
-
-fileStore:
-  # Name of an existing secret to pull credentials from, leave empty for chart created minio
-  secret: ""
-  # URL for existing file store, leave empty for chart created minio
-  url: ""
-  # Bucket for existing file store, leave empty for chart created minio
-  bucket: ""
