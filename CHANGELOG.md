@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.1-bb.0] - 2021-03-15
+### Changed
+- Bumped Mattermost image to 5.32.1
+- Added a ENV to set S3 connection to insecure when using the built-in minio (due to an operator change)
+
 ## [0.1.0-bb.2] - 2021-02-26
 ### Fixed
 - Bumped Minio image version to the newest IB image to fix an issue

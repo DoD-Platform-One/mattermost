@@ -24,7 +24,7 @@ spec:
   licenseSecret: "mattermost-license"
   {{- end }}
 
-  {{- if or .Values.mattermostEnvs .Values.sso.enabled }}
+  {{- if or .Values.mattermostEnvs .Values.sso.enabled .Values.minio.install }}
   mattermostEnv:
   {{- range $k, $v := .Values.mattermostEnvs }}
   - name: {{ $k }}
@@ -43,6 +43,10 @@ spec:
     value: "{{ .Values.sso.token_endpoint }}"
   - name: MM_GITLABSETTINGS_USERAPIENDPOINT
     value: "{{ .Values.sso.user_api_endpoint }}"
+  {{- end }}
+  {{- if .Values.minio.install }}
+  - name: MM_FILESETTINGS_AMAZONS3SSL
+    value: "false"
   {{- end }}
   {{- end }}
 
