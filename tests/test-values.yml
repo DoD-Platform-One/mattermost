@@ -7,10 +7,11 @@ global:
 
 minio:
   install: true
+  imagePullSecrets:
+    - name: private-registry-mil
 
 postgresql:
   install: true
-
   image:
     pullSecrets:
       - private-registry-mil

@@ -1,0 +1,35 @@
+{{- if and .Values.istio.enabled .Values.istio.virtualService.enabled -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ template "minio.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  gateways:
+    - istio-system/main
+  hosts:
+    - {{ .Values.istio.virtualService.name }}.{{ .Values.hostname }}
+  http:
+    - match:
+        - uri:
+            prefix: /minio/prometheus/metrics
+      route:
+        - destination:
+            host: {{ include "minio.serviceName" . }}
+            port:
+              number: {{ .Values.service.port }}
+      fault:
+        abort:
+          percentage:
+            value: 100
+          httpStatus: 403
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: {{ include "minio.serviceName" . }}
+            port:
+              number: {{ .Values.service.port }}
+{{- end }}
+

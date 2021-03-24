@@ -1,8 +1,7 @@
 apiVersion: operator.min.io/v1
 kind: MinIOInstance
 metadata:
-  name: minio
-  namespace: {{ .Release.Namespace }}
+  name: {{ include "minio.fullname" . }}
 ## If specified, MinIOInstance pods will be dispatched by specified scheduler.
 ## If not specified, the pod will be dispatched by default scheduler.
 # scheduler:
@@ -12,16 +11,18 @@ spec:
   metadata:
     ## Optionally pass labels to be applied to the statefulset pods
     labels:
-      app: minio
-      {{ include "minio.labels" . | nindent 6 }}
-      app.kubernetes.io/component: "objectstorage"
+      {{- include "minio.labels" . | nindent 6 }}
+    {{- with .Values.podAnnotations }}
     annotations:
       prometheus.io/path: /minio/prometheus/metrics
       prometheus.io/port: "9000"
       prometheus.io/scrape: "true"
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+
   ## Registry location and Tag to download MinIO Server image
   image: {{ .Values.image.name }}:{{ .Values.image.tag }}
-  serviceAccountName: minio-service-account
+  serviceAccountName: {{ include "minio.serviceAccountName" . }}
   ## A ClusterIP Service will be created with the given name
   serviceName: minio-internal-service
   zones:
@@ -51,7 +52,7 @@ spec:
           storage: {{ .Values.volumeClaimTemplate.storage}}
   ## Secret with credentials to be used by MinIO instance.
   credsSecret:
-    name: {{ .Values.minioUICreds }}
+    name: {{ .Values.minioRootCreds }}
   ## PodManagement policy for pods created by StatefulSet. Can be "OrderedReady" or "Parallel"
   ## Refer https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#pod-management-policy
   ## for details. Defaults to "Parallel"
@@ -77,7 +78,9 @@ spec:
   #    operator: Equal
   #    value: storage
   ## Add environment variables to be set in MinIO container (https://github.com/minio/minio/tree/master/docs/config)
-  # env:
+  env:
+    - name: MINIO_PROMETHEUS_AUTH_TYPE
+      value: "public"
     # - name: MINIO_BROWSER
     #   value: "off" # to turn-off browser
     # - name: MINIO_STORAGE_CLASS_STANDARD

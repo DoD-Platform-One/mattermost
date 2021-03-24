@@ -1,0 +1,9 @@
+dependencies:
+- name: postgresql
+  repository: file://./deps/postgresql
+  version: 10.3.5
+- name: minio-instance
+  repository: file://./deps/minio
+  version: 2.0.9-bb.5
+digest: sha256:e14a571d09ffdc66826b46a727ead36511ea5a6b0e349cda36d217bafcd26210
+generated: "2021-03-22T15:12:25.740669-06:00"

@@ -1,0 +1,26 @@
+apiVersion: v2
+
+name: minio-instance
+
+description: |-
+  A Helm chart for deploying the Minio instances based on use of the Minio operator
+
+#home: https://github.com/elastic/cloud-on-k8s
+
+type: application
+
+version: 2.0.9-bb.5
+
+appVersion: RELEASE.2020-11-19T23-48-16Z
+
+kubeVersion: ">=1.17.0-0"
+
+keywords:
+  - Minio
+  - Instance
+
+maintainers:
+  - name: me
+    email:
+
+dependencies:
