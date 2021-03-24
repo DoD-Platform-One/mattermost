@@ -36,7 +36,9 @@ Common labels
 {{- define "minio.labels" -}}
 helm.sh/chart: {{ include "minio.chart" . }}
 {{ include "minio.selectorLabels" . }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
@@ -46,5 +48,23 @@ Selector labels
 {{- define "minio.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "minio.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/part-of: {{ include "mattermost.name" . }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "minio.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "minio.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+{{/*
+Create the name of the service used to access the UI
+*/}}
+{{- define "minio.serviceName" -}}
+{{- default (include "minio.fullname" .) .Values.service.nameOverride }}
+{{- end }}
+
