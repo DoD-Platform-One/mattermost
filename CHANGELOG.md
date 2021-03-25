@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.1-bb.3] - 2021-03-25
+### Fixed
+- Minio virtualservice disabled by default
+
 ## [0.1.1-bb.2] - 2021-03-25
 ### Changed
 - Updated Cypress test to handle upgrades
