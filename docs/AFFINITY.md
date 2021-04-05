@@ -1,28 +1,44 @@
 # Node Affinity & Anti-Affinity with Mattermost
 
-Affinity is exposed through values options for the Mattermost deployments. If you want to schedule your Mattermost pods to deploy on specific nodes you can do that through the `nodeAffinity` value and as needed the `antiAffinity` value. Additional info is provided below as well to help in configuring this.
+Affinity is exposed through values options for this package. If you want to schedule your pods to deploy on specific nodes you can do that through the `nodeSelector` value and as needed the `affinity` value. Additional info is provided below as well to help in configuring this.
 
-It is good to have a basic knowledge of node affinity and available options to you before customizing Mattermost in this way - the upstream kubernetes documentation [has a good walkthrough of this](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
+It is good to have a basic knowledge of node affinity and available options to you before customizing in this way - the upstream kubernetes documentation [has a good walkthrough of this](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity).
+
+## Values for NodeSelector
+
+The `nodeSelector` value at the top level can be set to do basic node selection for deployments. See the below example for an example to schedule pods to only nodes with the label `node-type` equal to `mattermost`:
+
+```yaml
+nodeSelector:
+  node-type: mattermost
+```
 
 ## Values for Affinity
 
-The `nodeAffinity` value at the top level for Mattermost should be used to specify affinity. The format to include follows what you'd specify at a pod level. See the example below for scheduling the Mattermost pods only to nodes with the label `node-type` equal to `mattermost`:
+The `affinity` value at the top level should be used to specify affinity. The format to include follows what you'd specify at a pod/deployment level. See the example below for scheduling the operator pods only to nodes with the label `node-type` equal to `mattermost`:
 
 ```yaml
-nodeAffinity:
-  requiredDuringSchedulingIgnoredDuringExecution:
-    nodeSelectorTerms:
-    - matchExpressions:
-      - key: node-type
-        operator: In
-        values:
-        - mattermost
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: node-type
+          operator: In
+          values:
+          - mattermost
 ```
 
 ## Values for Anti-Affinity
 
-The `antiAffinity` value at the top level for Mattermost can be set to either `soft` or `hard` (soft = preferred, hard = required). Setting this will ensure that your Mattermost replicas do not deploy to the same node (or at least try to not deploy to the same node if using soft). See the below example for specifying a hard anti affinity:
+The `affinity` value at the top level can be set in the same way to schedule pods based on anti-affinity. See the below example to schedule pods to not be present on the nodes that already have pods with the `dont-schedule-with: mattermost` label:
 
 ```yaml
-antiAffinity: "hard"
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: "kubernetes.io/hostname"
+        labelSelector:
+          matchLabels:
+            dont-schedule-with: mattermost
 ```

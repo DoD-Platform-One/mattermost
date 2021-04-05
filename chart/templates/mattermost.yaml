@@ -60,34 +60,15 @@ spec:
     resources:
     {{- toYaml .Values.resources | nindent 6 }}
 
-    {{- if or .Values.antiAffinity .Values.nodeAffinity }}
+    {{- if .Values.affinity }}
     affinity:
-      {{- if eq .Values.antiAffinity "hard" }}
-      podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          - topologyKey: "kubernetes.io/hostname"
-            labelSelector:
-              matchLabels:
-                app: mattermost
-                installation.mattermost.com/installation: mattermost
-                installation.mattermost.com/resource: mattermost
-      {{- else if eq .Values.antiAffinity "soft" }}
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 1
-          podAffinityTerm:
-            topologyKey: kubernetes.io/hostname
-            labelSelector:
-              matchLabels:
-                app: mattermost
-                installation.mattermost.com/installation: mattermost
-                installation.mattermost.com/resource: mattermost
-      {{- end }}
-      {{- with .Values.nodeAffinity }}
-      nodeAffinity:
-      {{ toYaml . | nindent 8 }}
-      {{- end }}
+      {{ toYaml .Values.affinity | nindent 6 }}
     {{- end }}
+
+    {{- if .Values.nodeSelector }}
+    nodeSelector:
+      {{ toYaml .Values.nodeSelector | nindent 6 }}
+    {{- end }}  
 
   database:
     external:

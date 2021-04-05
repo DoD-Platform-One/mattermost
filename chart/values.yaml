@@ -58,17 +58,24 @@ resources: {}
   #   cpu: 250m
   #   memory: 256Mi
 
-# Available options are "soft" and "hard"
-antiAffinity: ""
+affinity: {}
+  # podAntiAffinity:
+  #   requiredDuringSchedulingIgnoredDuringExecution:
+  #     - topologyKey: "kubernetes.io/hostname"
+  #       labelSelector:
+  #         matchLabels:
+  #           dont-schedule-with: mattermost
+  # nodeAffinity:
+  #   requiredDuringSchedulingIgnoredDuringExecution:
+  #     nodeSelectorTerms:
+  #     - matchExpressions:
+  #       - key: node-type
+  #         operator: In
+  #         values:
+  #         - "mattermost"
 
-nodeAffinity: {}
-  # requiredDuringSchedulingIgnoredDuringExecution:
-  #   nodeSelectorTerms:
-  #   - matchExpressions:
-  #     - key: type
-  #       operator: In
-  #       values:
-  #       - "mattermost-optimized"
+nodeSelector: {}
+  # node-type: mattermost
 
 mattermostEnvs: {}
 

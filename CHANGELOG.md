@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.2-bb.0] - 2021-04-05
+### Changed
+- Modified the way affinity is passed to simplify and standardize
+
 ## [0.1.1-bb.3] - 2021-03-25
 ### Fixed
 - Minio virtualservice disabled by default
