@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.3-bb.0] - 2021-04-08
+### Added
+- Values passthroughs for secret env values
+- Moved all envs to a secret that chart creates
+
 ## [0.1.2-bb.0] - 2021-04-05
 ### Changed
 - Modified the way affinity is passed to simplify and standardize
