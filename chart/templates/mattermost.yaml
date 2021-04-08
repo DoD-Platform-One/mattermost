@@ -24,29 +24,56 @@ spec:
   licenseSecret: "mattermost-license"
   {{- end }}
 
-  {{- if or .Values.mattermostEnvs .Values.sso.enabled .Values.minio.install }}
+  {{- if or .Values.mattermostEnvs .Values.sso.enabled .Values.minio.install .Values.existingSecretEnvs }}
   mattermostEnv:
   {{- range $k, $v := .Values.mattermostEnvs }}
   - name: {{ $k }}
-    value: {{ $v | quote }}
+    valueFrom:
+      secretKeyRef:
+        key: {{ $k }}
+        name: "mattermost-envs"
   {{- end }}
   {{- if .Values.sso.enabled }}
   - name: MM_GITLABSETTINGS_ENABLE
-    value: "{{ .Values.sso.enabled }}"
+    valueFrom:
+      secretKeyRef:
+        key: MM_GITLABSETTINGS_ENABLE
+        name: "mattermost-envs"
   - name: MM_GITLABSETTINGS_ID
-    value: "{{ .Values.sso.client_id }}"
+    valueFrom:
+      secretKeyRef:
+        key: MM_GITLABSETTINGS_ID
+        name: "mattermost-envs"
   - name: MM_GITLABSETTINGS_SECRET
-    value: "{{ .Values.sso.client_secret }}"
+    valueFrom:
+      secretKeyRef:
+        key: MM_GITLABSETTINGS_SECRET
+        name: "mattermost-envs"
   - name: MM_GITLABSETTINGS_AUTHENDPOINT
-    value: "{{ .Values.sso.auth_endpoint }}"
+    valueFrom:
+      secretKeyRef:
+        key: MM_GITLABSETTINGS_AUTHENDPOINT
+        name: "mattermost-envs"
   - name: MM_GITLABSETTINGS_TOKENENDPOINT
-    value: "{{ .Values.sso.token_endpoint }}"
+    valueFrom:
+      secretKeyRef:
+        key: MM_GITLABSETTINGS_TOKENENDPOINT
+        name: "mattermost-envs"
   - name: MM_GITLABSETTINGS_USERAPIENDPOINT
-    value: "{{ .Values.sso.user_api_endpoint }}"
+    valueFrom:
+      secretKeyRef:
+        key: MM_GITLABSETTINGS_USERAPIENDPOINT
+        name: "mattermost-envs"
   {{- end }}
   {{- if .Values.minio.install }}
   - name: MM_FILESETTINGS_AMAZONS3SSL
-    value: "false"
+    valueFrom:
+      secretKeyRef:
+        key: MM_FILESETTINGS_AMAZONS3SSL
+        name: "mattermost-envs"
+  {{- end }}
+  {{- range .Values.existingSecretEnvs }}
+  - {{ tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
   {{- end }}
 

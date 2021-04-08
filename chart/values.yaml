@@ -77,7 +77,23 @@ affinity: {}
 nodeSelector: {}
   # node-type: mattermost
 
+# Any ENVs provided here get put into a `mattermost-envs` secret and pulled into the env
 mattermostEnvs: {}
+  # MM_ENV_NAME: "{{ .Values.users }}"
+  # ANOTHER_ENV_NAME: "anothervalue"
+
+# Use this to point to pull in ENV values from existing secrets
+existingSecretEnvs: {}
+  # - name: MM_SQLSETTINGS_DATASOURCEREPLICAS
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: READER_DB_CONNECTION_STRING
+  #       name: '{{ .Values.database.secret | default (printf "%s-dbcreds" (include "mattermost.fullname" .)) }}'
+  # - name: MM_ANOTHER_VAR
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: DB_CONNECTION_CHECK_URL
+  #       name: "mysecretname"
 
 minio:
   install: false
