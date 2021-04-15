@@ -6,8 +6,8 @@
 replicas:
   count: 1
 
-
-
+accessKey: minio
+secretKey: minio#123 # default key, change this!
 
 nameOverride: ""
 fullnameOverride: ""

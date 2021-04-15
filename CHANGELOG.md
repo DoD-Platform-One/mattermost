@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.3-bb.1] - 2021-04-15
+### Added
+- Added Minio security context
+
 ## [0.1.3-bb.0] - 2021-04-08
 ### Added
 - Values passthroughs for secret env values
