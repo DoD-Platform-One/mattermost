@@ -6,9 +6,7 @@
 replicas:
   count: 1
 
-accessKey: minio
-secretKey: minio#123 # default key, change this!
-
+hostname: bigbang.dev
 nameOverride: ""
 fullnameOverride: ""
 
@@ -29,7 +27,7 @@ volumeClaimTemplate:
   accessModes: ReadWriteOnce
   storage: 1Gi  # scale down for dev
 
-minioRootCreds: minio-creds-secret
+minioRootCreds: default-minio-creds-secret
 
 imagePullSecrets: [ ]
 
@@ -55,8 +53,18 @@ istio:
   enabled: false
   virtualService:
     enabled: true
-    name: minio
+    annotations: {}
+    labels: {}
+    gateways:
+      - istio-system/main
+    hosts:
+      -  minio.{{ .Values.hostname }}
+    service: ""
+    port: ""
+
 
 monitoring:
   enabled: false
   namespace: monitoring
+
+mcImage: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2021-03-23T05-46-11Z

@@ -4,6 +4,6 @@ dependencies:
   version: 10.3.5
 - name: minio-instance
   repository: file://./deps/minio
-  version: 2.0.9-bb.5
-digest: sha256:e14a571d09ffdc66826b46a727ead36511ea5a6b0e349cda36d217bafcd26210
-generated: "2021-03-22T15:12:25.740669-06:00"
+  version: 2.0.9-bb.9
+digest: sha256:655a9483cf53a24afb867a32f3bcdaedced200bb5cdefb93b5889f79486e8b55
+generated: "2021-04-19T09:54:43.894362-06:00"

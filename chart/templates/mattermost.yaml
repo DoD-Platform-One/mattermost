@@ -105,4 +105,4 @@ spec:
     external:
       url: {{ .Values.fileStore.url | default (printf "%s:9000" .Values.minio.service.nameOverride) }}
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
-      secret: {{ .Values.fileStore.secret | default "minio-creds-secret" }}
+      secret: {{ .Values.fileStore.secret | default "mattermost-objstore-creds" }}
