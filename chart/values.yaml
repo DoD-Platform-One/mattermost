@@ -102,6 +102,10 @@ minio:
   service:
     nameOverride: "minio-mattermost-service"
 
+  # Specify the secret to the Mattermost created secret
+  minioRootCreds: mattermost-objstore-creds
+
+  # Credentials to populate the secret with
   accessKey: minio
   secretKey: minio#123 # default key, change this!
 

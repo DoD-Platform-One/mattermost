@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.3-bb.2] - 2021-04-19
+### Changed
+- Pulled in official BB Minio via kpt
+- Refactored the Minio connection secret
+
 ## [0.1.3-bb.1] - 2021-04-15
 ### Added
 - Added Minio security context
