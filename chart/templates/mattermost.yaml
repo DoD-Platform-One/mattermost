@@ -72,6 +72,58 @@ spec:
         key: MM_FILESETTINGS_AMAZONS3SSL
         name: "mattermost-envs"
   {{- end }}
+  {{- if .Values.elasticsearch.enabled }}
+  - name: MM_ELASTICSEARCHSETTINGS_CONNECTIONURL
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_CONNECTIONURL
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_ENABLEAUTOCOMPLETE
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_ENABLEAUTOCOMPLETE
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_ENABLEINDEXING
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_ENABLEINDEXING
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_INDEXPREFIX
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_INDEXPREFIX
+        name: "mattermost-envs"        
+  - name: MM_ELASTICSEARCHSETTINGS_BULKINDEXINGTIMEWINDOWSECONDS
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_BULKINDEXINGTIMEWINDOWSECONDS
+        name: "mattermost-envs"        
+  - name: MM_ELASTICSEARCHSETTINGS_ENABLESEARCHING
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_ENABLESEARCHING
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_SKIPTLSVERIFICATION
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_SKIPTLSVERIFICATION
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_SNIFF
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_SNIFF
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_USERNAME
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_USERNAME
+        name: "mattermost-envs"
+  - name: MM_ELASTICSEARCHSETTINGS_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        key: MM_ELASTICSEARCHSETTINGS_PASSWORD
+        name: "mattermost-envs"             
+  {{- end }}  
   {{- range .Values.existingSecretEnvs }}
   - {{ tpl (toYaml .) $ | nindent 4 }}
   {{- end }}
