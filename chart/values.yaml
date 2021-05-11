@@ -29,12 +29,12 @@ sso:
 # Repo and image tag 
 image:
   name: registry.dso.mil/platform-one/big-bang/apps/collaboration-tools/mattermost/mattermost
-  tag: 5.32.1
+  tag: 5.34.2
   imagePullPolicy: IfNotPresent
 
 global:
-  imagePullSecrets: []
-  # - name: private-registry
+  imagePullSecrets:
+  - name: private-registry
 
 # Mattermost instance desired replicas
 replicaCount: 3
@@ -109,8 +109,8 @@ minio:
   accessKey: minio
   secretKey: minio#123 # default key, change this!
 
-  imagePullSecrets: []
-  # - name: private-registry
+  imagePullSecrets:
+  - name: private-registry
 
 postgresql:
   install: false
@@ -120,8 +120,8 @@ postgresql:
     repository: "opensource/postgres/postgresql11"
     tag: "11.10"
 
-    pullSecrets: []
-    # - private-registry
+    pullSecrets:
+    - private-registry
 
   postgresqlUsername: "mattermost"
   postgresqlPassword: "bigbang" # default password, change this!
