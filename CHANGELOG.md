@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+
+## [0.1.5-bb.0] - 2021-05-06
+### Changed
+- Updated to 5.34.2
+- Cleaned up values and test-values
+
 ## [0.1.4-bb.0] - 2021-04-23
 ### Added
 - Added Elastic Search declaritive coniguration. 
