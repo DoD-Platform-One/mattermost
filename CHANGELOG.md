@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.6-bb.0] - 2021-05-11
+### Changed
+- Migrated Cypress tests to Helm tests
+- Added additional testing of file storage and settings modification
+
 ## [0.1.5-bb.0] - 2021-05-06
 ### Changed
 - Updated to 5.34.2
