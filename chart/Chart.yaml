@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: "0.1.6-bb.0"
+version: "0.1.7-bb.0"
 appVersion: "5.34.2"
 description: "Deployment of mattermost"
 keywords: 
@@ -17,7 +17,7 @@ dependencies:
     condition: postgresql.install
     repository: file://./deps/postgresql
   - name: minio-instance
-    version: 2.0.9-bb.9
+    version: 4.0.4-bb.4
     alias: minio
     condition: minio.install
     repository: file://./deps/minio

@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.7-bb.0] - 2021-05-17
+### Changed
+- Updated to latest Minio package as dependency
+
 ## [0.1.6-bb.0] - 2021-05-11
 ### Changed
 - Migrated Cypress tests to Helm tests
