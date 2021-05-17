@@ -155,6 +155,6 @@ spec:
 
   fileStore:
     external:
-      url: {{ .Values.fileStore.url | default (printf "%s:9000" .Values.minio.service.nameOverride) }}
+      url: {{ .Values.fileStore.url | default "minio:80" }}
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
-      secret: {{ .Values.fileStore.secret | default "mattermost-objstore-creds" }}
+      secret: {{ .Values.fileStore.secret | default .Values.minio.tenants.secrets.name }}
