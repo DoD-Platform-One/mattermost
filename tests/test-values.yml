@@ -1,10 +1,16 @@
 minio:
   install: true
+  upgradeTenants:
+    enabled: true
 
 postgresql:
   install: true
 
+networkPolicies:
+  enabled: true
+
 bbtests:
+  enabled: true
   cypress:
     artifacts: true
     envs:

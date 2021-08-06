@@ -26,12 +26,12 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /minio/prometheus/metrics
+            prefix: /minio/v2/metrics/cluster
       route:
         - destination:
             host: {{ include "minio.serviceName" . }}
             port:
-              number: {{ include "minio.servicePort" . | trim }}
+              number: {{ .Values.tenants.metrics.port }}
       fault:
         abort:
           percentage:

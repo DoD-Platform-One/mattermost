@@ -9,6 +9,10 @@ metadata:
 spec:
   image: {{ .Values.image.name }}
   imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+  {{- with .Values.global.imagePullSecrets }}
+  imagePullSecrets:
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
 
   size: {{ .Values.users }}users
   version: {{ .Values.image.tag }}
@@ -149,12 +153,22 @@ spec:
       {{ toYaml .Values.nodeSelector | nindent 6 }}
     {{- end }}  
 
+  {{- with .Values.volumes }}
+  volumes:
+  {{- toYaml . | nindent 4}}
+  {{- end }}
+
+  {{- with .Values.volumeMounts }}
+  volumeMounts:
+  {{- toYaml . | nindent 4}}
+  {{- end }}
+
   database:
     external:
       secret: {{ .Values.database.secret | default (printf "%s-dbcreds" (include "mattermost.fullname" .)) }}
 
   fileStore:
     external:
-      url: {{ .Values.fileStore.url | default "minio:80" }}
+      url: {{ .Values.fileStore.url | default .Values.minio.service.nameOverride }}
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
       secret: {{ .Values.fileStore.secret | default .Values.minio.tenants.secrets.name }}
