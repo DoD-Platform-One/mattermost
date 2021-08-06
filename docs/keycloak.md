@@ -20,11 +20,20 @@ Under the mappers tab, create a new mapper:
 - claim JSON type - long
 - add to userinfo - on
 
-Create another mapper:
+Create username mapper:
 - name - username
 - mapper type - user property
 - property - username
 - token claim name - username
+- claim JSON type - string
+- add to userinfo - on
+- all other sliders off
+
+Create email mapper:
+- name - email
+- mapper type - user property
+- property - email
+- token claim name - email
 - claim JSON type - string
 - add to userinfo - on
 - all other sliders off
@@ -68,3 +77,27 @@ helm upgrade -i mattermost chart -n mattermost --create-namespace -f my-values.y
 Role based authentication can be configured as long as you are on an enterprise version.
 
 Follow the steps in [this tutorial](https://docs.mattermost.com/deployment/advanced-permissions.html) to customize the permissions given to users. In general permissions can be edited under the "System Console -> User Management -> Permissions". Users should be created by default under the "Member" group, except for the first user to sign up or login.
+
+## OIDC Custom CA
+
+Mattermost can be configured to point to specific files to trust with an OIDC auth connection, here is an example when using Big Bang to deploy mattermost, assuming you are populating a secret named "ca-cert" in the same namespace, with a key of cert.pem and value of a single PEM encoded certificate (an easy way to make this secret is included below as well):
+
+```yaml
+addons:
+  mattermost:
+    values:
+      volumes:
+        - name: ca-cert
+          secret:
+            secretName: ca-secret
+            defaultMode: 0644
+      volumeMounts:
+        - name: ca-cert
+          mountPath: /etc/ssl/certs
+          readOnly: true
+```
+
+For secret creation with this example and a pem file at `/path/to/cert.pem`:
+```bash
+kubectl create secret generic ca-secret --from-file=cert.pem=/path/to/cert.pem -n mattermost
+```

@@ -3,10 +3,56 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [0.1.7-bb.1] - 2021-07-23
+### Changed
+- Updated to latest IronBank image 5.37.0
+- Updated to latest Minio 4.1.2 package as dependency
+- Moved to Gluon test library
+- Pulled in changes from main-minio2 branch
+
+### Added
+- Added BigBang networkPolicies
 
 ## [0.1.7-bb.0] - 2021-05-17
 ### Changed
 - Updated to latest Minio package as dependency
+
+## [0.1.6-bb.8] - 2021-07-21
+### Changed
+- Add openshift toggle, conditionally add port 5353 egress. Changing "openshift:" to true in values.yaml will enable.
+
+## [0.1.6-bb.7] - 2021-07-08
+### Changed
+- Update Mattermost to version 5.36.1
+
+## [0.1.6-bb.6] - 2021-06-22
+### Changed
+- Update Mattermost to version 5.36.0
+
+## [0.1.6-bb.5] - 2021-06-21
+### Fixed
+- NetworkPolicy blocking an init container, added policy to allow postgres egress for the init container
+- Redo of test egress
+- Move around DNS policy
+
+## [0.1.6-bb.4] - 2021-06-07
+### Added
+- Ability to pass volumes / volumeMounts to MM pods
+
+## [0.1.6-bb.3] - 2021-06-04
+### Added
+- Add IPS with new operator
+- Switch to the IB image being used directly
+
+## [0.1.6-bb.2] - 2021-06-02
+### Changed
+- Restricted test policy to just cluster
+
+## [0.1.6-bb.1] - 2021-06-01
+### Changed
+- Moved tests to gluon library
+### Added
+- Default NetworkPolicies added
 
 ## [0.1.6-bb.0] - 2021-05-11
 ### Changed
