@@ -44,9 +44,9 @@ global:
   - name: private-registry
 
 # Mattermost instance desired replicas
-replicaCount: 3
+replicaCount: 1
 
-users: 100 # Allowable: 100, 1000, 5000, 10000, 25000
+users: null # Allowable: 100, 1000, 5000, 10000, 25000
 
 enterprise:
   enabled: false
@@ -57,13 +57,13 @@ enterprise:
 
 nameOverride: ""
 
-resources: {}
-  # limits:
-  #   cpu: 500m
-  #   memory: 512Mi
-  # requests:
-  #   cpu: 250m
-  #   memory: 256Mi
+resources:
+  limits:
+    cpu: 2
+    memory: 4Gi
+  requests:
+    cpu: 2
+    memory: 4Gi
 
 affinity: {}
   # podAntiAffinity:

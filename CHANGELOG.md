@@ -3,6 +3,14 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [0.1.8-bb.0] - 2021-08-18
+### Added
+- default user value set to null
+- Set replica count to 1
+- Resource requests and limits for all containers
+- Updated to latest Minio and Minio Operator dependency
+- Updated Gluon test library
+
 ## [0.1.7-bb.1] - 2021-07-23
 ### Changed
 - Updated to latest IronBank image 5.37.0
