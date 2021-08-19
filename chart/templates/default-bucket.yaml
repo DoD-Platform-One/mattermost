@@ -36,7 +36,12 @@ spec:
                 attempt_counter=$(($attempt_counter+1))
                 sleep 10
               done
-              mc mb bigbang/mattermost   
+              if [ $(mc ls bigbang/mattermost >/dev/null; echo $?) -eq 0 ]; then
+                echo "Default Bucket Exists"
+                exit 0
+              else
+                mc mb bigbang/mattermost
+              fi
           resources:
             requests:
               memory: 256Mi
