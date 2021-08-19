@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: "0.1.7-bb.1"
+version: "0.1.8-bb.0"
 appVersion: "5.37.0"
 description: "Deployment of mattermost"
 keywords: 
@@ -17,10 +17,10 @@ dependencies:
     condition: postgresql.install
     repository: file://./deps/postgresql
   - name: minio-instance
-    version: 4.1.2-bb.3
+    version: 4.1.2-bb.5
     alias: minio
     condition: minio.install
     repository: file://./deps/minio
   - name: gluon
-    version: 0.1.1
+    version: 0.2.3
     repository: oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon

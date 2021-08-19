@@ -16,8 +16,11 @@ spec:
 
   size: {{ .Values.users }}users
   version: {{ .Values.image.tag }}
+  {{- if .Values.enterprise.enabled }}
   replicas: {{ .Values.replicaCount }}
-
+  {{- else }}
+  replicas: 1
+  {{- end }}
   {{- if .Values.istio.chat.hosts }}
   ingressName: {{ tpl (index .Values.istio.chat.hosts 0) $ }}
   {{- else }}
@@ -140,9 +143,10 @@ spec:
       periodSeconds: 120
 
   scheduling:
+    {{- with .Values.resources }}
     resources:
-    {{- toYaml .Values.resources | nindent 6 }}
-
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
     {{- if .Values.affinity }}
     affinity:
       {{ toYaml .Values.affinity | nindent 6 }}

@@ -6,4 +6,4 @@ mattermostoperator:
 miniooperator:
   git: "https://repo1.dso.mil/platform-one/big-bang/apps/application-utilities/minio-operator.git"
   namespace: "minio-operator"
-  branch: "4.1.2-bb.1"
+  branch: "4.1.2-bb.2"
