@@ -41,16 +41,19 @@ describe('Mattermost Healthcheck', function() {
         cy.title().should('include', 'Town Square - Big Bang')
       }
     })
+
     cy.get("body").then($body => {
-      if ($body.find('a[id="tutorialSkipLink"]').length > 0) {
-        cy.get('a[id="tutorialSkipLink"]').click()
+      if ($body.find('button[class="SidebarNextSteps__close"]').length > 0) {
+        cy.get('button[class="SidebarNextSteps__close"]').click()
+        cy.get('button[type="submit"] > span').contains("Remove").click()
       }
-    })    
+    })
   })
 
   it('should allow chatting', function() {
     let randomChat = "Hello " + Math.random().toString(36).substring(8);
     cy.get('textarea[id="post_textbox"]').type(randomChat).type('{enter}')
+    cy.reload()
     cy.get('p').contains(randomChat).should('be.visible')
   })
 
@@ -61,17 +64,5 @@ describe('Mattermost Healthcheck', function() {
     cy.get('a[id="environment/file_storage"]').click()
     cy.get('span').contains("Test Connection").click()
     cy.get('div[class="alert alert-success"]').should('be.visible')
-  })
-
-  it('should save settings changes', function() {
-    cy.get('button[aria-label="main menu"]').click()
-    cy.get('a[href="/admin_console"]').click()
-
-    cy.get('a[id="site_config/customization"]').click()
-    let randomName = Math.random().toString(36).substring(8);
-    cy.get('input[id="TeamSettings.SiteName"]').clear().type(randomName)
-    cy.get('button[id="saveSetting"]').click()
-    cy.reload()
-    cy.title().should('include', randomName)
   })
 })
