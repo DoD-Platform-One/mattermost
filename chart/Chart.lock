@@ -4,9 +4,9 @@ dependencies:
   version: 10.3.5
 - name: minio-instance
   repository: file://./deps/minio
-  version: 4.1.2-bb.5
+  version: 4.2.3-bb.1
 - name: gluon
   repository: oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon
   version: 0.2.3
-digest: sha256:cde5de559ca3093d910f05987ba958d2310f93546e486d6b36e5049879ffd781
-generated: "2021-08-18T11:24:54.7908191-06:00"
+digest: sha256:62be2ef474ba365221eb93c32a18e7b5fbad3bbdb00af63b987375f7547710a5
+generated: "2021-09-14T12:46:07.061627-05:00"
