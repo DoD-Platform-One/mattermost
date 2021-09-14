@@ -1,7 +1,5 @@
 minio:
   install: true
-  upgradeTenants:
-    enabled: true
 
 postgresql:
   install: true
