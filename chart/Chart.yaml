@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: "0.2.1-bb.0"
-appVersion: "5.38.2"
+version: "0.2.2-bb.0"
+appVersion: "5.39.0"
 description: "Deployment of mattermost"
 keywords: 
   - Mattermost
