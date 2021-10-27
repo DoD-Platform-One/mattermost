@@ -15,8 +15,7 @@ spec:
       protocol: TCP
   podSelector:
     matchLabels:
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/name: {{ include "minio.name" . }}
+      app.kubernetes.io/name: minio
   policyTypes:
   - Ingress
 {{- end }}
