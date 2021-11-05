@@ -21,11 +21,13 @@ spec:
   {{- else }}
   replicas: 1
   {{- end }}
-  {{- if .Values.istio.chat.hosts }}
-  ingressName: {{ tpl (index .Values.istio.chat.hosts 0) $ }}
-  {{- else }}
-  ingressName: "chat.bigbang.dev"
-  {{- end }}
+
+  ingress:
+    enabled: {{ .Values.ingress.enabled }}
+    host: {{ .Values.ingress.host }}
+    annotations:
+      {{- toYaml .Values.ingress.annotations | nindent 6 }}
+    tlsSecret: {{ .Values.ingress.tlsSecret}}
 
   {{- if and .Values.enterprise.enabled .Values.enterprise.license }}
   licenseSecret: "mattermost-license"
@@ -40,6 +42,11 @@ spec:
         key: {{ $k }}
         name: "mattermost-envs"
   {{- end }}
+  - name: MM_SERVICESETTINGS_SITEURL
+    valueFrom:
+      secretKeyRef:
+        key: MM_SERVICESETTINGS_SITEURL
+        name: "mattermost-envs"
   {{- if .Values.sso.enabled }}
   - name: MM_GITLABSETTINGS_ENABLE
     valueFrom:
@@ -170,9 +177,27 @@ spec:
   database:
     external:
       secret: {{ .Values.database.secret | default (printf "%s-dbcreds" (include "mattermost.fullname" .)) }}
+    disableReadinessCheck: {{ .Values.database.readinessCheck.disableDefault }}
 
   fileStore:
     external:
       url: {{ .Values.fileStore.url | default .Values.minio.service.nameOverride }}
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
       secret: {{ .Values.fileStore.secret | default .Values.minio.tenants.secrets.name }}
+
+  podExtensions:
+    initContainers:
+      - command:
+        {{- toYaml .Values.database.readinessCheck.command | nindent 10 }}
+        image: {{ .Values.database.readinessCheck.image }}
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        name: db-readiness-check
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 128Mi
+            cpu: 50m
+        env:
+        {{- (tpl (toYaml .Values.database.readinessCheck.env) .) | nindent 10 }}
