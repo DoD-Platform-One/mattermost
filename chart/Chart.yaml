@@ -1,11 +1,11 @@
---- 
+---
 apiVersion: v2
 name: mattermost
 type: application
 version: "0.2.4-bb.0"
 appVersion: "5.39.0"
 description: "Deployment of mattermost"
-keywords: 
+keywords:
   - Mattermost
   - Instance
 kubeVersion: ">=1.12.0-0"

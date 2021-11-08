@@ -1,16 +1,123 @@
-# Mattermost
+# mattermost
 
-Mattermost is an open source, private cloud, Slack-alternative from https://mattermost.com. It is used for enterprise collaboration/chat within P1 and for Big Bang.
+![Version: 0.2.4-bb.0](https://img.shields.io/badge/Version-0.2.4--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.39.0](https://img.shields.io/badge/AppVersion-5.39.0-informational?style=flat-square)
 
-This repo provides an implementation of Mattermost for Big Bang. Installation requires that the [Mattermost Operator](https://repo1.dso.mil/platform-one/big-bang/apps/collaboration-tools/mattermost-operator) be installed in your cluster as a prerequisite. 
+Deployment of mattermost
 
-Several of the important values to take note of when installing include:
-- `istio.enabled`: This will enable istio networking for Mattermost within your cluster.
-- `replicaCount`: The desired number of replicas for your instance. Defaults to 1 with the `chart/values.yaml` - more than 1 requires enterprise license.
-- `enterprise.enabled`: Enable enterprise features (if you don't also specify a license this only affects monitoring).
-- `enterprise.license`: Value to add your license (entire license file contents - format shown in values). You can also manually add your license via the system console in Mattermost.
-- `minio.install`: Install a minio instance standalone for Mattermost development, for production you should specify a `fileStore` url, secret, and bucket.
-- `postgresql.install`: Install a postgres instance standalone for Mattermost development, for production you should specify a `database` secret
-- `sso.enabled`: Enable SSO integration w/ Keycloak, requires additional config/values to point to your Keycloak.
-- `monitoring.enabled`: Enable Prometheus monitoring integration with Mattermost, this will only work if you toggle `enterprise.enabled` to true as well.
-- `networkPolicies.enabled`: Enable networkPolicies to lock down traffic to/from Mattermost.
+## Learn More
+* [Application Overview](docs/overview.md)
+* [Other Documentation](docs/)
+
+## Pre-Requisites
+
+* Kubernetes Cluster deployed
+* Kubernetes config installed in `~/.kube/config`
+* Helm installed
+
+Kubernetes: `>=1.12.0-0`
+
+Install Helm
+
+https://helm.sh/docs/intro/install/
+
+## Deployment
+
+* Clone down the repository
+* cd into directory
+```bash
+helm install mattermost chart/
+```
+
+## Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| hostname | string | `"bigbang.dev"` |  |
+| istio.enabled | bool | `false` |  |
+| istio.chat.enabled | bool | `true` |  |
+| istio.chat.annotations | object | `{}` |  |
+| istio.chat.labels | object | `{}` |  |
+| istio.chat.gateways[0] | string | `"istio-system/main"` |  |
+| istio.chat.hosts[0] | string | `"chat.{{ .Values.hostname }}"` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.host | string | `""` |  |
+| ingress.annotations | object | `{}` |  |
+| ingress.tlsSecret | string | `""` |  |
+| monitoring.enabled | bool | `false` |  |
+| monitoring.namespace | string | `"monitoring"` |  |
+| networkPolicies.enabled | bool | `false` |  |
+| networkPolicies.ingressLabels.app | string | `"istio-ingressgateway"` |  |
+| networkPolicies.ingressLabels.istio | string | `"ingressgateway"` |  |
+| networkPolicies.controlPlaneCidr | string | `"0.0.0.0/0"` |  |
+| sso.enabled | bool | `false` |  |
+| sso.client_id | string | `"platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost"` |  |
+| sso.client_secret | string | `"nothing"` |  |
+| sso.auth_endpoint | string | `"https://login.dso.mil/oauth/authorize"` |  |
+| sso.token_endpoint | string | `"https://login.dso.mil/oauth/token"` |  |
+| sso.user_api_endpoint | string | `"https://login.dso.mil/api/v4/user"` |  |
+| image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
+| image.tag | string | `"5.39.0"` |  |
+| image.imagePullPolicy | string | `"IfNotPresent"` |  |
+| global.imagePullSecrets[0].name | string | `"private-registry"` |  |
+| replicaCount | int | `1` |  |
+| users | string | `nil` |  |
+| enterprise.enabled | bool | `false` |  |
+| enterprise.license | string | `""` |  |
+| nameOverride | string | `""` |  |
+| resources.limits.cpu | int | `2` |  |
+| resources.limits.memory | string | `"4Gi"` |  |
+| resources.requests.cpu | int | `2` |  |
+| resources.requests.memory | string | `"4Gi"` |  |
+| affinity | object | `{}` |  |
+| nodeSelector | object | `{}` |  |
+| mattermostEnvs | object | `{}` |  |
+| existingSecretEnvs | object | `{}` |  |
+| volumes | object | `{}` |  |
+| volumeMounts | object | `{}` |  |
+| minio.install | bool | `false` |  |
+| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2021-09-02T09-21-27Z"` |  |
+| minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
+| minio.tenants.secrets.name | string | `"mattermost-objstore-creds"` |  |
+| minio.tenants.secrets.accessKey | string | `"minio"` |  |
+| minio.tenants.secrets.secretKey | string | `"minio123"` |  |
+| postgresql.install | bool | `false` |  |
+| postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |
+| postgresql.image.repository | string | `"opensource/postgres/postgresql11"` |  |
+| postgresql.image.tag | string | `"11.10"` |  |
+| postgresql.image.pullSecrets[0] | string | `"private-registry"` |  |
+| postgresql.postgresqlUsername | string | `"mattermost"` |  |
+| postgresql.postgresqlPassword | string | `"bigbang"` |  |
+| postgresql.postgresqlDatabase | string | `"mattermost"` |  |
+| postgresql.fullnameOverride | string | `"mattermost-postgresql"` |  |
+| postgresql.securityContext.fsGroup | int | `26` |  |
+| postgresql.containerSecurityContext.runAsUser | int | `26` |  |
+| postgresql.postgresqlConfiguration.listen_addresses | string | `"*"` |  |
+| postgresql.pgHbaConfiguration | string | `"local all all md5\nhost all all all md5"` |  |
+| database.secret | string | `""` |  |
+| database.readinessCheck.disableDefault | bool | `true` |  |
+| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.8"` |  |
+| database.readinessCheck.command[0] | string | `"/bin/sh"` |  |
+| database.readinessCheck.command[1] | string | `"-c"` |  |
+| database.readinessCheck.command[2] | string | `"until pg_isready --dbname=\"$DB_CONNECTION_CHECK_URL\"; do echo waiting for database; sleep 5; done;"` |  |
+| database.readinessCheck.env[0].name | string | `"DB_CONNECTION_CHECK_URL"` |  |
+| database.readinessCheck.env[0].valueFrom.secretKeyRef.key | string | `"DB_CONNECTION_CHECK_URL"` |  |
+| database.readinessCheck.env[0].valueFrom.secretKeyRef.name | string | `"{{ .Values.database.secret \| default (printf \"%s-dbcreds\" (include \"mattermost.fullname\" .)) }}"` |  |
+| fileStore.secret | string | `""` |  |
+| fileStore.url | string | `""` |  |
+| fileStore.bucket | string | `""` |  |
+| elasticsearch.enabled | bool | `false` |  |
+| elasticsearch.connectionurl | string | `"https://logging-ek-es-http.logging.svc.cluster.local:9200"` |  |
+| elasticsearch.username | string | `""` |  |
+| elasticsearch.password | string | `""` |  |
+| elasticsearch.enableindexing | bool | `true` |  |
+| elasticsearch.indexprefix | string | `"mm-"` |  |
+| elasticsearch.skiptlsverification | bool | `true` |  |
+| elasticsearch.bulkindexingtimewindowseconds | int | `3600` |  |
+| elasticsearch.sniff | bool | `false` |  |
+| elasticsearch.enablesearching | bool | `true` |  |
+| elasticsearch.enableautocomplete | bool | `true` |  |
+| openshift | bool | `false` |  |
+
+## Contributing
+
+Please see the [contributing guide](./CONTRIBUTING.md) if you are interested in contributing.
