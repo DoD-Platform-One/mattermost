@@ -164,6 +164,11 @@ spec:
       {{ toYaml .Values.nodeSelector | nindent 6 }}
     {{- end }}  
 
+    {{- if .Values.tolerations}}
+    tolerations:
+      {{- toYaml .Values.tolerations | nindent 6 }}
+    {{- end }}
+
   {{- with .Values.volumes }}
   volumes:
   {{- toYaml . | nindent 4}}

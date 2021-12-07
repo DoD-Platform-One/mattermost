@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [0.3.0-bb.0] - 2021-12-06
+### Changed
+- Added a conditional addition of tolerations to mattermost.yaml
+- Added a spot for tolerations in values.yaml
+
 ## [0.2.4-bb.0] - 2021-11-02
 ### Changed
 - Disabled ingress by default

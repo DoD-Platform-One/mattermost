@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 0.2.4-bb.0](https://img.shields.io/badge/Version-0.2.4--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.39.0](https://img.shields.io/badge/AppVersion-5.39.0-informational?style=flat-square)
+![Version: 0.3.0-bb.0](https://img.shields.io/badge/Version-0.3.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.39.0](https://img.shields.io/badge/AppVersion-5.39.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -70,6 +70,7 @@ helm install mattermost chart/
 | resources.requests.memory | string | `"4Gi"` |  |
 | affinity | object | `{}` |  |
 | nodeSelector | object | `{}` |  |
+| tolerations | object | `{}` |  |
 | mattermostEnvs | object | `{}` |  |
 | existingSecretEnvs | object | `{}` |  |
 | volumes | object | `{}` |  |

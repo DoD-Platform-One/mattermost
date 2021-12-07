@@ -91,6 +91,12 @@ affinity: {}
 nodeSelector: {}
   # node-type: mattermost
 
+tolerations: {}
+# - key: "key1"
+#   operator: "Equal"
+#   value: "value1"
+#   effect: "NoSchedule"
+
 # Any ENVs provided here get put into a `mattermost-envs` secret and pulled into the env
 mattermostEnvs: {}
   # MM_ENV_NAME: "{{ .Values.users }}"
