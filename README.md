@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 0.3.0-bb.0](https://img.shields.io/badge/Version-0.3.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.39.0](https://img.shields.io/badge/AppVersion-5.39.0-informational?style=flat-square)
+![Version: 0.4.0-bb.0](https://img.shields.io/badge/Version-0.4.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 5.39.0](https://img.shields.io/badge/AppVersion-5.39.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -118,6 +118,12 @@ helm install mattermost chart/
 | elasticsearch.enablesearching | bool | `true` |  |
 | elasticsearch.enableautocomplete | bool | `true` |  |
 | openshift | bool | `false` |  |
+| bbtests.enabled | bool | `false` |  |
+| bbtests.cypress.artifacts | bool | `true` |  |
+| bbtests.cypress.envs.cypress_url | string | `"http://mattermost.mattermost.svc.cluster.local:8065"` |  |
+| bbtests.cypress.envs.cypress_mm_email | string | `"test@bigbang.dev"` |  |
+| bbtests.cypress.envs.cypress_mm_user | string | `"bigbang"` |  |
+| bbtests.cypress.envs.cypress_mm_password | string | `"Bigbang#123"` |  |
 
 ## Contributing
 

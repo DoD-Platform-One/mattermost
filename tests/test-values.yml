@@ -18,10 +18,3 @@ networkPolicies:
 
 bbtests:
   enabled: true
-  cypress:
-    artifacts: true
-    envs:
-      cypress_url: http://mattermost.mattermost.svc.cluster.local:8065
-      cypress_mm_email: "test@bigbang.dev"
-      cypress_mm_user: "bigbang"
-      cypress_mm_password: "Bigbang#123"
