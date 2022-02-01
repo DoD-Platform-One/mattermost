@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: "0.4.0-bb.0"
+version: "0.4.0-bb.1"
 appVersion: "5.39.0"
 description: "Deployment of mattermost"
 keywords:
@@ -24,3 +24,6 @@ dependencies:
   - name: gluon
     version: 0.2.3
     repository: oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon
+annotations:
+  bigbang.dev/applicationVersions: |
+    - Mattermost: 5.39.0
