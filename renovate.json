@@ -20,9 +20,17 @@
     {
       "fileMatch": ["^chart/values\\.yaml$"],
       "matchStrings": [
-         "image:\\s+name:\\s+[^/]+/(?<depName>.+)\\s+tag:\\s+(?<currentValue>.+)"
+        "image:\\s+name:\\s+[^/]+/(?<depName>.+)\\s+tag:\\s+(?<currentValue>.+)"
       ],
       "depNameTemplate": "registry1.dso.mil/ironbank/opensource/mattermost/mattermost",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": [
+        "- Mattermost:\\s+(?<currentValue>.+)"
+      ],
+      "depNameTemplate": "ironbank/opensource/mattermost/mattermost",
       "datasourceTemplate": "docker"
     }
   ]
