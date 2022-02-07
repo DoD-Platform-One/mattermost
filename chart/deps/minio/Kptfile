@@ -5,7 +5,7 @@ metadata:
 upstream:
   type: git
   git:
-    commit: b7696895beb41c0e447626933c26e4c2776660de
+    commit: e2d3a4b489e817f3ed3c3439de21e10d37bcd607
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/application-utilities/minio
     directory: /chart
-    ref: 4.2.3-bb.2
+    ref: 4.4.3-bb.2
