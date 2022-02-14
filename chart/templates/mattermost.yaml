@@ -33,15 +33,7 @@ spec:
   licenseSecret: "mattermost-license"
   {{- end }}
 
-  {{- if or .Values.mattermostEnvs .Values.sso.enabled .Values.minio.install .Values.existingSecretEnvs }}
   mattermostEnv:
-  {{- range $k, $v := .Values.mattermostEnvs }}
-  - name: {{ $k }}
-    valueFrom:
-      secretKeyRef:
-        key: {{ $k }}
-        name: "mattermost-envs"
-  {{- end }}
   - name: MM_SERVICESETTINGS_SITEURL
     valueFrom:
       secretKeyRef:
@@ -137,10 +129,16 @@ spec:
       secretKeyRef:
         key: MM_ELASTICSEARCHSETTINGS_PASSWORD
         name: "mattermost-envs"             
-  {{- end }}  
+  {{- end }}
+  {{- range $k, $v := .Values.mattermostEnvs }}
+  - name: {{ $k }}
+    valueFrom:
+      secretKeyRef:
+        key: {{ $k }}
+        name: "mattermost-envs"
+  {{- end }}
   {{- range .Values.existingSecretEnvs }}
   - {{ tpl (toYaml .) $ | nindent 4 }}
-  {{- end }}
   {{- end }}
 
   # Give MM enough time to keel over if needed
