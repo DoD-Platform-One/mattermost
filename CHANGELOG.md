@@ -3,9 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [0.4.0-bb.3] - 2022-02-14
+### Changed
+- Fixed bug with ENV for SITE_URL not being set in certain cases
+
 ## [0.4.0-bb.2] - 2022-02-02
 ### Updated
-- Update mino dependency chart to 4.4.3-bb.2
+- Update minio dependency chart to 4.4.3-bb.2
 
 ## [0.4.0-bb.1] - 2022-01-31
 ### Updated
