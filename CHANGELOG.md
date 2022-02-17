@@ -3,6 +3,14 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [0.5.0-bb.0] - 2022-02-07
+### Changed
+- Upgrade Mattermost to application version 6.3.3
+    1. v5 -> v6 has some major migrations and upstream notes long migration times, they have provided analysis on the time these take - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Longer%20migration%20times,70%2B%20million%20posts.)
+    2. v5 servers cannot run with v6 servers, i.e. upgrade WILL have downtime - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=The%20field%20type,a%20large%20extent.)
+    3. v6.1 has additional schema changes, MM has provided analysis on these changes as well - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Please%20refer%20to%20the%20schema%20migration%20analysis%20when%20upgrading%20to%20v6.1.)
+    4. v6.2 has modified autocomplete to include private channels, which requires re-indexing if using Elastic - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Channel%20results%20in,in%20autocomplete%20results.)
+
 ## [0.4.0-bb.4] - 2022-02-15
 ### Changed
 - Update mino dependency chart to 4.4.3-bb.3
