@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 0.5.0-bb.0](https://img.shields.io/badge/Version-0.5.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.3.3](https://img.shields.io/badge/AppVersion-6.3.3-informational?style=flat-square)
+![Version: 0.6.0-bb.0](https://img.shields.io/badge/Version-0.6.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.3.4](https://img.shields.io/badge/AppVersion-6.3.4-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -56,7 +56,7 @@ helm install mattermost chart/
 | sso.token_endpoint | string | `"https://login.dso.mil/oauth/token"` |  |
 | sso.user_api_endpoint | string | `"https://login.dso.mil/api/v4/user"` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"6.3.3"` |  |
+| image.tag | string | `"6.3.4"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
