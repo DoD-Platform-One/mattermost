@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 0.6.0-bb.0](https://img.shields.io/badge/Version-0.6.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.3.4](https://img.shields.io/badge/AppVersion-6.3.4-informational?style=flat-square)
+![Version: 0.6.0-bb.1](https://img.shields.io/badge/Version-0.6.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 6.3.4](https://img.shields.io/badge/AppVersion-6.3.4-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -76,7 +76,7 @@ helm install mattermost chart/
 | volumes | object | `{}` |  |
 | volumeMounts | object | `{}` |  |
 | minio.install | bool | `false` |  |
-| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2021-09-02T09-21-27Z"` |  |
+| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-02-26T03-58-31Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
 | minio.tenants.secrets.name | string | `"mattermost-objstore-creds"` |  |
 | minio.tenants.secrets.accessKey | string | `"minio"` |  |

@@ -128,7 +128,7 @@ volumeMounts: {}
 
 minio:
   install: false
-  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2021-09-02T09-21-27Z"
+  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-02-26T03-58-31Z"
   # Override the minio service name for easier connection setup
   service:
     nameOverride: "minio.mattermost.svc.cluster.local"
