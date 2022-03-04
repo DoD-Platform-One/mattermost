@@ -50,19 +50,20 @@ describe('Mattermost Healthcheck', function() {
         cy.get('input[id="teamNameInput"]').type("Big Bang")
         cy.get('button[id="teamNameNextButton"]').click()
         cy.get('button[id="teamURLFinishButton"]').click()
-        cy.wait(2000)
-        cy.title().should('include', 'Town Square - Big Bang')
-      } else {
-        cy.title().should('include', 'Town Square - Big Bang')
       }
     })
 
+    // Give some time for the startup tips to load
+    cy.wait(5000)
     cy.get("body").then($body => {
-      if ($body.find('button[class="SidebarNextSteps__close"]').length > 0) {
-        cy.get('button[class="SidebarNextSteps__close"]').click()
-        cy.get('button[type="submit"] > span').contains("Remove").click()
+      if ($body.find('.NextStepsView__skipGettingStarted > .NextStepsView__button').length > 0) {
+        cy.get('.NextStepsView__skipGettingStarted > .NextStepsView__button').click()
       }
     })
+  
+    // Wait for title to update
+    cy.wait(2000)
+    cy.title().should('include', 'Town Square - Big Bang')
   })
 
   it('should allow chatting', function() {

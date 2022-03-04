@@ -7,7 +7,7 @@
   "draftPR": true,
   "enabledManagers": ["regex"],
   "ignorePaths": ["chart/charts/**"],
-  "labels": ["mattermost","Package Sustainment","kind::chore"],
+  "labels": ["mattermost","Package Sustainment","kind::maintenance"],
   "packageRules": [
     {
       "matchDatasources": ["docker"],
@@ -28,9 +28,10 @@
     {
       "fileMatch": ["^chart/Chart\\.yaml$"],
       "matchStrings": [
-        "- Mattermost:\\s+(?<currentValue>.+)"
+        "- Mattermost:\\s+(?<currentValue>.+)",
+        "appVersion:\\s+(?<currentValue>.+)"
       ],
-      "depNameTemplate": "ironbank/opensource/mattermost/mattermost",
+      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/mattermost/mattermost",
       "datasourceTemplate": "docker"
     }
   ]
