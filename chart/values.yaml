@@ -137,6 +137,9 @@ minio:
       name: "mattermost-objstore-creds"
       accessKey: "minio"
       secretKey: "minio123" # default key, change this!
+    metrics:
+      enabled: false
+      port: 9000
 
 postgresql:
   install: false
