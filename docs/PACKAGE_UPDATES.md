@@ -8,7 +8,7 @@ Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handl
 
 3. Based on the upstream changelog review from earlier, make any changes required to resolve breaking changes.
 
-4. Modify the `version` in `Chart.yaml` - since this is a BB built and owned chart we bump the main semver version instead of the `bb` version (ex: `0.2.3-bb.0` -> `0.2.4-bb.0`). Also modify the `appVersion` to the new upstream version of Mattermost (same version you put in for the image tag value).
+4. Modify the `version` in `Chart.yaml` - this is a BigBang built and owned chart so we sync the chart version with the appVersion (ex: appVersion `6.6.0` -> chart version `6.6.0-bb.0`). Also modify the `appVersion` and the `bigbang.dev/applicationVersions` to the new upstream version of Mattermost (same version you put in for the image tag value).
 
 5. Update `CHANGELOG.md` adding an entry for the new version and noting all changes (at minimum should include `Updated Mattermost to x.x.x`).
 
