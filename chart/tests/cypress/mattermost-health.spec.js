@@ -7,7 +7,8 @@ describe('Mattermost Healthcheck', function() {
   // This provides us with a login account on fresh installs
   before(() => {
     cy.visit(Cypress.env('url'))
-    cy.wait(2000)
+    cy.wait(8000)
+    // cy.wait(15000)
     cy.get('div[id="root"]').should('be.visible')
 
     cy.url().then(($url) => {
@@ -17,7 +18,8 @@ describe('Mattermost Healthcheck', function() {
         // explicitly visit the signup_email page
         // so that the test works the same locally and in the pipeline
         cy.visit(Cypress.env('url')+'/signup_email')
-        cy.wait(2000)
+        cy.wait(5000)
+        // cy.wait(10000)
         cy.get('input[id="email"]').type(Cypress.env('mm_email'))
         cy.get('input[id="name"]').type(Cypress.env('mm_user'))
         cy.get('input[id="password"]').type(Cypress.env('mm_password'))
@@ -28,7 +30,8 @@ describe('Mattermost Healthcheck', function() {
 
   beforeEach(() => {
     cy.visit(Cypress.env('url'))
-    cy.wait(2000)
+    cy.wait(5000)
+    // cy.wait(10000)
     cy.get('div[id="root"]').should('be.visible')
 
     // Check if login is needed
@@ -43,41 +46,66 @@ describe('Mattermost Healthcheck', function() {
   })
 
   it('should create / persist teams', function() {
-    cy.wait(2000)
-    cy.get("body").then($body => {
-      if ($body.find('a[id="createNewTeamLink"]').length > 0) {
-        cy.get('a[id="createNewTeamLink"]').click()
-        cy.get('input[id="teamNameInput"]').type("Big Bang")
-        cy.get('button[id="teamNameNextButton"]').click()
-        cy.get('button[id="teamURLFinishButton"]').click()
+    cy.wait(5000)
+    // cy.wait(10000)
+    cy.url().then(($url) => {
+      if ($url.includes('preparing-workspace')) {
+        // create a team 
+        cy.get('input[placeholder="Organization name"]').type("Big Bang")
+        // check if button is disabled
+        cy.wait(1000)
+        cy.get('button[class="primary-button"]').then((x) => {
+          if (!x.is(':disabled')) {
+            // This is the first run. Do nothing
+          } else {
+            // This is a re-run. Make a random team name
+            let randomTeam = Math.random().toString(36).substring(8);
+            cy.get('input[placeholder="Organization name"]').type(randomTeam)
+          }
+        });
+        // click continue on Organization name
+        cy.get('button[class="primary-button"]').click()
+        cy.wait(1000)
+        // click continue on "how do you plan to use Mattermost"
+        cy.get('button[class="primary-button"]').click()
+        cy.wait(1000)
+        // click continue on "what tools do you want to connect"
+        cy.get('button[class="primary-button"]').click()
+        cy.wait(1000)
+        // create a channel
+        cy.get('input[placeholder="Enter a channel name"]').type("XXX")
+        // click continue to create channel
+        cy.get('button[class="primary-button"]').click()
+        // skip invite team members
+        cy.get('button[class="tertiary-button"]:contains("do this later")').click()
+        // Give some time for dialog load
+        cy.wait(3000)
+        cy.get('.link > span').contains("No thanks").click()
+        cy.wait(3000)
       }
     })
 
-    // Give some time for the startup tips to load
-    cy.wait(5000)
-    cy.get("body").then($body => {
-      if ($body.find('.NextStepsView__skipGettingStarted > .NextStepsView__button').length > 0) {
-        cy.get('.NextStepsView__skipGettingStarted > .NextStepsView__button').click()
-      }
-    })
-  
-    // Wait for title to update
-    cy.wait(2000)
-    cy.title().should('include', 'Town Square - Big Bang')
+    // click on Town Square
+    cy.wait(1000)
+    cy.visit(Cypress.env('url')+'/big-bang/channels/town-square')
+    cy.wait(10000)
+    // cy.wait(30000)
+    cy.title().should('include', 'Town Square - Big Bang Mattermost')
   })
 
   it('should allow chatting', function() {
     let randomChat = "Hello " + Math.random().toString(36).substring(8);
-    cy.wait(2000)
+    cy.wait(5000)
+    // cy.wait(10000)
     cy.get('textarea[id="post_textbox"]').type(randomChat).type('{enter}')
     cy.get('p').contains(randomChat).should('be.visible')
   })
 
   it('should have file storage connection', function() {
-    cy.visit(Cypress.env('url')+'/admin_console')
-    cy.wait(5000)
-    cy.get('a[id="environment/file_storage"]').click()
-    cy.get('span').contains("Test Connection").click()
+    cy.visit(Cypress.env('url')+'/admin_console/environment/file_storage')
+    cy.wait(10000)
+    // cy.wait(30000)
+    cy.get('span:contains("Test Connection")').click()
     cy.get('div[class="alert alert-success"]').should('be.visible')
   })
 })

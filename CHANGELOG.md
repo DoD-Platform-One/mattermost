@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [6.6.0-bb.0] - 2022-02-22
+### Changed
+- Upgrade Mattermost to application version 6.6.0
+
 ## [0.7.0-bb.1] - 2022-03-28
 ### Added
 - NetworkPolicy Template to allow metrics scraping of minio tenants
