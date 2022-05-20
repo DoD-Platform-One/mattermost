@@ -1,4 +1,4 @@
-# Code Changes for Updates
+# Upgrading to a new version
 
 Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handle any automatic updates from upstream. The below details the steps required to update to a new version of the Mattermost package.
 
@@ -20,7 +20,7 @@ Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handl
 
 9. Once all manual testing is complete take your MR out of "Draft" status and add the review label.
 
-# Manual Testing for Updates
+# Testing for updates
 
 NOTE: For these testing steps it is good to do them on both a clean install and an upgrade. For clean install, point mattermost to your branch. For an upgrade do an install with mattermost pointing to the latest tag, then perform a helm upgrade with mattermost pointing to your branch.
 

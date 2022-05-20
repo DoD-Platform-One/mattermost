@@ -3,7 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
-## [6.6.0-bb.0] - 2022-02-22
+## [6.7.0-bb.0] - 2022-05-19
+### Changed
+- Upgraded MM to 6.7.0
+
+## [6.6.0-bb.0] - 2022-04-22
 ### Changed
 - Upgrade Mattermost to application version 6.6.0
 
