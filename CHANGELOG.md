@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [7.0.1-bb.0] - 2022-07-06
+### Changed
+- Upgraded MM to 7.0.1
+- Updated tests to resolve cypress test failures from updated application html/css
+
 ## [6.7.0-bb.0] - 2022-05-19
 ### Changed
 - Upgraded MM to 6.7.0

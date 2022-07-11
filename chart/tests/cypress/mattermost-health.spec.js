@@ -20,10 +20,11 @@ describe('Mattermost Healthcheck', function() {
         cy.visit(Cypress.env('url')+'/signup_email')
         cy.wait(5000)
         // cy.wait(10000)
-        cy.get('input[id="email"]').type(Cypress.env('mm_email'))
-        cy.get('input[id="name"]').type(Cypress.env('mm_user'))
-        cy.get('input[id="password"]').type(Cypress.env('mm_password'))
-        cy.get('button[id="createAccountButton"]').click()
+        cy.get('input[id="input_email"]').type(Cypress.env('mm_email'))
+        // #input
+        cy.get('input[id="input_name"]').type(Cypress.env('mm_user'))
+        cy.get('input[id="input_password-input"]').type(Cypress.env('mm_password'))
+        cy.get('button[id="saveSetting"]').click()
       }
     })
   })
@@ -37,9 +38,9 @@ describe('Mattermost Healthcheck', function() {
     // Check if login is needed
     cy.url().then(($url) => {
       if ($url.includes('login')) {
-        cy.get('input[id="loginId"]').type(Cypress.env('mm_user'))
-        cy.get('input[id="loginPassword"]').type(Cypress.env('mm_password'))
-        cy.get('button[id="loginButton"]').click()
+        cy.get('input[id="input_loginId"]').type(Cypress.env('mm_user'))
+        cy.get('input[id="input_password-input"]').type(Cypress.env('mm_password'))
+        cy.get('button[id="saveSetting"]').click()
       }
     })
     cy.wait(500)
@@ -48,38 +49,22 @@ describe('Mattermost Healthcheck', function() {
   it('should create / persist teams', function() {
     cy.wait(5000)
     // cy.wait(10000)
+
     cy.url().then(($url) => {
-      if ($url.includes('preparing-workspace')) {
+      cy.wait(1000)
+      if ($url.includes('select_team')) {
         // create a team 
-        cy.get('input[placeholder="Organization name"]').type("Big Bang")
-        // check if button is disabled
-        cy.wait(1000)
-        cy.get('button[class="primary-button"]').then((x) => {
-          if (!x.is(':disabled')) {
-            // This is the first run. Do nothing
-          } else {
-            // This is a re-run. Make a random team name
-            let randomTeam = Math.random().toString(36).substring(8);
-            cy.get('input[placeholder="Organization name"]').type(randomTeam)
-          }
-        });
-        // click continue on Organization name
-        cy.get('button[class="primary-button"]').click()
-        cy.wait(1000)
-        // click continue on "how do you plan to use Mattermost"
-        cy.get('button[class="primary-button"]').click()
-        cy.wait(1000)
-        // click continue on "what tools do you want to connect"
-        cy.get('button[class="primary-button"]').click()
-        cy.wait(1000)
-        // create a channel
-        cy.get('input[placeholder="Enter a channel name"]').type("XXX")
-        // click continue to create channel
-        cy.get('button[class="primary-button"]').click()
-        // skip invite team members
-        cy.get('button[class="tertiary-button"]:contains("do this later")').click()
-        // Give some time for dialog load
+        cy.get('a[id="createNewTeamLink"]').click()
         cy.wait(3000)
+        // Input Big Bang
+        cy.get('input[id="teamNameInput"]').type('Big Bang')
+        // Click Next
+        cy.get('button[id="teamNameNextButton"]').click()
+        //cy.get('input[id="teamURLInput"]').should('include', 'big-bang')
+        // Click finish
+        cy.get('button[id="teamURLFinishButton"]').click()
+        // Give some time for dialog load
+        cy.wait(10000)
         cy.get('.link > span').contains("No thanks").click()
         cy.wait(3000)
       }
@@ -89,7 +74,6 @@ describe('Mattermost Healthcheck', function() {
     cy.wait(1000)
     cy.visit(Cypress.env('url')+'/big-bang/channels/town-square')
     cy.wait(10000)
-    // cy.wait(30000)
     cy.title().should('include', 'Town Square - Big Bang Mattermost')
   })
 
