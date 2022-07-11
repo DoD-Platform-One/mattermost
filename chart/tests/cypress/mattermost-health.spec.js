@@ -4,6 +4,26 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 describe('Mattermost Healthcheck', function() {
+  
+  // Conditional check for inconsistent "welcome to mattermost" banner behavior
+  function bannercheck() {
+      cy.wait(3000)
+      cy.get('body').then($body => {
+          if ($body.find('.link > span').length > 0) {   
+              //evaluates as true if banner exists at all
+                  cy.get('.link > span').then($header => {
+                    if ($header.is(':visible')){
+                      // evaluates to true if the banner is visible
+                      console.log("Banner is Present")
+                      $header.click()
+                    } else {
+                      console.log("Banner is not present")
+                    }
+                  });
+              }
+        })
+  }
+  
   // This provides us with a login account on fresh installs
   before(() => {
     cy.visit(Cypress.env('url'))
@@ -48,7 +68,6 @@ describe('Mattermost Healthcheck', function() {
 
   it('should create / persist teams', function() {
     cy.wait(5000)
-    // cy.wait(10000)
 
     cy.url().then(($url) => {
       cy.wait(1000)
@@ -64,10 +83,8 @@ describe('Mattermost Healthcheck', function() {
         // Click finish
         cy.get('button[id="teamURLFinishButton"]').click()
         // Give some time for dialog load
-        cy.wait(10000)
-        cy.get('.link > span').contains("No thanks").click()
-        cy.wait(3000)
       }
+      bannercheck()
     })
 
     // click on Town Square
@@ -78,6 +95,7 @@ describe('Mattermost Healthcheck', function() {
   })
 
   it('should allow chatting', function() {
+    bannercheck()
     let randomChat = "Hello " + Math.random().toString(36).substring(8);
     cy.wait(5000)
     // cy.wait(10000)
@@ -86,10 +104,11 @@ describe('Mattermost Healthcheck', function() {
   })
 
   it('should have file storage connection', function() {
+    bannercheck()
     cy.visit(Cypress.env('url')+'/admin_console/environment/file_storage')
     cy.wait(10000)
-    // cy.wait(30000)
-    cy.get('span:contains("Test Connection")').click()
+
+    cy.get('span:contains("Test Connection")', {timeout: 10000}).click()
     cy.get('div[class="alert alert-success"]').should('be.visible')
   })
 })
