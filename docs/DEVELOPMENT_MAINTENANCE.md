@@ -38,5 +38,6 @@ Testing Steps:
 - Under account settings, upload a profile picture. Validate the upload is successful and your profile picture is visible.
 - Navigate to prometheus and validate that the Mattermost target shows as up (make sure you are on enterprise and have started a trial).
 - Under system console -> elastic -> index now and validate success (make sure you are on enterprise and have started a trial).
+- Check Grafana for data in the `Mattermost Performance Monitoring v2` dashboard (Ensure you change the server on the dashboard to point to the mattermost pod ip)
 
 When in doubt with any testing or upgrade steps ask one of the CODEOWNERS for assistance.
