@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.1.2-bb.1](https://img.shields.io/badge/Version-7.1.2--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.1.2](https://img.shields.io/badge/AppVersion-7.1.2-informational?style=flat-square)
+![Version: 7.2.0-bb.0](https://img.shields.io/badge/Version-7.2.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.2.0](https://img.shields.io/badge/AppVersion-7.2.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -56,7 +56,7 @@ helm install mattermost chart/
 | sso.token_endpoint | string | `"https://login.dso.mil/oauth/token"` |  |
 | sso.user_api_endpoint | string | `"https://login.dso.mil/api/v4/user"` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"7.1.2"` |  |
+| image.tag | string | `"7.2.0"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
@@ -76,7 +76,7 @@ helm install mattermost chart/
 | volumes | object | `{}` |  |
 | volumeMounts | object | `{}` |  |
 | minio.install | bool | `false` |  |
-| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-02-26T03-58-31Z"` |  |
+| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-08-23T05-45-20Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
 | minio.tenants.secrets.name | string | `"mattermost-objstore-creds"` |  |
 | minio.tenants.secrets.accessKey | string | `"minio"` |  |
