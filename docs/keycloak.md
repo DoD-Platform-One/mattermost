@@ -55,16 +55,17 @@ First get the values you need for your Keycloak:
 - client_secret: This is under the credential tab for your client, you can click regenerate and then copy it
 - endpoints: Go to your realm settings and then open the "OpenID Endpoint Configuration". There should be values for authorization_endpoint, token_endpoint, and userinfo_endpoint which correspond to the auth, token, and user_api endpoints in the values.
 
-Modify your values.yaml with these to enable sso (provided below are examples for using the P1 Keycloak for dev):
+Modify your values.yaml according to these example values to enable Gitlab Auth provider for SSO. If you have a licensed version of Mattermost that supports OIDC the Mattermost OIDC client backend will obtain the endpoints automatically from the [well-known OIDC endpoint](https://login.dso.mil/auth/realms/baby-yoda/.well-known/openid-configuration).
 ```
 # SSO Additions
 sso:
   enabled: true
   client_id: platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost
   client_secret: nothing # Change to your Keycloak client secret
-  auth_endpoint: https://login.dso.mil/oauth/authorize
-  token_endpoint: https://login.dso.mil/oauth/token
-  user_api_endpoint: https://login.dso.mil/api/v4/user
+  auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
+  token_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/token
+  user_api_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/userinfo
+
 ```
 
 Example install:
