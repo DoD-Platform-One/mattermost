@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.2.0-bb.0](https://img.shields.io/badge/Version-7.2.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.2.0](https://img.shields.io/badge/AppVersion-7.2.0-informational?style=flat-square)
+![Version: 7.2.0-bb.1](https://img.shields.io/badge/Version-7.2.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.2.0](https://img.shields.io/badge/AppVersion-7.2.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -52,9 +52,9 @@ helm install mattermost chart/
 | sso.enabled | bool | `false` |  |
 | sso.client_id | string | `"platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost"` |  |
 | sso.client_secret | string | `"nothing"` |  |
-| sso.auth_endpoint | string | `"https://login.dso.mil/oauth/authorize"` |  |
-| sso.token_endpoint | string | `"https://login.dso.mil/oauth/token"` |  |
-| sso.user_api_endpoint | string | `"https://login.dso.mil/api/v4/user"` |  |
+| sso.auth_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth"` |  |
+| sso.token_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/token"` |  |
+| sso.user_api_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/userinfo"` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
 | image.tag | string | `"7.2.0"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |

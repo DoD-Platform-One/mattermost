@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 7.2.0-bb.0
+version: 7.2.0-bb.1
 appVersion: 7.2.0
 description: "Deployment of mattermost"
 keywords:
