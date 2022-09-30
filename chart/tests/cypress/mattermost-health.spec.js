@@ -55,6 +55,13 @@ describe('Mattermost Healthcheck', function() {
     // cy.wait(10000)
     cy.get('div[id="root"]').should('be.visible')
 
+    cy.url().then(($url) => {
+      if ($url.includes('landing')) {
+        cy.get('a[class="btn btn-default btn-lg get-app__continue"]').click()
+      }
+    })
+    cy.wait(5000)
+    
     // Check if login is needed
     cy.url().then(($url) => {
       if ($url.includes('login')) {

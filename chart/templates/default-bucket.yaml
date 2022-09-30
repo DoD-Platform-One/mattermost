@@ -28,7 +28,7 @@ spec:
               set -ex
               attempt_counter=0
               max_attempts=25
-              until [ $(mc config host add bigbang http://{{ .Values.minio.service.nameOverride }} {{ .Values.minio.tenants.secrets.accessKey }} {{ .Values.minio.tenants.secrets.secretKey }} >/dev/null; echo $?) -eq 0 ]; do
+              until [ $(mc config host add bigbang http://{{ .Values.minio.service.nameOverride }} {{ .Values.minio.secrets.accessKey }} {{ .Values.minio.secrets.secretKey }} >/dev/null; echo $?) -eq 0 ]; do
                if [ ${attempt_counter} -eq ${max_attempts} ];then
                   echo "Max attempts reached"
                   exit 1

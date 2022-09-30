@@ -186,7 +186,7 @@ spec:
     external:
       url: {{ .Values.fileStore.url | default .Values.minio.service.nameOverride }}
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
-      secret: {{ .Values.fileStore.secret | default .Values.minio.tenants.secrets.name }}
+      secret: {{ .Values.fileStore.secret | default .Values.minio.secrets.name }}
 
   podExtensions:
     initContainers:
