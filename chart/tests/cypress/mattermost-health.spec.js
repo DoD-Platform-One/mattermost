@@ -105,6 +105,11 @@ describe('Mattermost Healthcheck', function() {
     bannercheck()
     let randomChat = "Hello " + Math.random().toString(36).substring(8);
     cy.wait(5000)
+    cy.get('body').then($body => {
+      if ($body.find('.close > [aria-hidden="true"]').length > 0) {   
+        cy.get('.close > [aria-hidden="true"]').click()
+      }
+    })
     // cy.wait(10000)
     cy.get('textarea[id="post_textbox"]').type(randomChat).type('{enter}')
     cy.get('p').contains(randomChat).should('be.visible')
