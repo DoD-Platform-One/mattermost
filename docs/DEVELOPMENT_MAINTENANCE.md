@@ -6,19 +6,21 @@ Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handl
 
 2. Modify the `image.tag` value in `chart/values.yaml` to point to the newest version of Mattermost.
 
-3. Based on the upstream changelog review from earlier, make any changes required to resolve breaking changes.
+3. You should check the latest version of `minio-instance` and run `kpt pkg update chart/deps/minio@4.5.4-bb.1 --strategy alpha-git-patch` then `helm dependency update chart` if applicable.
 
-4. Modify the `version` in `Chart.yaml` - this is a BigBang built and owned chart so we sync the chart version with the appVersion (ex: appVersion `6.6.0` -> chart version `6.6.0-bb.0`). Also modify the `appVersion` and the `bigbang.dev/applicationVersions` to the new upstream version of Mattermost (same version you put in for the image tag value).
+4. Based on the upstream changelog review from earlier, make any changes required to resolve breaking changes.
 
-5. Update `CHANGELOG.md` adding an entry for the new version and noting all changes (at minimum should include `Updated Mattermost to x.x.x`).
+5. Modify the `version` in `Chart.yaml` - this is a BigBang built and owned chart so we sync the chart version with the appVersion (ex: appVersion `6.6.0` -> chart version `6.6.0-bb.0`). Also modify the `appVersion` and the `bigbang.dev/applicationVersions` to the new upstream version of Mattermost (same version you put in for the image tag value).
 
-6. Generate the `README.md` updates by following the [guide in gluon](https://repo1.dso.mil/platform-one/big-bang/apps/library-charts/gluon/-/blob/master/docs/bb-package-readme.md).
+6. Update `CHANGELOG.md` adding an entry for the new version and noting all changes (at minimum should include `Updated Mattermost to x.x.x`).
 
-7. Validate that `tests/dependencies.yaml` points to the latest tag for `mattermost-operator`. If it doesn't, update it.
+7. Generate the `README.md` updates by following the [guide in gluon](https://repo1.dso.mil/platform-one/big-bang/apps/library-charts/gluon/-/blob/master/docs/bb-package-readme.md).
 
-8. Open an MR in "Draft" status and validate that CI passes. This will perform a number of smoke tests against the package, but it is good to manually deploy to test some things that CI doesn't. Follow the steps below for manual testing.
+8. Validate that `tests/dependencies.yaml` points to the latest tag for `mattermost-operator`. If it doesn't, update it.
 
-9. Once all manual testing is complete take your MR out of "Draft" status and add the review label.
+9. Open an MR in "Draft" status and validate that CI passes. This will perform a number of smoke tests against the package, but it is good to manually deploy to test some things that CI doesn't. Follow the steps below for manual testing.
+
+10. Once all manual testing is complete take your MR out of "Draft" status and add the review label.
 
 # Testing for updates
 

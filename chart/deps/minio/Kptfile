@@ -5,7 +5,7 @@ metadata:
 upstream:
   type: git
   git:
-    commit: e0904c06379c2bbec513f59ca0a1e77b890dc057
+    commit: 358c42c92435fe8fd06c3adc2a0c169c6d87784a
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/application-utilities/minio
-    directory: /chart
-    ref: 4.5.3-bb.0
+    directory: helm/tenant
+    ref: 4.5.4-bb.1
