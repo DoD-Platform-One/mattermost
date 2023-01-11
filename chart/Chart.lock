@@ -3,10 +3,10 @@ dependencies:
   repository: file://./deps/postgresql
   version: 10.3.5
 - name: minio-instance
-  repository: file://./deps/minio
-  version: 4.5.4-bb.1
+  repository: oci://registry1.dso.mil/bigbang
+  version: 4.5.4-bb.2
 - name: gluon
   repository: oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon
   version: 0.3.1
-digest: sha256:5e6809327b74ec1544a4bedba684cc2da0e4262930adbaacf119611862f4b461
-generated: "2022-11-30T10:32:17.119111-05:00"
+digest: sha256:84e79191d8919996fd92d74bf18e4b334485c22b6e406eebdbe8801f2d04f7c0
+generated: "2023-01-11T11:49:51.348537-07:00"
