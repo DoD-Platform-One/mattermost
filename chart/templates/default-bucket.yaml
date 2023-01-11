@@ -42,6 +42,7 @@ spec:
               else
                 mc mb bigbang/mattermost
               fi
+          securityContext: {{- toYaml .Values.minio.containerSecurityContext | nindent 12 }}
           resources:
             requests:
               memory: 256Mi
