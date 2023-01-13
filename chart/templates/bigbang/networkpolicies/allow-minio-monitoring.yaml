@@ -10,13 +10,13 @@ spec:
       app: minio
       v1.min.io/tenant: mattermost-minio
   policyTypes:
-  - Ingress
+    - Ingress
   ingress:
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          app.kubernetes.io/name: monitoring
-    ports:
-    - port: {{ .Values.minio.tenant.metrics.port }}
-      protocol: TCP
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            app.kubernetes.io/name: monitoring
+      ports:
+      - port: {{ .Values.minio.tenant.metrics.port }}
+        protocol: TCP
 {{- end }}

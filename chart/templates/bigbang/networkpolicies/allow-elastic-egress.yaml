@@ -9,16 +9,16 @@ spec:
     matchLabels:
       app: mattermost
   policyTypes:
-  - Egress
+    - Egress
   egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          app.kubernetes.io/name: logging
-      podSelector:
-        matchLabels:
-          common.k8s.elastic.co/type: elasticsearch
-    ports:
-    - port: 9200
-      protocol: TCP
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            app.kubernetes.io/name: logging
+        podSelector:
+          matchLabels:
+            common.k8s.elastic.co/type: elasticsearch
+      ports:
+      - port: 9200
+        protocol: TCP
 {{- end }}

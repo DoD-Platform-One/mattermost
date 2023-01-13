@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.5.1-bb.2](https://img.shields.io/badge/Version-7.5.1--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.5.1](https://img.shields.io/badge/AppVersion-7.5.1-informational?style=flat-square)
+![Version: 7.5.1-bb.3](https://img.shields.io/badge/Version-7.5.1--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.5.1](https://img.shields.io/badge/AppVersion-7.5.1-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -33,16 +33,14 @@ helm install mattermost chart/
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | hostname | string | `"bigbang.dev"` |  |
-| istio.enabled | bool | `false` |  |
+| istio.enabled | bool | `false` | Toggle istio integration |
 | istio.chat.enabled | bool | `true` |  |
 | istio.chat.annotations | object | `{}` |  |
 | istio.chat.labels | object | `{}` |  |
 | istio.chat.gateways[0] | string | `"istio-system/main"` |  |
 | istio.chat.hosts[0] | string | `"chat.{{ .Values.hostname }}"` |  |
-| ingress.enabled | bool | `false` |  |
-| ingress.host | string | `""` |  |
-| ingress.annotations | object | `{}` |  |
-| ingress.tlsSecret | string | `""` |  |
+| istio.injection | string | `"disabled"` |  |
+| ingress | object | `{"annotations":{},"enabled":false,"host":"","tlsSecret":""}` | Specification to configure an Ingress with Mattermost |
 | monitoring.enabled | bool | `false` |  |
 | monitoring.namespace | string | `"monitoring"` |  |
 | networkPolicies.enabled | bool | `false` |  |
@@ -64,6 +62,9 @@ helm install mattermost chart/
 | enterprise.enabled | bool | `false` |  |
 | enterprise.license | string | `""` |  |
 | nameOverride | string | `""` |  |
+| updateJob.disabled | bool | `true` | Must be disabled when Istio injected |
+| updateJob.labels | object | `{}` |  |
+| updateJob.annotations | object | `{}` |  |
 | resources.limits.cpu | int | `2` |  |
 | resources.limits.memory | string | `"4Gi"` |  |
 | resources.requests.cpu | int | `2` |  |
@@ -127,6 +128,7 @@ helm install mattermost chart/
 | elasticsearch.enablesearching | bool | `true` |  |
 | elasticsearch.enableautocomplete | bool | `true` |  |
 | openshift | bool | `false` |  |
+| resourcePatch | object | `{}` |  |
 | bbtests.enabled | bool | `false` |  |
 | bbtests.cypress.artifacts | bool | `true` |  |
 | bbtests.cypress.envs.cypress_url | string | `"http://mattermost.mattermost.svc.cluster.local:8065"` |  |
