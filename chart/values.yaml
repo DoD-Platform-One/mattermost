@@ -1,7 +1,7 @@
 hostname: bigbang.dev
 
 istio:
-  # Toggle istio integration
+  # -- Toggle istio integration
   enabled: false
   chat:
     # Toggle vs creation
@@ -12,8 +12,9 @@ istio:
       - istio-system/main
     hosts:
       - chat.{{ .Values.hostname }}
+  injection: disabled
 
-# Specification to configure an Ingress with Mattermost
+# -- Specification to configure an Ingress with Mattermost
 ingress:
   enabled: false
   host: ""
@@ -65,6 +66,12 @@ enterprise:
   #   LICENSE HERE
 
 nameOverride: ""
+
+updateJob:
+  # -- Must be disabled when Istio injected
+  disabled: true
+  labels: {}
+  annotations: {}
 
 resources:
   limits:
@@ -127,7 +134,6 @@ volumeMounts: {}
   # - name: ca-cert
   #   mountPath: /etc/ssl/certs
   #   readOnly: true
-
 
 # -- Pod labels for Mattermost server pods
 podLabels: {}
@@ -256,6 +262,11 @@ elasticsearch:
 
 openshift: false
 
+# Custom patch on the Mattermost resources before applying
+resourcePatch: {}
+# Example: Patch a label onto the deployment:
+  # deployment:
+  #   patch: '[{"op":"add","path":"/spec/template/spec/metadata/labels","value":{"istio-version": "1.2.3"}}]'
 
 bbtests:
   enabled: false

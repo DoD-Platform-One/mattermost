@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+
+## [7.5.1-bb.3] - 2022-01-11
+### Changed
+- Add support for istio injection via network policies / pod annotation value support
+- Disable update job for MM to prevent upgrade issues
+
 ## [7.5.1-bb.2] - 2022-01-11
 ### Changed
 - Changed minio subchart to utilize OCI

@@ -9,16 +9,16 @@ metadata:
     "helm.sh/hook": pre-upgrade  
 spec:
   ingress:
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          app.kubernetes.io/name: minioOperator
-    ports:
-    - port: 9000
-      protocol: TCP
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            app.kubernetes.io/name: minioOperator
+      ports:
+      - port: 9000
+        protocol: TCP
   podSelector:
     matchLabels:
       app: mattermost-minio
   policyTypes:
-  - Ingress
+    - Ingress
 {{- end }}

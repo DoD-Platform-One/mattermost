@@ -1,13 +1,11 @@
-{{- if and .Values.networkPolicies.enabled .Values.monitoring.enabled .Values.enterprise.enabled }}
+{{- if and .Values.networkPolicies.enabled .Values.monitoring.enabled (eq .Values.istio.injection "enabled") }}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-monitoring-ingress
-  namespace: {{ .Release.Namespace }}
+  name: allow-prometheus-ingress
+  namespace: "{{ .Release.Namespace }}"
 spec:
-  podSelector:
-    matchLabels:
-      app: mattermost
+  podSelector: {}
   policyTypes:
     - Ingress
   ingress:
@@ -19,6 +17,6 @@ spec:
           matchLabels:
             app: prometheus
       ports:
-      - port: 8067
+      - port: 15020
         protocol: TCP
 {{- end }}

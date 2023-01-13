@@ -228,3 +228,19 @@ spec:
             cpu: 50m
         env:
         {{- (tpl (toYaml .Values.database.readinessCheck.env) .) | nindent 10 }}
+
+  {{- if .Values.resourcePatch }}
+  resourcePatch:
+    {{- toYaml .Values.resourcePatch | nindent 4 }}
+  {{- end }}
+
+  updateJob:
+    disabled: {{ .Values.updateJob.disabled }}
+    {{- with .Values.updateJob.annotations }}
+    extraAnnotations: 
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+    {{- with .Values.updateJob.labels }}
+    extraLabels: 
+      {{- toYaml . | nindent 6 }}
+    {{- end }}

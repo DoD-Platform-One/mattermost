@@ -1,8 +1,8 @@
-{{- if and .Values.networkPolicies.enabled .Values.monitoring.enabled .Values.enterprise.enabled }}
+{{- if and .Values.networkPolicies.enabled .Values.istio.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-monitoring-ingress
+  name: allow-istio-ingress
   namespace: {{ .Release.Namespace }}
 spec:
   podSelector:
@@ -14,11 +14,11 @@ spec:
     - from:
       - namespaceSelector:
           matchLabels:
-            app.kubernetes.io/name: monitoring
+            app.kubernetes.io/name: istio-controlplane
         podSelector:
           matchLabels:
-            app: prometheus
+            {{- toYaml .Values.networkPolicies.ingressLabels | nindent 12 }}
       ports:
-      - port: 8067
+      - port: 8065
         protocol: TCP
 {{- end }}

@@ -9,13 +9,13 @@ spec:
     matchLabels:
       app: minio  
   policyTypes:
-  - Egress
+    - Egress
   egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          app.kubernetes.io/name: minioOperator
-    ports:
-    - port: 4222
-      protocol: TCP
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            app.kubernetes.io/name: minioOperator
+      ports:
+      - port: 4222
+        protocol: TCP
 {{- end }}
