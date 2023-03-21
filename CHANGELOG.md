@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [7.9.1-bb.0] - 2023-03-21
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 7.8.1 to 7.9.1
+
 ## [7.8.1-bb.0] - 2023-03-07
 ### Changed
 - ironbank/opensource/mattermost/mattermost updated from 7.8.0 to 7.8.1
