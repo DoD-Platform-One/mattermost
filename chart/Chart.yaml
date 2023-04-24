@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 7.9.1-bb.0
-appVersion: 7.9.1
+version: 7.10.0-bb.0
+appVersion: 7.10.0
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -16,7 +16,7 @@ dependencies:
     condition: postgresql.install
     repository: file://./deps/postgresql
   - name: minio-instance
-    version: 4.5.4-bb.2
+    version: 4.5.8-bb.0
     alias: minio
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
@@ -25,13 +25,13 @@ dependencies:
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/applicationVersions: |
-    - Mattermost: 7.9.1
+    - Mattermost: 7.10.0
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:7.9.1
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:7.10.0
     - name: minio
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2022-11-17T23-20-09Z
+      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2023-01-31T02-24-19Z
     - name: mc
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-08-23T05-45-20Z

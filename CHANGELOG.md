@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [7.10.0-bb.0] - 2023-04-18
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 7.9.1 to 7.10.0
+- Updated minio subchart to latest 4.5.8-bb.0
+
 ## [7.9.1-bb.0] - 2023-03-21
 ### Changed
 - ironbank/opensource/mattermost/mattermost updated from 7.8.1 to 7.9.1
