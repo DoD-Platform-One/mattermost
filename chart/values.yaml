@@ -1,4 +1,4 @@
-hostname: bigbang.dev
+domain: bigbang.dev
 
 istio:
   # -- Toggle istio integration
@@ -11,7 +11,7 @@ istio:
     gateways:
       - istio-system/main
     hosts:
-      - chat.{{ .Values.hostname }}
+      - chat.{{ .Values.domain }}
   injection: disabled
 
 # -- Specification to configure an Ingress with Mattermost
