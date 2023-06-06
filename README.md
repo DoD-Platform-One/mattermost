@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.10.0-bb.2](https://img.shields.io/badge/Version-7.10.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.0](https://img.shields.io/badge/AppVersion-7.10.0-informational?style=flat-square)
+![Version: 7.10.0-bb.3](https://img.shields.io/badge/Version-7.10.0--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.0](https://img.shields.io/badge/AppVersion-7.10.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -34,15 +34,18 @@ helm install mattermost chart/
 |-----|------|---------|-------------|
 | domain | string | `"bigbang.dev"` |  |
 | istio.enabled | bool | `false` | Toggle istio integration |
+| istio.mtls.mode | string | `"STRICT"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic |
 | istio.chat.enabled | bool | `true` |  |
 | istio.chat.annotations | object | `{}` |  |
 | istio.chat.labels | object | `{}` |  |
 | istio.chat.gateways[0] | string | `"istio-system/main"` |  |
-| istio.chat.hosts[0] | string | `"chat.{{ .Values.hostname }}"` |  |
+| istio.chat.hosts[0] | string | `"chat.{{ .Values.domain }}"` |  |
 | istio.injection | string | `"disabled"` |  |
 | ingress | object | `{"annotations":{},"enabled":false,"host":"","tlsSecret":""}` | Specification to configure an Ingress with Mattermost |
 | monitoring.enabled | bool | `false` |  |
 | monitoring.namespace | string | `"monitoring"` |  |
+| monitoring.serviceMonitor.scheme | string | `""` |  |
+| monitoring.serviceMonitor.tlsConfig | object | `{}` |  |
 | networkPolicies.enabled | bool | `false` |  |
 | networkPolicies.ingressLabels.app | string | `"istio-ingressgateway"` |  |
 | networkPolicies.ingressLabels.istio | string | `"ingressgateway"` |  |

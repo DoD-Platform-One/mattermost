@@ -3,6 +3,10 @@ domain: bigbang.dev
 istio:
   # -- Toggle istio integration
   enabled: false
+  mtls:
+    # -- STRICT = Allow only mutual TLS traffic,
+    # PERMISSIVE = Allow both plain text and mutual TLS traffic
+    mode: STRICT
   chat:
     # Toggle vs creation
     enabled: true
@@ -25,6 +29,10 @@ ingress:
 monitoring:
   enabled: false
   namespace: monitoring
+
+  serviceMonitor:
+    scheme: http
+    tlsConfig: {}
 
 networkPolicies:
   enabled: false
