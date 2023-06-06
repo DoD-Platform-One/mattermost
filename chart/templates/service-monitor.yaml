@@ -19,6 +19,12 @@ spec:
   endpoints:
     - interval: 30s
       port: metrics
-      scheme: http
+      {{- if .Values.monitoring.serviceMonitor.scheme }}
+      scheme: {{ .Values.monitoring.serviceMonitor.scheme }}
+      {{- end }}
+      {{- if .Values.monitoring.serviceMonitor.tlsConfig }}
+      tlsConfig:
+        {{- toYaml .Values.monitoring.serviceMonitor.tlsConfig | nindent 6 }}
+      {{- end }}
   jobLabel: mattermost
 {{- end }}
