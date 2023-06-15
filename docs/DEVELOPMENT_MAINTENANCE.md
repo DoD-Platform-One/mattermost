@@ -31,7 +31,7 @@ NOTE: For these testing steps it is good to do them on both a clean install and 
 You will want to install with:
 - Mattermost, Mattermost Operator, and Minio Operator enabled
 - Istio enabled
-- [Dev SSO values](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/master/chart/dev-sso-values.yaml) for Mattermost
+- [Dev SSO values](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/assets/configs/example/dev-sso-values.yaml) for Mattermost
 - [Enterprise enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L962) - if you do not pass a license in, navigate to the System Console after install to start a trial
 - Elasticsearch enabled + [integration enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L1038)
 - Monitoring enabled
