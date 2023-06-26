@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.10.2-bb.1](https://img.shields.io/badge/Version-7.10.2--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.2](https://img.shields.io/badge/AppVersion-7.10.2-informational?style=flat-square)
+![Version: 7.10.2-bb.2](https://img.shields.io/badge/Version-7.10.2--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.2](https://img.shields.io/badge/AppVersion-7.10.2-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -81,8 +81,8 @@ helm install mattermost chart/
 | volumeMounts | object | `{}` |  |
 | podLabels | object | `{}` | Pod labels for Mattermost server pods |
 | podAnnotations | object | `{}` | Pod annotations for Mattermost server pods |
-| securityContext | object | `{}` | securityContext for Mattermost server pods |
-| containerSecurityContext | object | `{"capabilities":{"drop":["ALL"]}}` | containerSecurityContext for Mattermost server containers |
+| securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | securityContext for Mattermost server pods |
+| containerSecurityContext | object | `{"capabilities":{"drop":["ALL"]},"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | containerSecurityContext for Mattermost server containers |
 | minio.install | bool | `false` |  |
 | minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-08-23T05-45-20Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
@@ -103,7 +103,9 @@ helm install mattermost chart/
 | postgresql.fullnameOverride | string | `"mattermost-postgresql"` |  |
 | postgresql.securityContext.fsGroup | int | `26` |  |
 | postgresql.containerSecurityContext.runAsUser | int | `26` |  |
+| postgresql.containerSecurityContext.runAsNonRoot | bool | `true` |  |
 | postgresql.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| postgresql.volumePermissions.enabled | bool | `false` |  |
 | postgresql.volumePermissions.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.postgresqlConfiguration.listen_addresses | string | `"*"` |  |
 | postgresql.pgHbaConfiguration | string | `"local all all md5\nhost all all all md5"` |  |

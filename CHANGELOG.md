@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [7.10.2-bb.2] - 2023-06-15
+### Changed
+- Modified securityContext for minio-bucket-creation job to run as non root user/group
+
 ## [7.10.2-bb.1] - 2023-06-15
 ### Changed
 - ServiceMonitor tlsConfig indent bug fix
