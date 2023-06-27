@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.10.2-bb.2](https://img.shields.io/badge/Version-7.10.2--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.2](https://img.shields.io/badge/AppVersion-7.10.2-informational?style=flat-square)
+![Version: 7.10.3-bb.0](https://img.shields.io/badge/Version-7.10.3--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.3](https://img.shields.io/badge/AppVersion-7.10.3-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -57,7 +57,7 @@ helm install mattermost chart/
 | sso.token_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/token"` |  |
 | sso.user_api_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/userinfo"` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"7.10.2"` |  |
+| image.tag | string | `"7.10.3"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
@@ -84,7 +84,7 @@ helm install mattermost chart/
 | securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | securityContext for Mattermost server pods |
 | containerSecurityContext | object | `{"capabilities":{"drop":["ALL"]},"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | containerSecurityContext for Mattermost server containers |
 | minio.install | bool | `false` |  |
-| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2022-08-23T05-45-20Z"` |  |
+| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-06-23T18-12-07Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
 | minio.secrets.name | string | `"mattermost-objstore-creds"` |  |
 | minio.secrets.accessKey | string | `"minio"` |  |
