@@ -215,9 +215,9 @@ spec:
         image: {{ .Values.database.readinessCheck.image }}
         imagePullPolicy: {{ .Values.image.imagePullPolicy }}
         securityContext:
-          # runAsNonRoot: true
-          # runAsUser: 1001
-          # runAsGroup: 1001
+          runAsNonRoot: true
+          runAsUser: 1001
+          runAsGroup: 1001
           capabilities:
             drop:
               - ALL
