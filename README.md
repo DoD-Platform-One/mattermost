@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 7.10.3-bb.1](https://img.shields.io/badge/Version-7.10.3--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.3](https://img.shields.io/badge/AppVersion-7.10.3-informational?style=flat-square)
+![Version: 7.10.5-bb.0](https://img.shields.io/badge/Version-7.10.5--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 7.10.3](https://img.shields.io/badge/AppVersion-7.10.3-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -57,7 +57,7 @@ helm install mattermost chart/
 | sso.token_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/token"` |  |
 | sso.user_api_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/userinfo"` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"7.10.3"` |  |
+| image.tag | string | `"7.10.5"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
