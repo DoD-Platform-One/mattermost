@@ -91,6 +91,20 @@ describe('Mattermost Healthcheck', function() {
         cy.get('button[id="teamURLFinishButton"]').click()
         // Give some time for dialog load
       }
+      if ($url.includes('preparing-workspace')){
+        // Input Big Bang
+        cy.get('input[class="Organization__input"]').type('Big Bang')
+        // Click Next
+        cy.get('button[class="primary-button"]').click()
+        //cy.get('input[id="teamURLInput"]').should('include', 'big-bang')
+        // Click finish
+        cy.wait(1000)
+        cy.get('button[class="link-style plugins-skip-btn"]').click()
+        cy.wait(1000)
+        cy.get('div[class="InviteMembers__submit"] button[class="primary-button"').click()
+        cy.wait(5000)
+        // Give some time for dialog load
+      }
       bannercheck()
     })
 

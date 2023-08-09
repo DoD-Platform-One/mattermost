@@ -3,6 +3,15 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [8.0.1-bb.0] - 2023-08-02
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 8.0.0 to 8.0.1
+- Updated Cypress to include new intro page
+
+## [8.0.0-bb.0] - 2023-07-15
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 7.10.3 to 8.0.0
+- minio-instance updated from 5.0.4-bb.1 to 5.0.5-bb.0
 ## [7.10.5-bb.0] - 2023-07-28
 ### Changed
 - update ironbank/opensource/mattermost/mattermost from 7.10.3 to 7.10.5
