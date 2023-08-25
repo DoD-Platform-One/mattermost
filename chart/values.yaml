@@ -292,3 +292,6 @@ bbtests:
       cypress_mm_email: "test@bigbang.dev"
       cypress_mm_user: "bigbang"
       cypress_mm_password: "Bigbang#123"
+      cypress_keycloak_username: "cypress"
+      cypress_keycloak_password: "tnr_w!G33ZyAt@C8"
+
