@@ -1,3 +1,10 @@
+
+let customWaitTime;
+before(() => {
+  customWaitTime = parseInt(Cypress.env('waittime'), 10) || 3000; 
+});
+
+
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from failing the test
   return false
@@ -6,7 +13,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('Mattermost Healthcheck', function() {
 // Checks if mattermost sidebar pops up
   function bannercheck() {
-    cy.wait(3000)
+    cy.wait(customWaitTime)
     cy.get('body').then($body => {
         if ($body.find('.link > span').length > 0) {   
             //evaluates as true if banner exists at all
@@ -45,13 +52,13 @@ describe('Mattermost Healthcheck', function() {
   
   // This provides us with a login account on fresh installs
     cy.visit(Cypress.env('url'))
-    cy.wait(4000)
+    cy.wait(customWaitTime)
 
     cy.get('div[id="root"]').should('be.visible')
 
     browsercheck()
 
-    cy.wait(8000)
+    cy.wait(customWaitTime)
 // Only runs if Keycloak_test_enable = 'true'
     if (Cypress.env('keycloak_test_enable')) {
       cy.contains('a#gitlab', 'GitLab').click();
@@ -72,7 +79,7 @@ describe('Mattermost Healthcheck', function() {
       cy.get('input[id="kc-login"]').click(); 
         }
   
-    cy.wait(5000)
+    cy.wait(customWaitTime)
     cy.url().then(url => { 
       if (url.includes('signup_user_complete')) {
         cy.get('input[id="input_email"]').type(Cypress.env('mm_email'))
@@ -84,13 +91,13 @@ describe('Mattermost Healthcheck', function() {
     
     login();
 
-    cy.wait(8000)
+    cy.wait(customWaitTime)
 
     cy.url().then(url => {
       if (url.includes('select_team')) {
       // create a team 
         cy.get('a[id="createNewTeamLink"]').click()
-        cy.wait(3000)
+        cy.wait(customWaitTime)
         // Input Big Bang
         cy.get('input[id="teamNameInput"]').type('Big Bang')
         // Click Next
@@ -107,24 +114,24 @@ describe('Mattermost Healthcheck', function() {
         cy.get('input[class="Organization__input"]').type('Big Bang')
         // Click Next
         cy.get('button[class="primary-button"]').click()
-        cy.wait(1000)
+        cy.wait(customWaitTime)
         cy.get('button[class="link-style plugins-skip-btn"]').click()
-        cy.wait(1000)
+        cy.wait(customWaitTime)
         cy.get('div[class="InviteMembers__submit"] button[class="primary-button"').click()
-        cy.wait(5000)
+        cy.wait(customWaitTime)
         // Give some time for dialog load
       }
     })
-    cy.wait(1000)
+    cy.wait(customWaitTime)
     cy.visit(Cypress.env('url')+'/big-bang/channels/town-square')
-    cy.wait(5000)
+    cy.wait(customWaitTime)
     cy.title().should('include', 'Town Square - Big Bang Mattermost')
 
   })
   it('should allow chatting', function() {
     bannercheck()
     let randomChat = "Hello " + Math.random().toString(36).substring(8);
-    cy.wait(5000)
+    cy.wait(customWaitTime)
     cy.get('body').then($body => {
       if ($body.find('.close > [aria-hidden="true"]').length > 0) {   
         cy.get('.close > [aria-hidden="true"]').click()
@@ -132,7 +139,7 @@ describe('Mattermost Healthcheck', function() {
     })
 
     cy.get('textarea[id="post_textbox"]').type(randomChat).type('{enter}')
-    cy.wait(1000)
+    cy.wait(customWaitTime)
     browsercheck()
     login()
     cy.get('p').contains(randomChat).should('be.visible')
@@ -141,11 +148,11 @@ describe('Mattermost Healthcheck', function() {
 
   it('should have file storage connection', function() {
     cy.visit(Cypress.env('url')+'/admin_console/environment/file_storage')
-    cy.wait(1000)
+    cy.wait(customWaitTime)
     
     browsercheck()
 
-    cy.wait(4000)
+    cy.wait(customWaitTime)
 
     if (Cypress.env('keycloak_test_enable')) {
       cy.contains('a#gitlab', 'GitLab').click();
@@ -162,8 +169,8 @@ describe('Mattermost Healthcheck', function() {
     login()
     bannercheck()
 
-    cy.get('span:contains("Test Connection")', {timeout: 10000}).click()
-    cy.wait(2000)
+    cy.get('span:contains("Test Connection")', {timeout: customWaitTime}).click()
+    cy.wait(customWaitTime)
     cy.get('div[class="alert alert-success"]').should('be.visible')
   })
 })
