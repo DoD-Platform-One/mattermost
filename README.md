@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 8.0.1-bb.2](https://img.shields.io/badge/Version-8.0.1--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.0.1](https://img.shields.io/badge/AppVersion-8.0.1-informational?style=flat-square)
+![Version: 8.0.1-bb.3](https://img.shields.io/badge/Version-8.0.1--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.0.1](https://img.shields.io/badge/AppVersion-8.0.1-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -140,6 +140,7 @@ helm install mattermost chart/
 | bbtests.cypress.envs.cypress_mm_email | string | `"test@bigbang.dev"` |  |
 | bbtests.cypress.envs.cypress_mm_user | string | `"bigbang"` |  |
 | bbtests.cypress.envs.cypress_mm_password | string | `"Bigbang#123"` |  |
+| bbtests.cypress.envs.cypress_waittime | string | `"5000"` |  |
 | bbtests.cypress.envs.cypress_keycloak_username | string | `"cypress"` |  |
 | bbtests.cypress.envs.cypress_keycloak_password | string | `"tnr_w!G33ZyAt@C8"` |  |
 
