@@ -50,6 +50,9 @@ sso:
   auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
   token_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/token
   user_api_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/userinfo
+  enable_sign_up_with_email: false
+  enable_sign_in_with_email: false
+  enable_sign_in_with_username: false
 
 # Repo and image tag
 image:
