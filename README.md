@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 8.1.0-bb.0](https://img.shields.io/badge/Version-8.1.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.1.0](https://img.shields.io/badge/AppVersion-8.1.0-informational?style=flat-square)
+![Version: 8.1.0-bb.1](https://img.shields.io/badge/Version-8.1.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 8.1.0](https://img.shields.io/badge/AppVersion-8.1.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -56,6 +56,9 @@ helm install mattermost chart/
 | sso.auth_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth"` |  |
 | sso.token_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/token"` |  |
 | sso.user_api_endpoint | string | `"https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/userinfo"` |  |
+| sso.enable_sign_up_with_email | bool | `false` | Show or hide the sign up with e-mail form fields. |
+| sso.enable_sign_in_with_email | bool | `false` | Show or hide the sign in with e-mail form fields. |
+| sso.enable_sign_in_with_username | bool | `false` | Show or hide the sign in with username form fields. |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
 | image.tag | string | `"8.1.0"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |

@@ -70,6 +70,21 @@ spec:
       secretKeyRef:
         key: MM_GITLABSETTINGS_USERAPIENDPOINT
         name: "mattermost-envs"
+  - name: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+    valueFrom:
+      secretKeyRef:
+        key: MM_EMAILSETTINGS_ENABLESIGNUPWITHEMAIL
+        name: "mattermost-envs"
+  - name: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+    valueFrom:
+      secretKeyRef:
+        key: MM_EMAILSETTINGS_ENABLESIGNINWITHEMAIL
+        name: "mattermost-envs"
+  - name: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+    valueFrom:
+      secretKeyRef:
+        key: MM_EMAILSETTINGS_ENABLESIGNINWITHUSERNAME
+        name: "mattermost-envs"
   {{- end }}
   {{- if .Values.minio.install }}
   - name: MM_FILESETTINGS_AMAZONS3SSL
