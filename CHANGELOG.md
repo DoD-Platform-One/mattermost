@@ -3,10 +3,16 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+
+## [8.1.2-bb.0] - 2023-09-11
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 8.1.0 to 8.1.2
+
 ## [8.1.0-bb.1]
 ### Changed
 - Hide sign up and sign in forms by default when sso is enabled.
 - Sign up and sign in forms can be enabled, even when sso is enabled, with new values.yaml settings.
+
 
 ## [8.1.0-bb.0] - 2023-08-26
 ### Changed
