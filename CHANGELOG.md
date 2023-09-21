@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.0.0-bb.0] - 2023-09-18
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 8.1.2 to 9.0.0
+- Updated gluon from 0.4.0 to 0.4.1
+- Modified cypress test structure to allow for cypress 13.X testing
 
 ## [8.1.2-bb.0] - 2023-09-11
 ### Changed
