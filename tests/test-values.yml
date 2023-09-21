@@ -15,9 +15,6 @@ postgresql:
 
 networkPolicies:
   enabled: true
-  controlPlaneCidr: 172.16.0.0/12
 
 bbtests:
   enabled: true
-  cypress:
-    image: registry1.dso.mil/bigbang-ci/cypress-kubectl:8.3.1

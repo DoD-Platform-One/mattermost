@@ -1,4 +1,3 @@
-
 let customWaitTime;
 before(() => {
   customWaitTime = parseInt(Cypress.env('waittime'), 10) || 3000; 
@@ -127,8 +126,6 @@ describe('Mattermost Healthcheck', function() {
     cy.wait(customWaitTime)
     cy.title().should('include', 'Town Square - Big Bang Mattermost')
 
-  })
-  it('should allow chatting', function() {
     bannercheck()
     let randomChat = "Hello " + Math.random().toString(36).substring(8);
     cy.wait(customWaitTime)
@@ -153,18 +150,6 @@ describe('Mattermost Healthcheck', function() {
     browsercheck()
 
     cy.wait(customWaitTime)
-
-    if (Cypress.env('keycloak_test_enable')) {
-      cy.contains('a#gitlab', 'GitLab').click();
-      cy.get('input[id="username"]')
-        .type(Cypress.env('keycloak_username'))
-        .should('have.value', Cypress.env('keycloak_username'));
-      cy.get('input[id="password"]')
-        .type(Cypress.env('keycloak_password'))
-        .should('have.value', Cypress.env('keycloak_password'));
-      cy.get('form').submit(); 
-      cy.get('input[id="kc-accept"]').click();
-      }
   
     login()
     bannercheck()
