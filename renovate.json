@@ -43,7 +43,7 @@
       "datasourceTemplate": "docker"
     },
     {
-      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "fileMatch": ["^chart/Chart\\.yaml$", "^chart/values\\.yaml$"],
       "matchStrings": [
         "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
       ],
