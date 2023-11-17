@@ -32,7 +32,7 @@ describe('Mattermost Healthcheck', function() {
   function browsercheck() {
     cy.url().then(url => {
       if (url.includes('landing')) {
-        cy.get('a.btn.btn-default.btn-lg.get-app__continue').click()
+        cy.get('span:contains("View in Browser")').click()
         }
       })
     }
