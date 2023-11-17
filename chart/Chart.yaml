@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 9.2.1-bb.0
-appVersion: 9.2.1
+version: 9.2.2-bb.0
+appVersion: v9.2.2
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -16,7 +16,7 @@ dependencies:
     condition: postgresql.install
     repository: file://./deps/postgresql
   - name: minio-instance
-    version: 5.0.5-bb.0
+    version: 5.0.10-bb.3
     alias: minio
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
@@ -25,16 +25,16 @@ dependencies:
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/applicationVersions: |
-    - Mattermost: 9.2.1
+    - Mattermost: v9.2.2
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:9.2.1
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:v9.2.2
     - name: minio
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2023-06-19T19-52-50Z
+      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2023-11-06T22-26-08Z
     - name: mc
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-06-23T18-12-07Z
+      image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-10-30T18-43-32Z
     - name: postgresql11
       condition: postgresql.install
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql11:11.18-1
