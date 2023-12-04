@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 9.2.2-bb.0
-appVersion: v9.2.2
+version: v9.2.3-bb.0
+appVersion: v9.2.3
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -25,10 +25,10 @@ dependencies:
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/applicationVersions: |
-    - Mattermost: v9.2.2
+    - Mattermost: v9.2.3
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:v9.2.2
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:v9.2.3
     - name: minio
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2023-11-06T22-26-08Z
