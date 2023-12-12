@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: v9.2.3-bb.0](https://img.shields.io/badge/Version-v9.2.3--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v9.2.3](https://img.shields.io/badge/AppVersion-v9.2.3-informational?style=flat-square)
+![Version: v9.2.3-bb.1](https://img.shields.io/badge/Version-v9.2.3--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v9.2.3](https://img.shields.io/badge/AppVersion-v9.2.3-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -94,6 +94,7 @@ helm install mattermost chart/
 | minio.secrets.secretKey | string | `"minio123"` |  |
 | minio.tenant.metrics.enabled | bool | `false` |  |
 | minio.tenant.metrics.port | int | `9000` |  |
+| minio.tenant.buckets[0].name | string | `"mattermost"` |  |
 | minio.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.install | bool | `false` |  |
 | postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |

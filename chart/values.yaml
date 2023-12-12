@@ -180,6 +180,8 @@ minio:
     metrics:
       enabled: false
       port: 9000
+    buckets:
+      - name: mattermost
   containerSecurityContext:
     capabilities:
       drop:
