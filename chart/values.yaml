@@ -40,6 +40,7 @@ networkPolicies:
     app: istio-ingressgateway
     istio: ingressgateway
   controlPlaneCidr: 0.0.0.0/0
+  additionalPolicies: []
 
 sso:
   enabled: false
