@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: v9.2.3-bb.1](https://img.shields.io/badge/Version-v9.2.3--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v9.2.3](https://img.shields.io/badge/AppVersion-v9.2.3-informational?style=flat-square)
+![Version: v9.2.3-bb.2](https://img.shields.io/badge/Version-v9.2.3--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v9.2.3](https://img.shields.io/badge/AppVersion-v9.2.3-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -50,6 +50,7 @@ helm install mattermost chart/
 | networkPolicies.ingressLabels.app | string | `"istio-ingressgateway"` |  |
 | networkPolicies.ingressLabels.istio | string | `"ingressgateway"` |  |
 | networkPolicies.controlPlaneCidr | string | `"0.0.0.0/0"` |  |
+| networkPolicies.additionalPolicies | list | `[]` |  |
 | sso.enabled | bool | `false` |  |
 | sso.client_id | string | `"platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost"` |  |
 | sso.client_secret | string | `"nothing"` |  |
