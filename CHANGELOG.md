@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.3.0-bb.0] - 2023-12-21
+### Changed
+- registry1.dso.mil/ironbank/opensource/mattermost/mattermost v9.2.3 -> v9.3.0
+- registry1.dso.mil/ironbank/opensource/postgres/postgresql12 12.16 -> 12.17
+- Updated gluon from 0.4.1 to 0.4.5
+
 ## [9.2.3-bb.2] - 2023-12-19
 ### Changed
 - Added an additionalPolicies value under networkPolicies to allow for additional custom policies to be specified
