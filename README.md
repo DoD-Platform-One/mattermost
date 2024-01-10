@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: v9.3.0-bb.0](https://img.shields.io/badge/Version-v9.3.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v9.3.0](https://img.shields.io/badge/AppVersion-v9.3.0-informational?style=flat-square)
+![Version: 9.3.0-bb.1](https://img.shields.io/badge/Version-9.3.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.3.0](https://img.shields.io/badge/AppVersion-9.3.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -148,6 +148,10 @@ helm install mattermost chart/
 | bbtests.cypress.envs.cypress_waittime | string | `"5000"` |  |
 | bbtests.cypress.envs.cypress_keycloak_username | string | `"cypress"` |  |
 | bbtests.cypress.envs.cypress_keycloak_password | string | `"tnr_w!G33ZyAt@C8"` |  |
+| bbtests.cypress.resources.requests.cpu | string | `"2"` |  |
+| bbtests.cypress.resources.requests.memory | string | `"1500M"` |  |
+| bbtests.cypress.resources.limits.cpu | string | `"2"` |  |
+| bbtests.cypress.resources.limits.memory | string | `"1500M"` |  |
 
 ## Contributing
 

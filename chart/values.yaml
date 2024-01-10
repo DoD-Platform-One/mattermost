@@ -301,4 +301,10 @@ bbtests:
       cypress_waittime: "5000"
       cypress_keycloak_username: "cypress"
       cypress_keycloak_password: "tnr_w!G33ZyAt@C8"
-
+    resources:
+      requests:
+        cpu: "2"
+        memory: "1500M"
+      limits:
+        cpu: "2"
+        memory: "1500M"
