@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [9.3.0-bb.1] - 2023-12-21
 ### Changed
 - cypress resource allocation
+- minio-instance updated to 5.0.11-bb.1
+- minio image updated to RELEASE.2023-11-20T22-40-07Z
+- mc updated to RELEASE.2023-11-20T16-30-59Z
 
 ## [9.3.0-bb.0] - 2023-12-21
 ### Changed

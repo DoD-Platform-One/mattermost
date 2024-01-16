@@ -61,21 +61,7 @@ describe('Mattermost Healthcheck', function() {
 // Only runs if Keycloak_test_enable = 'true'
     if (Cypress.env('keycloak_test_enable')) {
       cy.contains('a#gitlab', 'GitLab').click();
-      cy.get('input[id="username"]')
-          .type(Cypress.env('keycloak_username'))
-          .should('have.value', Cypress.env('keycloak_username'));
-
-
-      cy.get('input[id="password"]')
-        .type(Cypress.env('keycloak_password'))
-        .should('have.value', Cypress.env('keycloak_password'));
-
-        
-      cy.get('form').submit(); 
-  // Accept Terms and Conditions
-      cy.get('input[id="kc-accept"]').click();
-  // Grant Privileges
-      cy.get('input[id="kc-login"]').click(); 
+      cy.performKeycloakLogin(Cypress.env('tnr_username'), Cypress.env('tnr_password'))
         }
   
     cy.wait(customWaitTime)

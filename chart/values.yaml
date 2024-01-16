@@ -169,7 +169,7 @@ containerSecurityContext:
 
 minio:
   install: false
-  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-10-30T18-43-32Z"
+  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-11-20T16-30-59Z"
   # Override the minio service name for easier connection setup
   service:
     nameOverride: "minio.mattermost.svc.cluster.local"
@@ -299,8 +299,8 @@ bbtests:
       cypress_mm_user: "bigbang"
       cypress_mm_password: "Bigbang#123"
       cypress_waittime: "5000"
-      cypress_keycloak_username: "cypress"
-      cypress_keycloak_password: "tnr_w!G33ZyAt@C8"
+      cypress_tnr_username: "cypress"
+      cypress_tnr_password: "tnr_w!G33ZyAt@C8"
     resources:
       requests:
         cpu: "2"
