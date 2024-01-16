@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 9.3.0-bb.1](https://img.shields.io/badge/Version-9.3.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.3.0](https://img.shields.io/badge/AppVersion-9.3.0-informational?style=flat-square)
+![Version: 9.3.0-bb.2](https://img.shields.io/badge/Version-9.3.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.3.0](https://img.shields.io/badge/AppVersion-9.3.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -88,7 +88,7 @@ helm install mattermost chart/
 | securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | securityContext for Mattermost server pods |
 | containerSecurityContext | object | `{"capabilities":{"drop":["ALL"]},"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | containerSecurityContext for Mattermost server containers |
 | minio.install | bool | `false` |  |
-| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-10-30T18-43-32Z"` |  |
+| minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-11-20T16-30-59Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
 | minio.secrets.name | string | `"mattermost-objstore-creds"` |  |
 | minio.secrets.accessKey | string | `"minio"` |  |
