@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.3.0-bb.3] - 2024-02-02
+### Updated
+- allow-intranamespace authz policy added
+- allow-nothing authz policy added
+- monitoring authz policy added
+- template authz policy added
+
 ## [9.3.0-bb.2] - 2024-01-16
 ### Changed
 - minio-instance updated to 5.0.11-bb.1

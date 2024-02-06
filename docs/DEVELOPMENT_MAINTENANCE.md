@@ -29,12 +29,17 @@ Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handl
 NOTE: For these testing steps it is good to do them on both a clean install and an upgrade. For clean install, point mattermost to your branch. For an upgrade do an install with mattermost pointing to the latest tag, then perform a helm upgrade with mattermost pointing to your branch.
 
 You will want to install with:
+- `-b` on the k3d script, if you are using it
 - Mattermost, Mattermost Operator, and Minio Operator enabled
 - Istio enabled
 - [Dev SSO values](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/assets/configs/example/dev-sso-values.yaml) for Mattermost
 - [Enterprise enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L962) - if you do not pass a license in, navigate to the System Console after install to start a trial
+    - You can generate a license by starting the free trial, connecting to the postgresql db (default username `mattermost`, default password `bigbang`) and running `select * from licenses;`. It should be under the column `bytes`. You should be able to base64 decode it and get valid json.
 - Elasticsearch enabled + [integration enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L1038)
+    - NOTE: This doesn't seem to be working at the moment.
 - Monitoring enabled
+
+[Here](https://repo1.dso.mil/andrewshoell/overrides/-/blob/main/mattermost.yaml?ref_type=heads) is an example override file.
 
 Testing Steps:
 - Log in with SSO via your `login.dso.mil` account.
@@ -42,6 +47,7 @@ Testing Steps:
 - Under account settings, upload a profile picture. Validate the upload is successful and your profile picture is visible.
 - Navigate to prometheus and validate that the Mattermost target shows as up (make sure you are on enterprise and have started a trial).
 - Under system console -> elastic -> index now and validate success (make sure you are on enterprise and have started a trial).
+    - NOTE: This doesn't seem to be working at the moment.
 - Check Grafana for data in the `Mattermost Performance Monitoring v2` dashboard (Ensure you change the server on the dashboard to point to the mattermost pod ip)
 
 When in doubt with any testing or upgrade steps ask one of the CODEOWNERS for assistance.

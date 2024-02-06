@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 9.3.0-bb.2](https://img.shields.io/badge/Version-9.3.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.3.0](https://img.shields.io/badge/AppVersion-9.3.0-informational?style=flat-square)
+![Version: 9.3.0-bb.3](https://img.shields.io/badge/Version-9.3.0--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.3.0](https://img.shields.io/badge/AppVersion-9.3.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -34,6 +34,17 @@ helm install mattermost chart/
 |-----|------|---------|-------------|
 | domain | string | `"bigbang.dev"` |  |
 | istio.enabled | bool | `false` | Toggle istio integration |
+| istio.hardened.enabled | bool | `false` |  |
+| istio.hardened.customAuthorizationPolicies | list | `[]` |  |
+| istio.hardened.monitoring.enabled | bool | `true` |  |
+| istio.hardened.monitoring.namespaces[0] | string | `"monitoring"` |  |
+| istio.hardened.monitoring.principals[0] | string | `"cluster.local/ns/monitoring/sa/monitoring-grafana"` |  |
+| istio.hardened.monitoring.principals[1] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-alertmanager"` |  |
+| istio.hardened.monitoring.principals[2] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-operator"` |  |
+| istio.hardened.monitoring.principals[3] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-prometheus"` |  |
+| istio.hardened.monitoring.principals[4] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-state-metrics"` |  |
+| istio.hardened.monitoring.principals[5] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-prometheus-node-exporter"` |  |
+| istio.mtls | object | `{"mode":"STRICT"}` | Default peer authentication |
 | istio.mtls.mode | string | `"STRICT"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic |
 | istio.chat.enabled | bool | `true` |  |
 | istio.chat.annotations | object | `{}` |  |
@@ -96,7 +107,6 @@ helm install mattermost chart/
 | minio.tenant.metrics.enabled | bool | `false` |  |
 | minio.tenant.metrics.port | int | `9000` |  |
 | minio.tenant.buckets[0].name | string | `"mattermost"` |  |
-| minio.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.install | bool | `false` |  |
 | postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |
 | postgresql.image.repository | string | `"opensource/postgres/postgresql11"` |  |
@@ -146,8 +156,8 @@ helm install mattermost chart/
 | bbtests.cypress.envs.cypress_mm_user | string | `"bigbang"` |  |
 | bbtests.cypress.envs.cypress_mm_password | string | `"Bigbang#123"` |  |
 | bbtests.cypress.envs.cypress_waittime | string | `"5000"` |  |
-| bbtests.cypress.envs.cypress_keycloak_username | string | `"cypress"` |  |
-| bbtests.cypress.envs.cypress_keycloak_password | string | `"tnr_w!G33ZyAt@C8"` |  |
+| bbtests.cypress.envs.cypress_tnr_username | string | `"cypress"` |  |
+| bbtests.cypress.envs.cypress_tnr_password | string | `"tnr_w!G33ZyAt@C8"` |  |
 | bbtests.cypress.resources.requests.cpu | string | `"2"` |  |
 | bbtests.cypress.resources.requests.memory | string | `"1500M"` |  |
 | bbtests.cypress.resources.limits.cpu | string | `"2"` |  |
