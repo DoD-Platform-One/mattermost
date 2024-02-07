@@ -3,6 +3,14 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.4.2-bb.0] - 2024-02-07
+### Changed
+- registry1.dso.mil/ironbank/opensource/mattermost/mattermost v9.3.0 -> 9.4.2
+- minio-instance updated from 5.0.11-bb.1 to 5.0.11-bb.3
+- updated gluon form 0.4.5 to 0.4.7
+- minio image updated from RELEASE.2023-11-20T22-40-07Z to RELEASE.2024-01-18T22-51-28Z
+- mc image updated from RELEASE.2023-11-20T16-30-59Z to RELEASE.2024-01-18T07-03-39Z
+
 ## [9.3.0-bb.3] - 2024-02-02
 ### Updated
 - allow-intranamespace authz policy added
@@ -19,8 +27,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [9.3.0-bb.1] - 2023-12-21
 ### Changed
 - cypress resource allocation
-
-
 
 ## [9.3.0-bb.0] - 2023-12-21
 ### Changed

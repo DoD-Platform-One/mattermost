@@ -76,7 +76,7 @@ sso:
 # Repo and image tag
 image:
   name: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
-  tag: v9.3.0
+  tag: 9.4.2
   imagePullPolicy: IfNotPresent
 
 global:
@@ -187,7 +187,7 @@ containerSecurityContext:
 
 minio:
   install: false
-  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2023-11-20T16-30-59Z"
+  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-01-18T07-03-39Z"
   # Override the minio service name for easier connection setup
   service:
     nameOverride: "minio.mattermost.svc.cluster.local"
