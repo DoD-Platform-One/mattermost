@@ -215,7 +215,9 @@ spec:
   database:
     external:
       secret: {{ .Values.database.secret | default (printf "%s-dbcreds" (include "mattermost.fullname" .)) }}
-    disableReadinessCheck: {{ .Values.database.readinessCheck.disableDefault }}
+    {{/* If istio is hardened init containers won't work, see https://github.com/istio/istio/issues/23802 */}}
+    {{/* This can be fixed if we have sidecar containers (https://github.com/kubernetes/enhancements/issues/753) or ambient mesh */}}
+    disableReadinessCheck: {{ or (and .Values.istio.enabled .Values.istio.hardened.enabled) .Values.database.readinessCheck.disableDefault }}
 
   fileStore:
     external:
@@ -223,6 +225,9 @@ spec:
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
       secret: {{ .Values.fileStore.secret | default .Values.minio.secrets.name }}
 
+  {{/* If istio is hardened init containers won't work, see https://github.com/istio/istio/issues/23802 */}}
+  {{/* This can be fixed if we have sidecar containers (https://github.com/kubernetes/enhancements/issues/753) or ambient mesh */}}
+  {{- if not (and .Values.istio.enabled .Values.istio.hardened.enabled) }}
   podExtensions:
     initContainers:
       - command:
@@ -246,6 +251,7 @@ spec:
             cpu: 50m
         env:
         {{- (tpl (toYaml .Values.database.readinessCheck.env) .) | nindent 10 }}
+  {{- end }}
 
   {{- if .Values.resourcePatch }}
   resourcePatch:

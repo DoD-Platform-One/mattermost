@@ -6,9 +6,6 @@ metadata:
   name: allow-intranamespace
   namespace: {{ $namespace }}
 spec:
-  selector:
-    matchLabels:
-      {{- include "mattermost.selectorLabels" . | nindent 6 }}
   action: ALLOW
   rules:
   - from:
