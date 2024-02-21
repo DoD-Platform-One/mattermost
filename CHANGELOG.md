@@ -3,6 +3,15 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.5.1-bb.0] - 2024-02-20
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 9.4.2 to 9.5.1
+- ironbank/opensource/postgres/postgresql12 updated from 12.17 to 12.18
+- updated postgresql subchart to 10.3.5
+- minio-instance updated from 5.0.11-bb.3 to 5.0.12-bb.1
+- minio image updated from minio:RELEASE.2024-01-18T22-51-28Z to minio:RELEASE.2024-02-09T21-25-16Z
+- mc image updated from 2024-01-18T07-03-39Z to RELEASE.2024-02-09T22-18-24Z
+
 ## [9.4.2-bb.1] - 2024-02-08
 ### Changed
 - disabling the db probe init container if istio is hardened
