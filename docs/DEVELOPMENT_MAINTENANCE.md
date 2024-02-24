@@ -34,9 +34,12 @@ You will want to install with:
 - Istio enabled
 - [Dev SSO values](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/assets/configs/example/dev-sso-values.yaml) for Mattermost
 - [Enterprise enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L962) - if you do not pass a license in, navigate to the System Console after install to start a trial
-    - You can generate a license by starting the free trial, connecting to the postgresql db (default username `mattermost`, default password `bigbang`) and running `select * from licenses;`. It should be under the column `bytes`. You should be able to base64 decode it and get valid json.
+    - You can generate a license by 
+        - Starting the free trial.
+    - You can recover your license by running the following command. This is not necessary unless you wish to re-use the license on subsequent installs.
+    `kubectl exec -n mattermost mattermost-postgresql-0 -- bash -c 'PGPASSWORD=bigbang psql -t -U mattermost -c "select bytes from licenses;"' > encoded.mattermost-license`
+        - Note: this is a base64 file that you can decode to read parts of the json (though it contains other data that does not come out correctly as json), but Mattermost expects the encoded file
 - Elasticsearch enabled + [integration enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L1038)
-    - NOTE: This doesn't seem to be working at the moment.
 - Monitoring enabled
 
 [Here](https://repo1.dso.mil/andrewshoell/overrides/-/blob/main/mattermost.yaml?ref_type=heads) is an example override file.
