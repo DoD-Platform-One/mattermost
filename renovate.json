@@ -5,7 +5,7 @@
   "dependencyDashboardHeader": "- [ ] Follow steps in [package update docs](./docs/PACKAGE_UPDATES.md) to upgrade the package.",
   "dependencyDashboardTitle": "Renovate: Upgrade Mattermost Package Dependencies",
   "draftPR": true,
-  "enabledManagers": ["regex"],
+  "enabledManagers": ["regex", "helmv3"],
   "ignorePaths": ["chart/charts/**"],
   "labels": ["mattermost","Package Sustainment","kind::maintenance"],
   "packageRules": [
