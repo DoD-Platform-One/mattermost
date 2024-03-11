@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 9.5.1-bb.1](https://img.shields.io/badge/Version-9.5.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.5.1](https://img.shields.io/badge/AppVersion-9.5.1-informational?style=flat-square)
+![Version: 9.5.1-bb.2](https://img.shields.io/badge/Version-9.5.1--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.5.1](https://img.shields.io/badge/AppVersion-9.5.1-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -36,6 +36,8 @@ helm install mattermost chart/
 | istio.enabled | bool | `false` | Toggle istio integration |
 | istio.hardened.enabled | bool | `false` |  |
 | istio.hardened.customAuthorizationPolicies | list | `[]` |  |
+| istio.hardened.clusterAuditor.enabled | bool | `false` |  |
+| istio.hardened.clusterAuditor.namespace | string | `"cluster-auditor"` |  |
 | istio.hardened.monitoring.enabled | bool | `true` |  |
 | istio.hardened.monitoring.namespaces[0] | string | `"monitoring"` |  |
 | istio.hardened.monitoring.principals[0] | string | `"cluster.local/ns/monitoring/sa/monitoring-grafana"` |  |
@@ -44,6 +46,8 @@ helm install mattermost chart/
 | istio.hardened.monitoring.principals[3] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-prometheus"` |  |
 | istio.hardened.monitoring.principals[4] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-state-metrics"` |  |
 | istio.hardened.monitoring.principals[5] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-prometheus-node-exporter"` |  |
+| istio.hardened.kyvernoReporter.enabled | bool | `false` |  |
+| istio.hardened.kyvernoReporter.namespace | string | `"kyverno-reporter"` |  |
 | istio.mtls | object | `{"mode":"STRICT"}` | Default peer authentication |
 | istio.mtls.mode | string | `"STRICT"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic |
 | istio.chat.enabled | bool | `true` |  |
