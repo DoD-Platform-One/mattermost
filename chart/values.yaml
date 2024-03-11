@@ -9,6 +9,9 @@ istio:
     # - name: "allow-nothing"
     #   enabled: true
     #   spec: {}
+    clusterAuditor:
+      enabled: false
+      namespace: cluster-auditor
     monitoring:
       enabled: true
       namespaces:
@@ -20,6 +23,9 @@ istio:
         - cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-prometheus
         - cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-state-metrics
         - cluster.local/ns/monitoring/sa/monitoring-monitoring-prometheus-node-exporter
+    kyvernoReporter:
+      enabled: false
+      namespace: kyverno-reporter
   # -- Default peer authentication
   mtls:
     # -- STRICT = Allow only mutual TLS traffic,

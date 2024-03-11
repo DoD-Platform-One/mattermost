@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ---
 ## [9.5.1-bb.1] - 2024-02-22
 ### Changed
+- Added auth policy for kyverno-reporter
+- Added auth policy for cluster-auditor
+
+## [9.5.1-bb.1] - 2024-02-22
+### Changed
 - Updated renovate.json to account for gluon updates
 
 ## [9.5.1-bb.0] - 2024-02-20
