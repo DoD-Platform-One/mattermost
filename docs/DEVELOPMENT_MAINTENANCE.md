@@ -24,25 +24,30 @@ Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handl
 
 11. Once all manual testing is complete take your MR out of "Draft" status and add the review label.
 
-# Testing for updates
+# Deploying
 
-NOTE: For these testing steps it is good to do them on both a clean install and an upgrade. For clean install, point mattermost to your branch. For an upgrade do an install with mattermost pointing to the latest tag, then perform a helm upgrade with mattermost pointing to your branch.
+Prerequisites:
+- Make sure to do git pull to get the latest code from bigbang
 
-You will want to install with:
-- `-b` on the k3d script, if you are using it
-- Mattermost, Mattermost Operator, and Minio Operator enabled
-- Istio enabled
-- [Dev SSO values](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/assets/configs/example/dev-sso-values.yaml) for Mattermost
-- [Enterprise enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L962) - if you do not pass a license in, navigate to the System Console after install to start a trial
-    - You can generate a license by 
-        - Starting the free trial.
+Deployment Steps:
+- [Mattermost example values override](mattermost.example.yaml) is an example override file.
+- consider `-b` on the k3d script (only if you intend to enable elasticsearch/kibana)
+- [Download the example overrides file here](https://repo1.dso.mil/andrewshoell/overrides/-/blob/main/mattermost.yaml?ref_type=heads) and place it in a local override directory
+- (from the root of the bigbang repo) `helm upgrade chart -f <registryCredentials overrides> -f chart/ingress-certs.yaml -f docs/assets/configs/example/dev-sso-values.yaml -f docs/assets/configs/example/policy-overrides-k3d.yaml -f <mattermost override file>`
+- Verify /etc/hosts file contains `chat.bigbang.dev` targeting your K3D instance's public IP
+- [Enterprise enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L962) - if you do not have a license key leave `enterprise` disabled in the `ignore/mattermost.yaml` until you generate one
+    - if you do not pass a license in, navigate to the [System Console](system-console.png) after install to start a trial
+    - You can generate a license by starting the free trial.
     - You can recover your license by running the following command. This is not necessary unless you wish to re-use the license on subsequent installs.
     `kubectl exec -n mattermost mattermost-postgresql-0 -- bash -c 'PGPASSWORD=bigbang psql -t -U mattermost -c "select bytes from licenses;"' > encoded.mattermost-license`
         - Note: this is a base64 file that you can decode to read parts of the json (though it contains other data that does not come out correctly as json), but Mattermost expects the encoded file
 - Elasticsearch enabled + [integration enabled](https://repo1.dso.mil/platform-one/big-bang/bigbang/-/blob/7b14b4739b26b900cf7e6f1c075edc33c271eca6/chart/values.yaml#L1038)
+- [Elasticsearch/kibana values](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/tests/test-values.yaml#L749)
 - Monitoring enabled
 
-[Here](https://repo1.dso.mil/andrewshoell/overrides/-/blob/main/mattermost.yaml?ref_type=heads) is an example override file.
+# Testing for updates
+
+NOTE: For these testing steps it is good to do them on both a clean install and an upgrade. For clean install, point mattermost to your branch. For an upgrade do an install with mattermost pointing to the latest tag, then perform a helm upgrade with mattermost pointing to your branch.
 
 Testing Steps:
 - Log in with SSO via your `login.dso.mil` account.
