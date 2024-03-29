@@ -277,6 +277,8 @@ fileStore:
   url: ""
   # Bucket for existing file store, leave empty for chart created minio
   bucket: ""
+  # ARN  of an IAM role to use.  Populate this when using Iam Roles for Service Accounts (IRSA)
+  roleARN: ""
 
 elasticsearch:
   # NOTE: Elasticsearch settings can be defined, but will not work unless enterprise mode is enabled.
