@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 9.6.1-bb.0](https://img.shields.io/badge/Version-9.6.1--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.6.1](https://img.shields.io/badge/AppVersion-9.6.1-informational?style=flat-square)
+![Version: 9.6.1-bb.1](https://img.shields.io/badge/Version-9.6.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.6.1](https://img.shields.io/badge/AppVersion-9.6.1-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -36,6 +36,8 @@ helm install mattermost chart/
 | istio.enabled | bool | `false` | Toggle istio integration |
 | istio.hardened.enabled | bool | `false` |  |
 | istio.hardened.customAuthorizationPolicies | list | `[]` |  |
+| istio.hardened.outboundTrafficPolicyMode | string | `"REGISTRY_ONLY"` |  |
+| istio.hardened.customServiceEntries | list | `[]` |  |
 | istio.hardened.clusterAuditor.enabled | bool | `false` |  |
 | istio.hardened.clusterAuditor.namespace | string | `"cluster-auditor"` |  |
 | istio.hardened.monitoring.enabled | bool | `true` |  |
