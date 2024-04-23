@@ -59,3 +59,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{- /* Returns an SSO host */ -}}
+{{- define "sso.host" -}}
+  {{- regexReplaceAll ".*//([^/]*)/?.*" .Values.sso.auth_endpoint "${1}" -}}
+{{- end -}}
+
