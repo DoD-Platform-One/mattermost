@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.7.1-bb.0] - 2024-04-18
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 9.6.1 to 9.7.1
+
 ## [9.6.1-bb.1] - 2024-04-15
 ### Changed
 - Added Istio Sidecar to restrict egress traffic to REGISTRY_ONLY
