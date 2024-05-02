@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.7.3-bb.0] - 2024-05-02
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 9.7.2 to 9.7.3
+- minio-instance updated from 5.0.12-bb.1 to 5.0.12-bb.12
+- minio image updated from RELEASE.2024-02-09T21-25-16Z to RELEASE.2024-03-30T09-41-56Z
+- mc image updated from RELEASE.2024-02-09T22-18-24Z to RELEASE.2024-04-29T09-56-05Z
+
 ## [9.7.2-bb.0] - 2024-04-27
 ### Changed
 - gluon updated from 0.4.9 to 0.4.10
