@@ -3,7 +3,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: {{ .Release.Name }}-mattermost
+  name: {{ .Release.Name }}-sso-mattermost
   namespace: {{ $.Release.Namespace }}
 spec:
   hosts:
