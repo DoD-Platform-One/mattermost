@@ -225,7 +225,11 @@ spec:
     external:
       url: {{ .Values.fileStore.url | default .Values.minio.service.nameOverride }}
       bucket: {{ .Values.fileStore.bucket | default "mattermost" }}
+      {{- if .Values.fileStore.roleARN }}
+      useServiceAccount: true
+      {{- else }}
       secret: {{ .Values.fileStore.secret | default .Values.minio.secrets.name }}
+      {{- end }}
 
   {{/* If istio is hardened init containers won't work, see https://github.com/istio/istio/issues/23802 */}}
   {{/* This can be fixed if we have sidecar containers (https://github.com/kubernetes/enhancements/issues/753) or ambient mesh */}}
