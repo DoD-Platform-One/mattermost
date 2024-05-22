@@ -1,7 +1,6 @@
 # mattermost
 
-
-![Version: 9.7.3-bb.2](https://img.shields.io/badge/Version-9.7.3--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.7.3](https://img.shields.io/badge/AppVersion-9.7.3-informational?style=flat-square)
+![Version: 9.7.3-bb.3](https://img.shields.io/badge/Version-9.7.3--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.7.3](https://img.shields.io/badge/AppVersion-9.7.3-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -143,6 +142,7 @@ helm install mattermost chart/
 | fileStore.secret | string | `""` |  |
 | fileStore.url | string | `""` |  |
 | fileStore.bucket | string | `""` |  |
+| fileStore.roleARN | string | `""` |  |
 | elasticsearch.enabled | bool | `false` |  |
 | elasticsearch.connectionurl | string | `"https://logging-ek-es-http.logging.svc.cluster.local:9200"` |  |
 | elasticsearch.username | string | `""` |  |
