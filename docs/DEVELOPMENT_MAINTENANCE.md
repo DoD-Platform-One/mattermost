@@ -2,7 +2,7 @@
 
 Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handle any automatic updates from upstream. The below details the steps required to update to a new version of the Mattermost package.
 
-1. Review the [upstream changelog](https://docs.mattermost.com/install/self-managed-changelog.html) for the update you are going to, as well as any versions skipped over between the last BB release and this one. Note any breaking changes and new features.
+1. Review the [upstream changelog](https://docs.mattermost.com/deploy/mattermost-changelog.html) for the update you are going to, as well as any versions skipped over between the last BB release and this one. Note any breaking changes and new features.
 
 2. Modify the `image.tag` value in `chart/values.yaml` to point to the newest version of Mattermost.
 
