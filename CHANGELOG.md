@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.9.0-bb.0] - 2024-06-18
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 9.8.1 to 9.9.0
+- postgresql chart newline change (DOS -> UNIX newlines)
+
 ## [9.8.1-bb.0] - 2024-06-05
 ### Changed
 - ironbank/opensource/mattermost/mattermost updated from 9.8.0 to 9.8.1
