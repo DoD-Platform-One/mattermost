@@ -5,6 +5,7 @@
 Deployment of mattermost
 
 ## Learn More
+
 * [Application Overview](docs/overview.md)
 * [Other Documentation](docs/)
 
@@ -18,12 +19,13 @@ Kubernetes: `>=1.12.0-0`
 
 Install Helm
 
-https://helm.sh/docs/intro/install/
+<https://helm.sh/docs/intro/install/>
 
 ## Deployment
 
 * Clone down the repository
 * cd into directory
+
 ```bash
 helm install mattermost chart/
 ```
