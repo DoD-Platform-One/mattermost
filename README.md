@@ -1,11 +1,10 @@
 # mattermost
 
-![Version: 9.9.0-bb.1](https://img.shields.io/badge/Version-9.9.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.0](https://img.shields.io/badge/AppVersion-9.9.0-informational?style=flat-square)
+![Version: 9.9.0-bb.2](https://img.shields.io/badge/Version-9.9.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.0](https://img.shields.io/badge/AppVersion-9.9.0-informational?style=flat-square)
 
 Deployment of mattermost
 
 ## Learn More
-
 * [Application Overview](docs/overview.md)
 * [Other Documentation](docs/)
 
@@ -19,13 +18,12 @@ Kubernetes: `>=1.12.0-0`
 
 Install Helm
 
-<https://helm.sh/docs/intro/install/>
+https://helm.sh/docs/intro/install/
 
 ## Deployment
 
 * Clone down the repository
 * cd into directory
-
 ```bash
 helm install mattermost chart/
 ```
@@ -117,12 +115,12 @@ helm install mattermost chart/
 | minio.tenant.buckets[0].name | string | `"mattermost"` |  |
 | postgresql.install | bool | `false` |  |
 | postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |
-| postgresql.image.repository | string | `"opensource/postgres/postgresql11"` |  |
-| postgresql.image.tag | string | `"11.18-1"` |  |
+| postgresql.image.repository | string | `"opensource/postgres/postgresql"` |  |
+| postgresql.image.tag | string | `"15.7"` |  |
 | postgresql.image.pullSecrets[0] | string | `"private-registry"` |  |
-| postgresql.postgresqlUsername | string | `"mattermost"` |  |
-| postgresql.postgresqlPassword | string | `"bigbang"` |  |
-| postgresql.postgresqlDatabase | string | `"mattermost"` |  |
+| postgresql.auth.username | string | `"mattermost"` |  |
+| postgresql.auth.password | string | `"bigbang"` |  |
+| postgresql.auth.database | string | `"mattermost"` |  |
 | postgresql.fullnameOverride | string | `"mattermost-postgresql"` |  |
 | postgresql.securityContext.fsGroup | int | `26` |  |
 | postgresql.containerSecurityContext.runAsUser | int | `26` |  |
@@ -134,7 +132,7 @@ helm install mattermost chart/
 | postgresql.pgHbaConfiguration | string | `"local all all md5\nhost all all all md5"` |  |
 | database.secret | string | `""` |  |
 | database.readinessCheck.disableDefault | bool | `true` |  |
-| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.19"` |  |
+| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:15.7"` |  |
 | database.readinessCheck.command[0] | string | `"/bin/sh"` |  |
 | database.readinessCheck.command[1] | string | `"-c"` |  |
 | database.readinessCheck.command[2] | string | `"until pg_isready --dbname=\"$DB_CONNECTION_CHECK_URL\"; do echo waiting for database; sleep 5; done;"` |  |
