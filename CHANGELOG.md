@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [9.9.0-bb.3] - 2024-06-28
+### Changed
+- Corrected postgresl pod security context settings for kyverno
+
 ## [9.9.0-bb.2] - 2024-06-26
 ### Changed
 - update "postgresql" (https://github.com/bitnami/charts) from "master" (c2ac165a579a8f06dede2b6fede2f4ec2bfea495) to "postgresql/12.12.10" (d278c2b6792e02c5f327e96df4f031cab7bc0819)

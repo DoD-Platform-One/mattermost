@@ -190,7 +190,7 @@ podLabels: {}
 # -- Pod annotations for Mattermost server pods
 podAnnotations: {}
 
-# -- securityContext for Mattermost server pods
+# --  for Mattermost server pods
 securityContext:
   runAsNonRoot: true
   runAsUser: 2000
@@ -227,7 +227,7 @@ postgresql:
   image:
     registry: "registry1.dso.mil/ironbank"
     repository: "opensource/postgres/postgresql"
-    tag: "15.7"
+    tag: "15"
 
     pullSecrets:
     - private-registry
@@ -238,15 +238,14 @@ postgresql:
 
   fullnameOverride: "mattermost-postgresql" # Overrides the name used for resource creation
 
-  securityContext:
-    fsGroup: 26
-  containerSecurityContext:
-    runAsUser: 26
-    runAsNonRoot: true
-    capabilities:
-      drop:
-        - ALL
-  #permissions for initContainers
+  primary:
+    containerSecurityContext:
+      runAsUser: 1001
+      runAsGroup: 1001
+      runAsNonRoot: true
+      capabilities:
+        drop:
+          - ALL
   volumePermissions:
     enabled: false
     securityContext:

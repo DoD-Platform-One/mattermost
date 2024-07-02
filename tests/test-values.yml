@@ -2,7 +2,8 @@ minio:
   install: true
   tenant:
     pools:
-      - servers: 1
+      - name: test-pool-0
+        servers: 1
         volumesPerServer: 4
         size: 256Mi
         securityContext:
