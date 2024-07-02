@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 9.9.0-bb.2](https://img.shields.io/badge/Version-9.9.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.0](https://img.shields.io/badge/AppVersion-9.9.0-informational?style=flat-square)
+![Version: 9.9.0-bb.3](https://img.shields.io/badge/Version-9.9.0--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.0](https://img.shields.io/badge/AppVersion-9.9.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -102,7 +102,7 @@ helm install mattermost chart/
 | volumeMounts | object | `{}` |  |
 | podLabels | object | `{}` | Pod labels for Mattermost server pods |
 | podAnnotations | object | `{}` | Pod annotations for Mattermost server pods |
-| securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | securityContext for Mattermost server pods |
+| securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | for Mattermost server pods |
 | containerSecurityContext | object | `{"capabilities":{"drop":["ALL"]},"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | containerSecurityContext for Mattermost server containers |
 | minio.install | bool | `false` |  |
 | minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-01-18T07-03-39Z"` |  |
@@ -122,10 +122,11 @@ helm install mattermost chart/
 | postgresql.auth.password | string | `"bigbang"` |  |
 | postgresql.auth.database | string | `"mattermost"` |  |
 | postgresql.fullnameOverride | string | `"mattermost-postgresql"` |  |
-| postgresql.securityContext.fsGroup | int | `26` |  |
-| postgresql.containerSecurityContext.runAsUser | int | `26` |  |
-| postgresql.containerSecurityContext.runAsNonRoot | bool | `true` |  |
-| postgresql.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| postgresql.primary.containerSecurityContext.enabled | bool | `true` |  |
+| postgresql.primary.containerSecurityContext.runAsUser | int | `1001` |  |
+| postgresql.primary.containerSecurityContext.runAsGroup | int | `1001` |  |
+| postgresql.primary.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| postgresql.primary.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.volumePermissions.enabled | bool | `false` |  |
 | postgresql.volumePermissions.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.postgresqlConfiguration.listen_addresses | string | `"*"` |  |
