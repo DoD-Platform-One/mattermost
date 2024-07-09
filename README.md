@@ -1,6 +1,6 @@
 # mattermost
 
-![Version: 9.9.0-bb.3](https://img.shields.io/badge/Version-9.9.0--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.0](https://img.shields.io/badge/AppVersion-9.9.0-informational?style=flat-square)
+![Version: 9.9.0-bb.4](https://img.shields.io/badge/Version-9.9.0--bb.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.0](https://img.shields.io/badge/AppVersion-9.9.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -102,7 +102,7 @@ helm install mattermost chart/
 | volumeMounts | object | `{}` |  |
 | podLabels | object | `{}` | Pod labels for Mattermost server pods |
 | podAnnotations | object | `{}` | Pod annotations for Mattermost server pods |
-| securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | for Mattermost server pods |
+| securityContext | object | `{"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | securityContext for Mattermost server pods |
 | containerSecurityContext | object | `{"capabilities":{"drop":["ALL"]},"runAsGroup":2000,"runAsNonRoot":true,"runAsUser":2000}` | containerSecurityContext for Mattermost server containers |
 | minio.install | bool | `false` |  |
 | minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-01-18T07-03-39Z"` |  |
@@ -115,25 +115,24 @@ helm install mattermost chart/
 | minio.tenant.buckets[0].name | string | `"mattermost"` |  |
 | postgresql.install | bool | `false` |  |
 | postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |
-| postgresql.image.repository | string | `"opensource/postgres/postgresql"` |  |
-| postgresql.image.tag | string | `"15.7"` |  |
+| postgresql.image.repository | string | `"opensource/postgres/postgresql11"` |  |
+| postgresql.image.tag | string | `"11.18-1"` |  |
 | postgresql.image.pullSecrets[0] | string | `"private-registry"` |  |
-| postgresql.auth.username | string | `"mattermost"` |  |
-| postgresql.auth.password | string | `"bigbang"` |  |
-| postgresql.auth.database | string | `"mattermost"` |  |
+| postgresql.postgresqlUsername | string | `"mattermost"` |  |
+| postgresql.postgresqlPassword | string | `"bigbang"` |  |
+| postgresql.postgresqlDatabase | string | `"mattermost"` |  |
 | postgresql.fullnameOverride | string | `"mattermost-postgresql"` |  |
-| postgresql.primary.containerSecurityContext.enabled | bool | `true` |  |
-| postgresql.primary.containerSecurityContext.runAsUser | int | `1001` |  |
-| postgresql.primary.containerSecurityContext.runAsGroup | int | `1001` |  |
-| postgresql.primary.containerSecurityContext.runAsNonRoot | bool | `true` |  |
-| postgresql.primary.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| postgresql.securityContext.fsGroup | int | `26` |  |
+| postgresql.containerSecurityContext.runAsUser | int | `26` |  |
+| postgresql.containerSecurityContext.runAsNonRoot | bool | `true` |  |
+| postgresql.containerSecurityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.volumePermissions.enabled | bool | `false` |  |
 | postgresql.volumePermissions.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.postgresqlConfiguration.listen_addresses | string | `"*"` |  |
 | postgresql.pgHbaConfiguration | string | `"local all all md5\nhost all all all md5"` |  |
 | database.secret | string | `""` |  |
 | database.readinessCheck.disableDefault | bool | `true` |  |
-| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:15.7"` |  |
+| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.19"` |  |
 | database.readinessCheck.command[0] | string | `"/bin/sh"` |  |
 | database.readinessCheck.command[1] | string | `"-c"` |  |
 | database.readinessCheck.command[2] | string | `"until pg_isready --dbname=\"$DB_CONNECTION_CHECK_URL\"; do echo waiting for database; sleep 5; done;"` |  |

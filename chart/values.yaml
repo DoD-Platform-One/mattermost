@@ -190,7 +190,7 @@ podLabels: {}
 # -- Pod annotations for Mattermost server pods
 podAnnotations: {}
 
-# --  for Mattermost server pods
+# -- securityContext for Mattermost server pods
 securityContext:
   runAsNonRoot: true
   runAsUser: 2000
@@ -226,26 +226,27 @@ postgresql:
 
   image:
     registry: "registry1.dso.mil/ironbank"
-    repository: "opensource/postgres/postgresql"
-    tag: "15"
+    repository: "opensource/postgres/postgresql11"
+    tag: "11.18-1"
 
     pullSecrets:
     - private-registry
-  auth:
-    username: "mattermost"
-    password: "bigbang"
-    database: "mattermost"
+
+  postgresqlUsername: "mattermost"
+  postgresqlPassword: "bigbang" # default password, change this!
+  postgresqlDatabase: "mattermost"
 
   fullnameOverride: "mattermost-postgresql" # Overrides the name used for resource creation
 
-  primary:
-    containerSecurityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-      runAsNonRoot: true
-      capabilities:
-        drop:
-          - ALL
+  securityContext:
+    fsGroup: 26
+  containerSecurityContext:
+    runAsUser: 26
+    runAsNonRoot: true
+    capabilities:
+      drop:
+        - ALL
+  #permissions for initContainers
   volumePermissions:
     enabled: false
     securityContext:
@@ -268,7 +269,7 @@ database:
     # Disable the default readiness check which uses a non-IB image
     disableDefault: true
     # Defaults to Ironbank postgres, can be changed for different DB types (MySQL)
-    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:15.7
+    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.19
     # Defaults to a readiness check for postgres, can be changed for different DB types
     command:
       - /bin/sh
