@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 9.9.0-bb.3
+version: 9.9.0-bb.4
 appVersion: 9.9.0
 description: "Deployment of mattermost"
 keywords:
@@ -11,7 +11,7 @@ keywords:
 kubeVersion: ">=1.12.0-0"
 dependencies:
   - name: postgresql
-    version: 12.12.10
+    version: 10.3.5
     alias: postgresql
     condition: postgresql.install
     repository: file://./deps/postgresql
@@ -36,9 +36,7 @@ annotations:
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-04-29T09-56-05Z
     - name: postgresql11
+      condition: postgresql.install
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql11:11.18-1
     - name: postgresql12
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.19
-    - name: postgresql
-      condition: postgresql.install
-      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:15.7
