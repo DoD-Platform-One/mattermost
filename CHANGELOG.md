@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [9.9.1-bb.1] - 2024-07-12
+
+### Changed
+
+- Removing shared auth policies
 ## [9.9.1-bb.0] - 2024-07-09
 
 ### Changed
@@ -20,13 +25,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+<<<<<<< HEAD
+- Removing shared auth policies
+
+## [9.9.0-bb.3] - 2024-06-28
+
+### Changed
+
+=======
+>>>>>>> origin/main
 - Corrected postgresl pod security context settings for kyverno
 
 ## [9.9.0-bb.2] - 2024-06-26
 
 ### Changed
 
+<<<<<<< HEAD
+- update "postgresql" (<https://github.com/bitnami/charts>) from "master" (c2ac165a579a8f06dede2b6fede2f4ec2bfea495) to "postgresql/12.12.10" (d278c2b6792e02c5f327e96df4f031cab7bc0819)
+=======
 - update "postgresql" (https://github.com/bitnami/charts) from "master" (c2ac165a579a8f06dede2b6fede2f4ec2bfea495) to "postgresql/12.12.10" (d278c2b6792e02c5f327e96df4f031cab7bc0819)
+>>>>>>> origin/main
 - Update postgresql ironbank image to 15.7
 - remove postgresql(Username|Password|Database) settings in favor of auth.* settings
 
