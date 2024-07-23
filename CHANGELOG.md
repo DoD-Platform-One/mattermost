@@ -4,11 +4,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [9.10.0-bb.0] - 2024-07-18
+
+### Changed
+
+- ironbank/opensource/mattermost/mattermost updated from 9.9.1 to 9.10.0
+
 ## [9.9.1-bb.1] - 2024-07-12
 
 ### Changed
 
 - Removing shared auth policies
+
 ## [9.9.1-bb.0] - 2024-07-09
 
 ### Changed
@@ -31,7 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- update "postgresql" (https://github.com/bitnami/charts) from "master" (c2ac165a579a8f06dede2b6fede2f4ec2bfea495) to "postgresql/12.12.10" (d278c2b6792e02c5f327e96df4f031cab7bc0819)
+- update "postgresql" from "master" (c2ac165a579a8f06dede2b6fede2f4ec2bfea495) to "postgresql/12.12.10" (d278c2b6792e02c5f327e96df4f031cab7bc0819)
 - Update postgresql ironbank image to 15.7
 - remove postgresql(Username|Password|Database) settings in favor of auth.* settings
 

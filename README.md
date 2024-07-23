@@ -1,10 +1,11 @@
 # mattermost
 
-![Version: 9.9.1-bb.1](https://img.shields.io/badge/Version-9.9.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.9.1](https://img.shields.io/badge/AppVersion-9.9.1-informational?style=flat-square)
+![Version: 9.10.0-bb.0](https://img.shields.io/badge/Version-9.10.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.0](https://img.shields.io/badge/AppVersion-9.10.0-informational?style=flat-square)
 
 Deployment of mattermost
 
 ## Learn More
+
 * [Application Overview](docs/overview.md)
 * [Other Documentation](docs/)
 
@@ -12,18 +13,15 @@ Deployment of mattermost
 
 * Kubernetes Cluster deployed
 * Kubernetes config installed in `~/.kube/config`
-* Helm installed
+* [Helm installed](https://helm.sh/docs/intro/install/)
 
 Kubernetes: `>=1.12.0-0`
-
-Install Helm
-
-https://helm.sh/docs/intro/install/
 
 ## Deployment
 
 * Clone down the repository
 * cd into directory
+
 ```bash
 helm install mattermost chart/
 ```
@@ -78,7 +76,7 @@ helm install mattermost chart/
 | sso.enable_sign_in_with_email | bool | `false` |  |
 | sso.enable_sign_in_with_username | bool | `false` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"9.9.1"` |  |
+| image.tag | string | `"9.10.0"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
