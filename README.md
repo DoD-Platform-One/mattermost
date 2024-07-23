@@ -4,6 +4,10 @@
 
 Deployment of mattermost
 
+### Upstream Release Notes
+
+The [upstream Mattermost release notes](https://docs.mattermost.com/deploy/mattermost-changelog.html) may help when reviewing this package. We do not track an upstream _chart_ for this package.
+
 ## Learn More
 
 * [Application Overview](docs/overview.md)
