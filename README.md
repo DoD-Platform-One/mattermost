@@ -1,12 +1,8 @@
 # mattermost
 
-![Version: 9.10.0-bb.0](https://img.shields.io/badge/Version-9.10.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.0](https://img.shields.io/badge/AppVersion-9.10.0-informational?style=flat-square)
+![Version: 9.10.0-bb.1](https://img.shields.io/badge/Version-9.10.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.0](https://img.shields.io/badge/AppVersion-9.10.0-informational?style=flat-square)
 
 Deployment of mattermost
-
-### Upstream Release Notes
-
-The [upstream Mattermost release notes](https://docs.mattermost.com/deploy/mattermost-changelog.html) may help when reviewing this package. We do not track an upstream _chart_ for this package.
 
 ## Learn More
 
@@ -17,9 +13,13 @@ The [upstream Mattermost release notes](https://docs.mattermost.com/deploy/matte
 
 * Kubernetes Cluster deployed
 * Kubernetes config installed in `~/.kube/config`
-* [Helm installed](https://helm.sh/docs/intro/install/)
+* Helm installed
 
 Kubernetes: `>=1.12.0-0`
+
+Install Helm
+
+* <https://helm.sh/docs/intro/install/>
 
 ## Deployment
 
