@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 9.10.0-bb.2
+version: 9.10.0-bb.3
 appVersion: 9.10.0
 description: "Deployment of mattermost"
 keywords:
@@ -26,6 +26,8 @@ dependencies:
 annotations:
   bigbang.dev/applicationVersions: |
     - Mattermost: 9.10.0
+  bigbang.dev/upstreamReleaseNotesMarkdown: |
+    The [upstream Mattermost release notes](https://docs.mattermost.com/deploy/mattermost-changelog.html) may help when reviewing this package. We do not track an upstream _chart_ for this package.
   helm.sh/images: |
     - name: mattermost
       image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:9.10.0

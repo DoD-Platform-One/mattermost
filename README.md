@@ -1,8 +1,13 @@
+<!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 9.10.0-bb.2](https://img.shields.io/badge/Version-9.10.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.0](https://img.shields.io/badge/AppVersion-9.10.0-informational?style=flat-square)
+![Version: 9.10.0-bb.3](https://img.shields.io/badge/Version-9.10.0--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.0](https://img.shields.io/badge/AppVersion-9.10.0-informational?style=flat-square)
 
 Deployment of mattermost
+
+### Upstream Release Notes
+
+The [upstream Mattermost release notes](https://docs.mattermost.com/deploy/mattermost-changelog.html) may help when reviewing this package. We do not track an upstream _chart_ for this package.
 
 ## Learn More
 * [Application Overview](docs/overview.md)
@@ -173,3 +178,8 @@ helm install mattermost chart/
 ## Contributing
 
 Please see the [contributing guide](./CONTRIBUTING.md) if you are interested in contributing.
+
+---
+
+_This file is programatically generated using `helm-docs` and some BigBang-specific templates. The `gluon` repository has [instructions for regenerating package READMEs](https://repo1.dso.mil/big-bang/product/packages/gluon/-/blob/master/docs/bb-package-readme.md)._
+
