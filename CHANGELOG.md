@@ -4,11 +4,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [9.10.1-bb.0] - 2024-07-30
+
+### Changed
+
+- gluon updated from 0.5.0 to 0.5.2
+- ironbank/opensource/mattermost/mattermost updated from 9.10.0 to 9.10.1
+
 ## [9.10.0-bb.3] - 2024-07-25
 
 ### Changed
-- Documentation updates to move release notes from a README item to a chart annotation
 
+- Documentation updates to move release notes from a README item to a chart annotation
 
 ## [9.10.0-bb.2] - 2024-07-24
 
@@ -58,7 +65,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - update "postgresql" from "master" (c2ac165a579a8f06dede2b6fede2f4ec2bfea495) to "postgresql/12.12.10" (d278c2b6792e02c5f327e96df4f031cab7bc0819)
 - Update postgresql ironbank image to 15.7
-- remove postgresql(Username|Password|Database) settings in favor of auth.* settings
+- remove postgresql(Username|Password|Database) settings in favor of auth.\* settings
 
 ## [9.9.0-bb.1] - 2024-06-18
 
@@ -565,10 +572,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Upgrade Mattermost to application version 6.3.3
-    1. v5 -> v6 has some major migrations and upstream notes long migration times, they have provided analysis on the time these take - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Longer%20migration%20times,70%2B%20million%20posts.)
-    2. v5 servers cannot run with v6 servers, i.e. upgrade WILL have downtime - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=The%20field%20type,a%20large%20extent.)
-    3. v6.1 has additional schema changes, MM has provided analysis on these changes as well - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Please%20refer%20to%20the%20schema%20migration%20analysis%20when%20upgrading%20to%20v6.1.)
-    4. v6.2 has modified autocomplete to include private channels, which requires re-indexing if using Elastic - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Channel%20results%20in,in%20autocomplete%20results.)
+  1. v5 -> v6 has some major migrations and upstream notes long migration times, they have provided analysis on the time these take - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Longer%20migration%20times,70%2B%20million%20posts.)
+  2. v5 servers cannot run with v6 servers, i.e. upgrade WILL have downtime - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=The%20field%20type,a%20large%20extent.)
+  3. v6.1 has additional schema changes, MM has provided analysis on these changes as well - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Please%20refer%20to%20the%20schema%20migration%20analysis%20when%20upgrading%20to%20v6.1.)
+  4. v6.2 has modified autocomplete to include private channels, which requires re-indexing if using Elastic - [see here](https://docs.mattermost.com/upgrade/important-upgrade-notes.html#:~:text=Channel%20results%20in,in%20autocomplete%20results.)
 
 ## [0.4.0-bb.4] - 2022-02-15
 
