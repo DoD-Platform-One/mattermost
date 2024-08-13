@@ -25,6 +25,12 @@ istio:
     clusterAuditor:
       enabled: false
       namespace: cluster-auditor
+    minioOperator:
+      enabled: true
+      namespaces:
+        - minio-operator
+      principals:
+        - cluster.local/ns/minio-operator/sa/minio-operator
     monitoring:
       enabled: true
       namespaces:
