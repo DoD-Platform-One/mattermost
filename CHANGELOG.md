@@ -4,8 +4,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [9.10.1-bb.1] - 2024-08-09
+## [9.10.1-bb.2] - 2024-08-12
+
 ### Changed
+
+- Upgrade builtin postgresql 10.3.5 -> 12.12.10
+
+This reverts commit ab114666beb025a7b4e9399501a522ca168332b8.
+
+## [9.10.1-bb.1] - 2024-08-09
+
+### Changed
+
 - gluon updated from 0.5.2 to 0.5.3
 
 ## [9.10.1-bb.0] - 2024-07-30
