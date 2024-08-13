@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [9.10.1-bb.3] - 2024-08-13
+
+### Added
+- Added minio-operator-authz-policy.yaml to allow minio-operator access to monitor the tenant
+
 ## [9.10.1-bb.2] - 2024-08-12
 
 ### Changed
