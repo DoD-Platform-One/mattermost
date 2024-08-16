@@ -1,21 +1,9 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 9.10.1-bb.3](https://img.shields.io/badge/Version-9.10.1--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.1](https://img.shields.io/badge/AppVersion-9.10.1-informational?style=flat-square)
+![Version: 9.10.1-bb.4](https://img.shields.io/badge/Version-9.10.1--bb.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.10.1](https://img.shields.io/badge/AppVersion-9.10.1-informational?style=flat-square)
 
 Deployment of mattermost
-
-## Upstream Release Notes
-
-This package has no upstream release note links on file. Please add some to [chart/Chart.yaml](chart/Chart.yaml) under `annotations.bigbang.dev/upstreamReleaseNotesMarkdown`.
-Example:
-
-```yaml
-annotations:
-  bigbang.dev/upstreamReleaseNotesMarkdown: |
-    - [Find our upstream chart's CHANGELOG here](https://link-goes-here/CHANGELOG.md)
-    - [and our upstream application release notes here](https://another-link-here/RELEASE_NOTES.md)
-```
 
 ## Learn More
 
@@ -55,6 +43,9 @@ helm install mattermost chart/
 | istio.hardened.customServiceEntries | list | `[]` |  |
 | istio.hardened.clusterAuditor.enabled | bool | `false` |  |
 | istio.hardened.clusterAuditor.namespace | string | `"cluster-auditor"` |  |
+| istio.hardened.minioOperator.enabled | bool | `true` |  |
+| istio.hardened.minioOperator.namespaces[0] | string | `"minio-operator"` |  |
+| istio.hardened.minioOperator.principals[0] | string | `"cluster.local/ns/minio-operator/sa/minio-operator"` |  |
 | istio.hardened.monitoring.enabled | bool | `true` |  |
 | istio.hardened.monitoring.namespaces[0] | string | `"monitoring"` |  |
 | istio.hardened.monitoring.principals[0] | string | `"cluster.local/ns/monitoring/sa/monitoring-grafana"` |  |

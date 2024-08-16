@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: '9.10.1-bb.3'
+version: '9.10.1-bb.4'
 appVersion: 9.10.1
 description: "Deployment of mattermost"
 keywords:
@@ -42,3 +42,5 @@ annotations:
     - name: postgresql
       condition: postgresql.install
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:15.7
+    - name: operator-sidecar
+      image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
