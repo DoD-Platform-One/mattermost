@@ -115,12 +115,12 @@ spec:
     valueFrom:
       secretKeyRef:
         key: MM_ELASTICSEARCHSETTINGS_INDEXPREFIX
-        name: "mattermost-envs"        
+        name: "mattermost-envs"
   - name: MM_ELASTICSEARCHSETTINGS_BULKINDEXINGTIMEWINDOWSECONDS
     valueFrom:
       secretKeyRef:
         key: MM_ELASTICSEARCHSETTINGS_BULKINDEXINGTIMEWINDOWSECONDS
-        name: "mattermost-envs"        
+        name: "mattermost-envs"
   - name: MM_ELASTICSEARCHSETTINGS_ENABLESEARCHING
     valueFrom:
       secretKeyRef:
@@ -145,7 +145,7 @@ spec:
     valueFrom:
       secretKeyRef:
         key: MM_ELASTICSEARCHSETTINGS_PASSWORD
-        name: "mattermost-envs"             
+        name: "mattermost-envs"
   {{- end }}
   {{- range $k, $v := .Values.mattermostEnvs }}
   - name: {{ $k }}
@@ -177,7 +177,7 @@ spec:
     {{- if .Values.nodeSelector }}
     nodeSelector:
       {{ toYaml .Values.nodeSelector | nindent 6 }}
-    {{- end }}  
+    {{- end }}
 
     {{- if .Values.tolerations}}
     tolerations:
@@ -197,8 +197,8 @@ spec:
   {{- if or .Values.podLabels .Values.podAnnotations .Values.securityContext .Values.containerSecurityContext }}
   podTemplate:
     {{- with .Values.podLabels }}
-    extraLabels: 
-      {{- toYaml . | nindent 6 }}
+    extraLabels:
+      {{- tpl (toYaml .) $ | nindent 6 }}
     {{- end }}
     {{- with .Values.podAnnotations }}
     extraAnnotations:
@@ -209,7 +209,7 @@ spec:
       {{- toYaml . | nindent 6 }}
     {{- end }}
     {{- with .Values.containerSecurityContext }}
-    containerSecurityContext: 
+    containerSecurityContext:
       {{- toYaml . | nindent 6 }}
     {{- end }}
   {{- end }}
@@ -261,10 +261,10 @@ spec:
   updateJob:
     disabled: {{ .Values.updateJob.disabled }}
     {{- with .Values.updateJob.annotations }}
-    extraAnnotations: 
+    extraAnnotations:
       {{- toYaml . | nindent 6 }}
     {{- end }}
     {{- with .Values.updateJob.labels }}
-    extraLabels: 
+    extraLabels:
       {{- toYaml . | nindent 6 }}
     {{- end }}
