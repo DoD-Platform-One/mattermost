@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: '9.10.1-bb.4'
+version: 9.10.1-bb.5
 appVersion: 9.10.1
 description: "Deployment of mattermost"
 keywords:
@@ -35,6 +35,9 @@ annotations:
     - name: mc
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-04-29T09-56-05Z
+    - name: operator-sidecar
+      condition: istio.hardened.minioOperator.enabled
+      image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
     - name: postgresql11
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql11:11.18-1
     - name: postgresql12

@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [9.10.1-bb.5] - 2024-08-13
+
+### Removed
+
+- Removed monitoring-authz Authorization Policy after adding to main chart
+
 ## [9.10.1-bb.4] - 2024-08-13
 
 ### Changed
