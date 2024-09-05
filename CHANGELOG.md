@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [9.11.1-bb.0] - 2024-08-29
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 9.10.1 to 9.11.1
+- ironbank/opensource/postgres/postgresql updated from 15.7 to 16.2
+- ironbank/opensource/postgres/postgresql12 updated from 12.19 to 12.20
+
 ## [9.10.1-bb.5] - 2024-08-13
 
 ### Removed

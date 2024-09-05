@@ -1,1 +1,1 @@
-registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.19
+registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.20
