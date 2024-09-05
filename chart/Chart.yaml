@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 9.10.1-bb.5
-appVersion: 9.10.1
+version: 9.11.1-bb.0
+appVersion: 9.11.1
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -16,7 +16,7 @@ dependencies:
     condition: postgresql.install
     repository: file://./deps/postgresql
   - name: minio-instance
-    version: 5.0.12-bb.12
+    version: 6.0.2-bb.1
     alias: minio
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
@@ -25,25 +25,25 @@ dependencies:
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/applicationVersions: |
-    - Mattermost: 9.10.1
+    - Mattermost: 9.11.1
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:9.10.1
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:9.11.1
     - name: minio
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-03-30T09-41-56Z
+      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-06-04T19-20-08Z
     - name: mc
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-04-29T09-56-05Z
+      image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-08-13T05-33-17Z
     - name: operator-sidecar
       condition: istio.hardened.minioOperator.enabled
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
     - name: postgresql11
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql11:11.18-1
     - name: postgresql12
-      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.19
+      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.20
     - name: postgresql
       condition: postgresql.install
-      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:15.7
+      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:16.2
     - name: operator-sidecar
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
