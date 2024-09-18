@@ -1,16 +1,16 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
-
 # mattermost
 
-![Version: 9.11.1-bb.0](https://img.shields.io/badge/Version-9.11.1--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.11.1](https://img.shields.io/badge/AppVersion-9.11.1-informational?style=flat-square)
+![Version: 9.11.1-bb.1](https://img.shields.io/badge/Version-9.11.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.11.1](https://img.shields.io/badge/AppVersion-9.11.1-informational?style=flat-square)
 
 Deployment of mattermost
 
-## Upstream Release Notes
+## Upstream References
+
+### Upstream Release Notes
 
 This package has no upstream release note links on file. Please add some to [chart/Chart.yaml](chart/Chart.yaml) under `annotations.bigbang.dev/upstreamReleaseNotesMarkdown`.
 Example:
-
 ```yaml
 annotations:
   bigbang.dev/upstreamReleaseNotesMarkdown: |
@@ -19,23 +19,25 @@ annotations:
 ```
 
 ## Learn More
-
-- [Application Overview](docs/overview.md)
-- [Other Documentation](docs/)
+* [Application Overview](docs/overview.md)
+* [Other Documentation](docs/)
 
 ## Pre-Requisites
 
-- Kubernetes Cluster deployed
-- Kubernetes config installed in `~/.kube/config`
-- Helm installed
+* Kubernetes Cluster deployed
+* Kubernetes config installed in `~/.kube/config`
+* Helm installed
 
 Kubernetes: `>=1.12.0-0`
 
+Install Helm
+
+https://helm.sh/docs/intro/install/
+
 ## Deployment
 
-- Clone down the repository
-- cd into directory
-
+* Clone down the repository
+* cd into directory
 ```bash
 helm install mattermost chart/
 ```
@@ -122,9 +124,9 @@ helm install mattermost chart/
 | minio.install | bool | `false` |  |
 | minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-01-18T07-03-39Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
-| minio.secrets.name | string | `"mattermost-objstore-creds"` |  |
-| minio.secrets.accessKey | string | `"minio"` |  |
-| minio.secrets.secretKey | string | `"minio123"` |  |
+| minio.tenant.configSecret.name | string | `"mattermost-objstore-creds"` |  |
+| minio.tenant.configSecret.accessKey | string | `"minio"` |  |
+| minio.tenant.configSecret.secretKey | string | `"minio123"` |  |
 | minio.tenant.metrics.enabled | bool | `false` |  |
 | minio.tenant.metrics.port | int | `9000` |  |
 | minio.tenant.buckets[0].name | string | `"mattermost"` |  |
@@ -192,3 +194,4 @@ Please see the [contributing guide](./CONTRIBUTING.md) if you are interested in 
 ---
 
 _This file is programatically generated using `helm-docs` and some BigBang-specific templates. The `gluon` repository has [instructions for regenerating package READMEs](https://repo1.dso.mil/big-bang/product/packages/gluon/-/blob/master/docs/bb-package-readme.md)._
+
