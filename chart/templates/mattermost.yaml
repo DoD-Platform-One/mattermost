@@ -226,7 +226,7 @@ spec:
       {{- if .Values.fileStore.roleARN }}
       useServiceAccount: true
       {{- else }}
-      secret: {{ .Values.fileStore.secret | default .Values.minio.secrets.name }}
+      secret: {{ .Values.fileStore.secret | default .Values.minio.tenant.configSecret.name }}
       {{- end }}
 
   podExtensions:
