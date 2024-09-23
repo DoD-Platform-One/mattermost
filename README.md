@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 9.11.1-bb.1](https://img.shields.io/badge/Version-9.11.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 9.11.1](https://img.shields.io/badge/AppVersion-9.11.1-informational?style=flat-square)
+![Version: 10.0.0-bb.0](https://img.shields.io/badge/Version-10.0.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -95,7 +95,7 @@ helm install mattermost chart/
 | sso.enable_sign_in_with_email | bool | `false` |  |
 | sso.enable_sign_in_with_username | bool | `false` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"9.11.1"` |  |
+| image.tag | string | `"10.0.0"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
