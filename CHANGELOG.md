@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.0.0-bb.0] - 2024-09-19
+### Changed
+- ironbank/opensource/mattermost/mattermost updated from 9.11.1 to 10.0.0
+
 ## [9.11.1-bb.1] - 2024-09-13
 ### Changed
 - gluon updated from 0.5.3 to 0.5.4
