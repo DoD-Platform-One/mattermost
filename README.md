@@ -1,13 +1,11 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 10.0.0-bb.0](https://img.shields.io/badge/Version-10.0.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
+![Version: 10.0.0-bb.1](https://img.shields.io/badge/Version-10.0.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
 
 Deployment of mattermost
 
-## Upstream References
-
-### Upstream Release Notes
+## Upstream Release Notes
 
 This package has no upstream release note links on file. Please add some to [chart/Chart.yaml](chart/Chart.yaml) under `annotations.bigbang.dev/upstreamReleaseNotesMarkdown`.
 Example:
@@ -186,6 +184,14 @@ helm install mattermost chart/
 | bbtests.cypress.resources.requests.memory | string | `"1500M"` |  |
 | bbtests.cypress.resources.limits.cpu | string | `"2"` |  |
 | bbtests.cypress.resources.limits.memory | string | `"1500M"` |  |
+| waitJob.enabled | bool | `true` |  |
+| waitJob.scripts.image | string | `"registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.29.6"` |  |
+| waitJob.permissions.apiGroups[0] | string | `"*"` |  |
+| waitJob.permissions.resources[0] | string | `"pods"` |  |
+| waitJob.permissions.resources[1] | string | `"services"` |  |
+| waitJob.permissions.resources[2] | string | `"secrets"` |  |
+| waitJob.permissions.resources[3] | string | `"mattermost"` |  |
+| waitJob.permissions.resources[4] | string | `"mattermosts"` |  |
 
 ## Contributing
 
