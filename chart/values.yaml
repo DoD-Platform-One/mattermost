@@ -349,3 +349,17 @@ bbtests:
       limits:
         cpu: "2"
         memory: "1500M"
+
+waitJob:
+  enabled: true
+  scripts:
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.29.6
+  permissions:
+    apiGroups: 
+      - '*'
+    resources:
+      - pods
+      - services
+      - secrets
+      - mattermost
+      - mattermosts
