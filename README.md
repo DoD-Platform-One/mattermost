@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 10.0.0-bb.1](https://img.shields.io/badge/Version-10.0.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
+![Version: 10.0.0-bb.2](https://img.shields.io/badge/Version-10.0.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
 
 Deployment of mattermost
 
@@ -186,12 +186,8 @@ helm install mattermost chart/
 | bbtests.cypress.resources.limits.memory | string | `"1500M"` |  |
 | waitJob.enabled | bool | `true` |  |
 | waitJob.scripts.image | string | `"registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.29.6"` |  |
-| waitJob.permissions.apiGroups[0] | string | `"*"` |  |
-| waitJob.permissions.resources[0] | string | `"pods"` |  |
-| waitJob.permissions.resources[1] | string | `"services"` |  |
-| waitJob.permissions.resources[2] | string | `"secrets"` |  |
-| waitJob.permissions.resources[3] | string | `"mattermost"` |  |
-| waitJob.permissions.resources[4] | string | `"mattermosts"` |  |
+| waitJob.permissions.apiGroups[0] | string | `"installation.mattermost.com"` |  |
+| waitJob.permissions.resources[0] | string | `"mattermosts"` |  |
 
 ## Contributing
 
