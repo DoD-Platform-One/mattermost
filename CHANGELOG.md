@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.0.0-bb.3] - 2024-09-26
+### Changed
+- ironbank/opensource/kubernetes/kubectl updated from v1.29.6 to v1.30.5
+
 ## [10.0.0-bb.2] - 2024-09-26
 ### Changed
 - Add netpol for waitjob pod
