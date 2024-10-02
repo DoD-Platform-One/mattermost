@@ -2,7 +2,7 @@
 
 # mattermost
 
-![Version: 10.0.0-bb.3](https://img.shields.io/badge/Version-10.0.0--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
+![Version: 10.0.0-bb.4](https://img.shields.io/badge/Version-10.0.0--bb.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.0](https://img.shields.io/badge/AppVersion-10.0.0-informational?style=flat-square)
 
 Deployment of mattermost
 
