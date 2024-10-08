@@ -9,11 +9,3 @@ networkPolicies:
 
 bbtests:
   enabled: true
-
-waitJob:
-  enabled: true
-
-istio:
-  hardened:
-    minioOperator:
-      enabled: true
