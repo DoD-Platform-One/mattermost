@@ -9,7 +9,7 @@ counter=0
 set +e
 while true; do
    echo "checking $resourcename status..."
-   if kubectl get $resourcename --namespace=$resourcename -o jsonpath='{.items[0].status.state}' | \
+   if kubectl get $resourcename.installation.mattermost.com --namespace=$resourcename -o jsonpath='{.items[0].status.state}' | \
       grep "^stable" 1>/dev/null
    then
       echo "$resourcename custom resource creation finished"
