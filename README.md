@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 10.0.1-bb.0](https://img.shields.io/badge/Version-10.0.1--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.1](https://img.shields.io/badge/AppVersion-10.0.1-informational?style=flat-square)
+![Version: 10.0.1-bb.1](https://img.shields.io/badge/Version-10.0.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.0.1](https://img.shields.io/badge/AppVersion-10.0.1-informational?style=flat-square)
 
 Deployment of mattermost
 
