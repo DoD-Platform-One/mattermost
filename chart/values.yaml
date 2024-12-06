@@ -238,6 +238,7 @@ postgresql:
     pullSecrets:
     - private-registry
   auth:
+    sslmode: require
     username: "mattermost"
     password: "bigbang"
     database: "mattermost"

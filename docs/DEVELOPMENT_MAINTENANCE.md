@@ -26,10 +26,35 @@ Mattermost is a Big Bang built chart. As a result there is no `Kptfile` to handl
 
 # Deploying
 
-Prerequisites:
+## Prerequisites:
 - Make sure to do git pull to get the latest code from bigbang
+- Determine what kind of database you will use behind mattermost. Mattermost requires a postgresql database. You can use any postgresql database. Set your postgresql database connection information in your values:
 
-Deployment Steps:
+```
+postgresql:
+  auth:
+    database: "database name"
+    host: "fqdn of postgres instance"
+    username: "username of mattermost postgres user"
+    password: "password of mattermost postgres user"
+```
+
+For development use on your local cluster you can enable a built-in postgresql database that will auto-configure the user, password, host and database without further intervention:
+
+```
+# in your values.yaml file
+postgresql:
+  install: true
+  auth:
+    sslmode: disable
+
+# or on the helm command line
+--set postgresql.install=true --set postgresql.auth.sslmode=disable
+```
+
+The builtin postgresql is NOT a supported configuration outside of a local dev environment, and by default, it is NOT enabled.
+
+## Deployment Steps:
 - [Mattermost example values override](mattermost.example.yaml) is an example override file.
 - consider `-b` on the k3d script (only if you intend to enable elasticsearch/kibana)
 - [Download the example overrides file here](https://repo1.dso.mil/andrewshoell/overrides/-/blob/main/mattermost.yaml?ref_type=heads) and place it in a local override directory
