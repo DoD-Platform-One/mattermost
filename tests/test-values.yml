@@ -1,11 +1,12 @@
 minio:
   install: true
 
-postgresql:
-  install: true
-
 networkPolicies:
   enabled: true
 
 bbtests:
   enabled: true
+
+postgresql:
+  auth:
+    sslmode: require

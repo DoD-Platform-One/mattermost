@@ -7,3 +7,11 @@ miniooperator:
   git: 
     repo: "https://repo1.dso.mil/big-bang/product/packages/minio-operator.git"
   namespace: "minio-operator"
+
+bigbang_ci:
+  rds:
+    enabled: true
+    database: ".postgresql.auth.database"
+    host: ".postgresql.auth.host"
+    username: ".postgresql.auth.username"
+    password: ".postgresql.auth.password"

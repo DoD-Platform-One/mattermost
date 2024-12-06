@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 10.2.0-bb.0](https://img.shields.io/badge/Version-10.2.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.2.0](https://img.shields.io/badge/AppVersion-10.2.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 10.2.0-bb.1](https://img.shields.io/badge/Version-10.2.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.2.0](https://img.shields.io/badge/AppVersion-10.2.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Deployment of mattermost
 
@@ -135,6 +135,7 @@ helm install mattermost chart/
 | postgresql.image.repository | string | `"opensource/postgres/postgresql"` |  |
 | postgresql.image.tag | string | `"16.2"` |  |
 | postgresql.image.pullSecrets[0] | string | `"private-registry"` |  |
+| postgresql.auth.sslmode | string | `"disable"` |  |
 | postgresql.auth.username | string | `"mattermost"` |  |
 | postgresql.auth.password | string | `"bigbang"` |  |
 | postgresql.auth.database | string | `"mattermost"` |  |
