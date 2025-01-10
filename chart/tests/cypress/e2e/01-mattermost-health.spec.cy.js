@@ -129,7 +129,7 @@ describe('Mattermost Healthcheck', function() {
     
   })
 
-  it('should have file storage connection', function(){
+  it('should have file storage connection', function() {
     cy.visit(Cypress.env('url')+'/admin_console/environment/file_storage')
     cy.wait(customWaitTime)
     
@@ -145,4 +145,3 @@ describe('Mattermost Healthcheck', function() {
     cy.get('div[class="alert alert-success"]').should('be.visible')
   })
 })
-
