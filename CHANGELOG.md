@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+
+## [10.2.0-bb.2] - 2025-01-09
+
+### Changed
+
+- Revert default database settings to usage of the builtin bitnami database
+
 ## [10.2.0-bb.1] - 2024-11-27
 ### Changed
 - removed builtin bitnami postgresql module from default test values and documentation instructions
