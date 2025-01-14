@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.2.0-bb.3] - 2025-01-10
+### Changed
+- Updated Gluon from 0.5.9 to 0.5.12
+- Added default labels for Minio to _helpers.tpl
+- Updated logic under podTemplate section to ensure default Kubernetes labels are always present
+
 ## [10.2.0-bb.2] - 2025-01-09
 
 ### Changed
