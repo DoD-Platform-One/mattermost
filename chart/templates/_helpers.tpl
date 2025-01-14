@@ -66,3 +66,19 @@ Create the name of the service account to use
   {{- regexReplaceAll ".*//([^/]*)/?.*" .Values.sso.auth_endpoint "${1}" -}}
 {{- end -}}
 
+{{/*
+Minio Tenant Labels
+*/}}
+{{- define "minio.tenantLabels" -}}
+{{ include "minio.labels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end}}
+{{- end -}}
+
+{{/*
+Minio Labels
+*/}}
+{{- define "minio.labels" -}}
+app: minio
+{{- end -}}

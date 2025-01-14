@@ -9,3 +9,4 @@ networkPolicies:
 
 bbtests:
   enabled: true
+  

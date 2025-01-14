@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: '10.2.0-bb.2'
+version: '10.2.0-bb.3'
 appVersion: 10.2.0
 description: "Deployment of mattermost"
 keywords:
@@ -21,7 +21,7 @@ dependencies:
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
   - name: gluon
-    version: 0.5.9
+    version: 0.5.12
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/maintenanceTrack: bb_integrated
