@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.2.0-bb.4] - 2024-01-15
+### Changed
+
+- Updated registry1.dso.mil/ironbank/opensource/kubernetes/kubectl v1.30.6 -> v1.30.7
+- Updated registry1.dso.mil/ironbank/opensource/postgres/postgresql12 12.20 -> 12.22
+
 ## [10.2.0-bb.3] - 2025-01-10
 ### Changed
 - Updated Gluon from 0.5.9 to 0.5.12

@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: '10.2.0-bb.3'
+version: '10.2.0-bb.4'
 appVersion: 10.2.0
 description: "Deployment of mattermost"
 keywords:
@@ -42,12 +42,12 @@ annotations:
     - name: postgresql11
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql11:11.18-1
     - name: postgresql12
-      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.20
+      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.22
     - name: postgresql
       condition: postgresql.install
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:16.2
     - name: operator-sidecar
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v6.0.2
     - name: kubectl
-      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.6
+      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7
       condition: waitJob.enabled
