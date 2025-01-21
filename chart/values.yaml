@@ -101,7 +101,7 @@ sso:
 # Repo and image tag
 image:
   name: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
-  tag: 10.2.0
+  tag: 10.4.1
   imagePullPolicy: IfNotPresent
 
 global:
@@ -233,7 +233,7 @@ postgresql:
   image:
     registry: "registry1.dso.mil/ironbank"
     repository: "opensource/postgres/postgresql"
-    tag: "16.2"
+    tag: "17.2"
 
     pullSecrets:
     - private-registry
@@ -275,7 +275,7 @@ database:
     # Disable the default readiness check which uses a non-IB image
     disableDefault: true
     # Defaults to Ironbank postgres, can be changed for different DB types (MySQL)
-    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:16.2
+    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.2
     # Defaults to a readiness check for postgres, can be changed for different DB types
     command:
       - /bin/sh
@@ -353,7 +353,7 @@ bbtests:
 waitJob:
   enabled: true
   scripts:
-    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.9
   permissions:
     apiGroups: 
       - installation.mattermost.com
