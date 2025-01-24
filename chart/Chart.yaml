@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 10.4.1-bb.0
-appVersion: 10.4.1
+version: 10.4.2-bb.0
+appVersion: 10.4.2
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -26,10 +26,10 @@ dependencies:
 annotations:
   bigbang.dev/maintenanceTrack: bb_integrated
   bigbang.dev/applicationVersions: |
-    - Mattermost: 10.4.1
+    - Mattermost: 10.4.2
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.4.1
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.4.2
     - name: minio
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2024-06-04T19-20-08Z
