@@ -212,13 +212,18 @@ containerSecurityContext:
 
 minio:
   install: false
-  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2024-01-18T07-03-39Z"
+  bucketCreationImage: "registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-01-17T23-25-50Z"
   # Override the minio service name for easier connection setup
   service:
     nameOverride: "minio.mattermost.svc.cluster.local"
   tenant:
+    pools:
+      - name: pool-0
+        labels:
+          app: minio
+          app.kubernetes.io/name: minio
     configSecret:
-      name: "mattermost-objstore-creds"
+      name: "minio-creds-secret"
       accessKey: "minio"
       secretKey: "minio123" # default key, change this!
     metrics:
@@ -226,6 +231,8 @@ minio:
       port: 9000
     buckets:
       - name: mattermost
+  waitJob:
+    enabled: false
 
 postgresql:
   install: false
