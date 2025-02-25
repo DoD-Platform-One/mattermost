@@ -7,3 +7,4 @@ miniooperator:
   git: 
     repo: "https://repo1.dso.mil/big-bang/product/packages/minio-operator.git"
   namespace: "minio-operator"
+   
