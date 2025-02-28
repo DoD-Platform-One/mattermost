@@ -2,7 +2,7 @@
 
 # mattermost
 
-![Version: 10.5.1-bb.0](https://img.shields.io/badge/Version-10.5.1--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.5.1](https://img.shields.io/badge/AppVersion-10.5.1-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 10.5.1-bb.1](https://img.shields.io/badge/Version-10.5.1--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 10.5.1](https://img.shields.io/badge/AppVersion-10.5.1-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Deployment of mattermost
 
@@ -122,16 +122,20 @@ helm install mattermost chart/
 | minio.install | bool | `false` |  |
 | minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-01-17T23-25-50Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
-| minio.tenant.configSecret.name | string | `"mattermost-objstore-creds"` |  |
+| minio.tenant.pools[0].name | string | `"pool-0"` |  |
+| minio.tenant.pools[0].labels.app | string | `"minio"` |  |
+| minio.tenant.pools[0].labels."app.kubernetes.io/name" | string | `"minio"` |  |
+| minio.tenant.configSecret.name | string | `"minio-creds-secret"` |  |
 | minio.tenant.configSecret.accessKey | string | `"minio"` |  |
 | minio.tenant.configSecret.secretKey | string | `"minio123"` |  |
 | minio.tenant.metrics.enabled | bool | `false` |  |
 | minio.tenant.metrics.port | int | `9000` |  |
 | minio.tenant.buckets[0].name | string | `"mattermost"` |  |
+| minio.waitJob.enabled | bool | `false` |  |
 | postgresql.install | bool | `false` |  |
 | postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |
 | postgresql.image.repository | string | `"opensource/postgres/postgresql"` |  |
-| postgresql.image.tag | string | `"17.2"` |  |
+| postgresql.image.tag | string | `"17.4"` |  |
 | postgresql.image.pullSecrets[0] | string | `"private-registry"` |  |
 | postgresql.auth.username | string | `"mattermost"` |  |
 | postgresql.auth.password | string | `"bigbang"` |  |
@@ -147,7 +151,7 @@ helm install mattermost chart/
 | postgresql.pgHbaConfiguration | string | `"local all all md5\nhost all all all md5"` |  |
 | database.secret | string | `""` |  |
 | database.readinessCheck.disableDefault | bool | `true` |  |
-| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.2"` |  |
+| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.4"` |  |
 | database.readinessCheck.command[0] | string | `"/bin/sh"` |  |
 | database.readinessCheck.command[1] | string | `"-c"` |  |
 | database.readinessCheck.command[2] | string | `"until pg_isready --dbname=\"$DB_CONNECTION_CHECK_URL\"; do echo waiting for database; sleep 5; done;"` |  |
@@ -185,7 +189,7 @@ helm install mattermost chart/
 | bbtests.cypress.resources.limits.cpu | string | `"2"` |  |
 | bbtests.cypress.resources.limits.memory | string | `"1500M"` |  |
 | waitJob.enabled | bool | `true` |  |
-| waitJob.scripts.image | string | `"registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.9"` |  |
+| waitJob.scripts.image | string | `"registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.10"` |  |
 | waitJob.permissions.apiGroups[0] | string | `"installation.mattermost.com"` |  |
 | waitJob.permissions.resources[0] | string | `"mattermosts"` |  |
 

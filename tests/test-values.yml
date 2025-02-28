@@ -5,7 +5,7 @@ postgresql:
   install: true
 
 networkPolicies:
-  enabled: true
+  enabled: true  
 
 bbtests:
   enabled: true
