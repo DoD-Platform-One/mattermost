@@ -240,7 +240,7 @@ postgresql:
   image:
     registry: "registry1.dso.mil/ironbank"
     repository: "opensource/postgres/postgresql"
-    tag: "17.2"
+    tag: "17.4"
 
     pullSecrets:
     - private-registry
@@ -282,7 +282,7 @@ database:
     # Disable the default readiness check which uses a non-IB image
     disableDefault: true
     # Defaults to Ironbank postgres, can be changed for different DB types (MySQL)
-    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.2
+    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.4
     # Defaults to a readiness check for postgres, can be changed for different DB types
     command:
       - /bin/sh
@@ -360,7 +360,7 @@ bbtests:
 waitJob:
   enabled: true
   scripts:
-    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.9
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.10
   permissions:
     apiGroups: 
       - installation.mattermost.com
