@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.6.1-bb.2] (2025-03-27)
+### Changed
+
+- fix drift detection errors by setting required values to a non-null default
+
 ## [10.6.1-bb.1] (2025-03-24)
 ### Changed
 
