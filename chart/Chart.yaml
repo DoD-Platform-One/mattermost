@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 10.6.1-bb.2
+version: 10.6.1-bb.3
 appVersion: 10.6.1
 description: "Deployment of mattermost"
 keywords:
@@ -39,8 +39,6 @@ annotations:
     - name: operator-sidecar
       condition: istio.hardened.minioOperator.enabled
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.0.0
-    - name: postgresql11
-      image: registry1.dso.mil/ironbank/opensource/postgres/postgresql11:11.18-1
     - name: postgresql12
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.22
     - name: postgresql
