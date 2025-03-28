@@ -26,10 +26,10 @@ spec:
 
   ingress:
     enabled: {{ .Values.ingress.enabled }}
-    host: {{ .Values.ingress.host }}
+    host: {{ .Values.ingress.host | default "ingress.host" }}
     annotations:
       {{- toYaml .Values.ingress.annotations | nindent 6 }}
-    tlsSecret: {{ .Values.ingress.tlsSecret}}
+    tlsSecret: {{ .Values.ingress.tlsSecret | default "ingress.tlsSecret" }}
 
   {{- if and .Values.enterprise.enabled .Values.enterprise.license }}
   licenseSecret: "mattermost-license"
