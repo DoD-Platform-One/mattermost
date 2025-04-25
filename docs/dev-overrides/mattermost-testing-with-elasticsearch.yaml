@@ -5,6 +5,9 @@ sso:
 monitoring:
   enabled: true
 
+elasticsearchKibana:
+  enabled: true
+
 grafana:
   enabled: true
   sso:
@@ -17,6 +20,8 @@ addons:
       tag: null
       branch: "renovate/ironbank"
     sso:
+      enabled: true
+    elasticsearch:
       enabled: true
     values:
       enterprise:
