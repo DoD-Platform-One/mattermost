@@ -130,25 +130,23 @@ For `chat.dev.bigbang.mil` Mattermost:
   -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/chart/ingress-certs.yaml \
   -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/docs/assets/configs/example/dev-sso-values.yaml \
   -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/docs/assets/configs/example/policy-overrides-k3d.yaml \
-  -f docs/dev-overrides/minimal.yaml \
   -f docs/dev-overrides/mattermost-testing.yaml
   ```
 
-For `chat.dev.bigbang.mil` Mattermost with Elasticsearch enabled:
+For `chat.dev.bigbang.mil` Mattermost with Elasticsearch enabled (Ensure you started k3d-dev.sh with -b):
   ```
   helm upgrade -i bigbang ${BIGBANG_REPO_DIR}/chart/ -n bigbang --create-namespace \
   --set registryCredentials.username=${REGISTRY_USERNAME} --set registryCredentials.password=${REGISTRY_PASSWORD} \
-  -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/tests/test-values.yaml \
   -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/chart/ingress-certs.yaml \
   -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/docs/assets/configs/example/dev-sso-values.yaml \
   -f https://repo1.dso.mil/big-bang/bigbang/-/raw/master/docs/assets/configs/example/policy-overrides-k3d.yaml \
-  -f docs/dev-overrides/minimal.yaml \
-  -f docs/dev-overrides/mattermost-testing.yaml
+  -f docs/dev-overrides/mattermost-testing-with-elasticsearch.yaml
   ```
 
 This will deploy the following apps for testing:
 
 - Mattermost, Mattermost Operator, Minio
+- Grafana, Prometheus, ElasticSearch (if enabled)
 
 ## Validation/Testing Steps
 
