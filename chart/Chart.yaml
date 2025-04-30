@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 10.6.1-bb.5
-appVersion: 10.6.1
+version: 10.7.1-bb.0
+appVersion: 10.7.1
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -21,15 +21,15 @@ dependencies:
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
   - name: gluon
-    version: 0.5.14
+    version: 0.5.16
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/maintenanceTrack: bb_integrated
   bigbang.dev/applicationVersions: |
-    - Mattermost: 10.6.1
+    - Mattermost: 10.7.1
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.6.1
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.7.1
     - name: minio
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2025-04-03T14-56-28Z
@@ -38,12 +38,12 @@ annotations:
       image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-01-17T23-25-50Z
     - name: operator-sidecar
       condition: istio.hardened.minioOperator.enabled
-      image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.0.1
+      image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.1.0
     - name: postgresql
       condition: postgresql.install
       image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.4
     - name: operator-sidecar
-      image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.0.1
+      image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.1.0
     - name: kubectl
-      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.11
+      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.32.4
       condition: waitJob.enabled
