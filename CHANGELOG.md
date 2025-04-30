@@ -4,6 +4,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.7.1-bb.0] (2025-04-29)
+### Changed
+- gluon updated from 0.5.14 to 0.5.16
+- Updated registry1.dso.mil/ironbank/opensource/kubernetes/kubectl v1.30.11 -> v1.32.4
+- Updated registry1.dso.mil/ironbank/opensource/mattermost/mattermost 10.6.1 -> 10.7.1
+- Updated registry1.dso.mil/ironbank/opensource/minio/operator-sidecar v7.0.1 -> v7.1.0
+
 ## [10.6.1-bb.5] (2025-03-28)
 ### Changed
 
