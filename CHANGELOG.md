@@ -4,6 +4,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.7.2-bb.0] (2025-05-12)
+### Changed
+- Updated charts to 10.7.2
+- gluon updated from 0.5.17 to 0.5.19
+- minio-instance updated from 7.0.1 to 7.1.1
+- ironbank/opensource/postgres/postgresql updated from 17.4 to 17.5
+
 ## [10.7.1-bb.1] (2025-05-02)
 ### Changed
 - gluon updated from 0.5.16 to 0.5.17

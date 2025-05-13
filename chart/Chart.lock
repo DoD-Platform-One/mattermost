@@ -4,9 +4,9 @@ dependencies:
   version: 12.12.10
 - name: minio-instance
   repository: oci://registry1.dso.mil/bigbang
-  version: 7.0.1-bb.0
+  version: 7.1.1-bb.0
 - name: gluon
   repository: oci://registry1.dso.mil/bigbang
-  version: 0.5.17
-digest: sha256:7b3e00370cef6922066224618d9f5830803ddb6e9b407da2f16d713deca60d90
-generated: "2025-05-02T06:25:42.107504788Z"
+  version: 0.5.19
+digest: sha256:a3fca8e630495fdd1022cabf801027a0798ded53b3e9251e35564d26906ea5dc
+generated: "2025-05-12T21:57:26.727181694Z"
