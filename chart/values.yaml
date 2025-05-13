@@ -101,7 +101,7 @@ sso:
 # Repo and image tag
 image:
   name: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
-  tag: 10.7.1
+  tag: 10.7.2
   imagePullPolicy: IfNotPresent
 
 global:
@@ -240,7 +240,7 @@ postgresql:
   image:
     registry: "registry1.dso.mil/ironbank"
     repository: "opensource/postgres/postgresql"
-    tag: "17.4"
+    tag: "17.5"
 
     pullSecrets:
     - private-registry
@@ -282,7 +282,7 @@ database:
     # Disable the default readiness check which uses a non-IB image
     disableDefault: true
     # Defaults to Ironbank postgres, can be changed for different DB types (MySQL)
-    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.4
+    image: registry1.dso.mil/ironbank/opensource/postgres/postgresql:17.5
     # Defaults to a readiness check for postgres, can be changed for different DB types
     command:
       - /bin/sh
