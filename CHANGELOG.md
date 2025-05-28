@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.8.1-bb.0] (2025-05-16)
+### Changed
+- registry1.dso.mil/ironbank/opensource/kubernetes/kubectl (source) v1.32.4 -> v1.32.5
+- registry1.dso.mil/ironbank/opensource/mattermost/mattermost (source) 10.7.2 -> 10.8.1
+
 ## [10.7.2-bb.0] (2025-05-12)
 ### Changed
 - Updated charts to 10.7.2
