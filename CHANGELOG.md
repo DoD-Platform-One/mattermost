@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.8.1-bb.1] (2025-05-29)
+### Changed
+- gluon updated from 0.5.19 to 0.6.2
+
 ## [10.8.1-bb.0] (2025-05-16)
 ### Changed
 - registry1.dso.mil/ironbank/opensource/kubernetes/kubectl (source) v1.32.4 -> v1.32.5
