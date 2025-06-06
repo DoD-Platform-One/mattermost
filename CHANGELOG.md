@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.8.1-bb.2] (2025-06-05)
+### Changed
+- Updated postgresql subchart 12.12.10 -> 13.2.27
+
 ## [10.8.1-bb.1] (2025-05-29)
 ### Changed
 - gluon updated from 0.5.19 to 0.6.2
