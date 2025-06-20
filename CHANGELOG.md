@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.9.1-bb.0] (2025-06-18)
+### Changed
+- registry1.dso.mil/ironbank/opensource/mattermost/mattermost (source) 10.8.1 -> 10.9.1
+
 ## [10.8.1-bb.2] (2025-06-05)
 ### Changed
 - Updated postgresql subchart 12.12.10 -> 13.2.27
