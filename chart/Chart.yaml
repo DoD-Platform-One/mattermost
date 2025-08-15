@@ -2,7 +2,7 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 10.10.1-bb.1
+version: 10.10.1-bb.2
 appVersion: 10.10.1
 description: "Deployment of mattermost"
 keywords:
@@ -45,5 +45,5 @@ annotations:
     - name: operator-sidecar
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.1.0
     - name: kubectl
-      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.32.7
+      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.32.8
       condition: waitJob.enabled
