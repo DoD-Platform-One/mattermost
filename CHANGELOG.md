@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.11.1-bb.0] (2025-08-19)
+### Changed
+- gluon updated from 0.7.0 to 0.8.0
+- Updated registry1.dso.mil/ironbank/opensource/mattermost/mattermost `10.10.1` -> `10.11.1`
+- Updated registry1.dso.mil/ironbank/opensource/postgres/postgresql `17.5` -> `17.6`
+
 ## [10.10.1-bb.2] (2025-08-15)
 ### Changed
 - registry1.dso.mil/ironbank/opensource/kubernetes/kubectl `v1.32.7` -> `v1.32.8`
