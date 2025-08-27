@@ -101,7 +101,7 @@ sso:
 # Repo and image tag
 image:
   name: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
-  tag: 10.11.1
+  tag: 10.11.2
   imagePullPolicy: IfNotPresent
 
 global:
@@ -360,7 +360,7 @@ bbtests:
 waitJob:
   enabled: true
   scripts:
-    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.32.8
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33.4
   permissions:
     apiGroups: 
       - installation.mattermost.com
