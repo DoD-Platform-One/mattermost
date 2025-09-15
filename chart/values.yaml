@@ -360,7 +360,7 @@ bbtests:
 waitJob:
   enabled: true
   scripts:
-    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33.4
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33.5
   permissions:
     apiGroups: 
       - installation.mattermost.com
