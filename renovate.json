@@ -48,8 +48,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "^chart/values\\.yaml$"
+      "managerFilePatterns": [
+        "/^chart/values\\.yaml$/"
       ],
       "matchStrings": [
         "image:\\s+name:\\s+[^/]+/(?<depName>.+)\\s+tag:\\s+(?<currentValue>.+)"
@@ -59,8 +59,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "^chart/Chart\\.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart\\.yaml$/"
       ],
       "matchStrings": [
         "- Mattermost:\\s+(?<currentValue>.+)",
@@ -71,9 +71,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "^chart/Chart\\.yaml$",
-        "^chart/values\\.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart\\.yaml$/",
+        "/^chart/values\\.yaml$/"
       ],
       "matchStrings": [
         "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
