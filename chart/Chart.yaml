@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 10.11.2-bb.1
-appVersion: 10.11.2
+version: 10.12.0-bb.0
+appVersion: 10.12.0
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -21,21 +21,21 @@ dependencies:
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
   - name: gluon
-    version: 0.9.0
+    version: 0.9.1
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/maintenanceTrack: bb_integrated
   bigbang.dev/applicationVersions: |
-    - Mattermost: 10.11.2
+    - Mattermost: 10.12.0
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.11.2
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.12.0
     - name: minio
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2025-04-03T14-56-28Z
+      image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2025-09-07T16-13-09Z
     - name: mc
       condition: minio.install
-      image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-01-17T23-25-50Z
+      image: registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-08-13T08-35-41Z
     - name: operator-sidecar
       condition: istio.hardened.minioOperator.enabled
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.1.0

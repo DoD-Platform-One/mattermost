@@ -4,6 +4,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [10.12.0-bb.0] (2025-09-24)
+### Changed
+- gluon updated from 0.9.0 -> 0.9.1
+- Updated registry1.dso.mil/ironbank/opensource/mattermost/mattermost (source) 10.11.2 -> 10.12.0
+- Updated registry1.dso.mil/ironbank/opensource/minio/minio
+- Updated registry1.dso.mil/ironbank/opensource/minio/mc
+
 ## [10.11.2-bb.1] (2025-09-10)
 ### Changed
 - gluon updated from 0.8.4 to 0.9.0
