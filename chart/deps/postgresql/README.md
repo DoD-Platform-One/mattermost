@@ -546,7 +546,7 @@ helm install my-release -f values.yaml oci://REGISTRY_NAME/REPOSITORY_NAME/postg
 
 ## Configuration and installation details
 
-### [Rolling VS Immutable tags](https://docs.bitnami.com/containers/how-to/understand-rolling-tags-containers/)
+### Rolling VS Immutable tags
 
 It is strongly recommended to use immutable tags in a production environment. This ensures your deployment does not change automatically if the same tag is updated with a different image.
 
@@ -558,7 +558,7 @@ At the top level, there is a service object which defines the services for both 
 
 ### Use a different PostgreSQL version
 
-To modify the application version used in this chart, specify a different version of the image using the `image.tag` parameter and/or a different repository using the `image.repository` parameter. Refer to the [chart documentation for more information on these parameters and how to use them with images from a private registry](https://docs.bitnami.com/kubernetes/infrastructure/postgresql/configuration/change-image-version/).
+To modify the application version used in this chart, specify a different version of the image using the `image.tag` parameter and/or a different repository using the `image.repository` parameter. Refer to the chart documentation for more information on these parameters and how to use them with images from a private registry.
 
 ### postgresql.conf / pg_hba.conf files as configMap
 
@@ -736,7 +736,7 @@ This major version changes the default PostgreSQL image from 14.x to 15.x. Follo
 
 ### To any previous version
 
-Refer to the [chart documentation for more information about how to upgrade from previous releases](https://docs.bitnami.com/kubernetes/infrastructure/postgresql/administration/upgrade/).
+Refer to the chart documentation for more information about how to upgrade from previous releases.
 
 ## License
 
