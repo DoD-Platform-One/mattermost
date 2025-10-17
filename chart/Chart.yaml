@@ -2,8 +2,8 @@
 apiVersion: v2
 name: mattermost
 type: application
-version: 10.12.0-bb.2
-appVersion: 10.12.0
+version: 11.0.2-bb.0
+appVersion: 11.0.2
 description: "Deployment of mattermost"
 keywords:
   - Mattermost
@@ -21,15 +21,15 @@ dependencies:
     condition: minio.install
     repository: oci://registry1.dso.mil/bigbang
   - name: gluon
-    version: 0.9.3
+    version: 0.9.5
     repository: oci://registry1.dso.mil/bigbang
 annotations:
   bigbang.dev/maintenanceTrack: bb_integrated
   bigbang.dev/applicationVersions: |
-    - Mattermost: 10.12.0
+    - Mattermost: 11.0.2
   helm.sh/images: |
     - name: mattermost
-      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:10.12.0
+      image: registry1.dso.mil/ironbank/opensource/mattermost/mattermost:11.0.2
     - name: minio
       condition: minio.install
       image: registry1.dso.mil/ironbank/opensource/minio/minio:RELEASE.2025-09-07T16-13-09Z
@@ -45,5 +45,5 @@ annotations:
     - name: operator-sidecar
       image: registry1.dso.mil/ironbank/opensource/minio/operator-sidecar:v7.1.0
     - name: kubectl
-      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33.5
+      image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33
       condition: waitJob.enabled
