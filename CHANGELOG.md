@@ -3,6 +3,13 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [11.0.4-bb.0] (2025-10-30)
+### Updated
+- Updated registry1.dso.mil/ironbank/opensource/postgres/postgresql (source) 17.6 -> 18.0
+- Updated registry1.dso.mil/ironbank/opensource/minio/minio (source) RELEASE.2025-09-07T16-13-09Z -> RELEASE.2025-10-15T17-29-55Z
+- Updated mattermost image tag to 11.0.4
+- Updated gluon updated from 0.9.5 -> 0.9.6
+
 ## [11.0.2-bb.0] (2025-10-16)
 ### Updated
 - Updated gluon updated from 0.9.3 -> 0.9.5
