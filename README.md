@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 11.0.4-bb.0](https://img.shields.io/badge/Version-11.0.4--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.0.4](https://img.shields.io/badge/AppVersion-11.0.4-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 11.0.4-bb.1](https://img.shields.io/badge/Version-11.0.4--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.0.4](https://img.shields.io/badge/AppVersion-11.0.4-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Deployment of mattermost
 
@@ -151,6 +151,8 @@ helm install mattermost chart/
 | postgresql.volumePermissions.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | postgresql.postgresqlConfiguration.listen_addresses | string | `"*"` |  |
 | postgresql.pgHbaConfiguration | string | `"local all all md5\nhost all all all md5"` |  |
+| postgresql.connParams | string | `""` |  |
+| postgresql.sslMode | string | `"require"` |  |
 | database.secret | string | `""` |  |
 | database.readinessCheck.disableDefault | bool | `true` |  |
 | database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:18.0"` |  |
