@@ -240,7 +240,7 @@ postgresql:
   image:
     registry: "registry1.dso.mil/ironbank"
     repository: "opensource/postgres/postgresql"
-    tag: "17.5"
+    tag: "17.6"
 
     pullSecrets:
     - private-registry
@@ -272,7 +272,8 @@ postgresql:
   pgHbaConfiguration: |-
     local all all md5
     host all all all md5
-
+  connParams: ""
+  sslMode: "disable"
 database:
   # Name of an existing secret to pull credentials from, leave empty for chart created database
   # Must at minimum contain DB_CONNECTION_STRING
@@ -360,7 +361,7 @@ bbtests:
 waitJob:
   enabled: true
   scripts:
-    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33.5
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.33
   permissions:
     apiGroups: 
       - installation.mattermost.com
