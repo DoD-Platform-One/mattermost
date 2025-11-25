@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [11.1.0-bb.0] (2025-11-14)
+### Updated
+- Updated registry1.dso.mil/ironbank/opensource/mattermost/mattermost 11.0.4 -> 11.1.0
+- Updated registry1.dso.mil/ironbank/opensource/postgres/postgresql 18.0 -> 18.1
+
 ## [11.0.4-bb.2] (2025-11-06)
 ### Updated
 - Updated waitjob image format
