@@ -3,6 +3,10 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [11.2.1-bb.0] (2025-12-17)
+### Changed
+- Updatedregistry1.dso.mil/ironbank/opensource/mattermost/mattermost (source) 11.1.1 -> 11.2.1
+
 ## [11.1.1-bb.2] (2025-12-05)
 ### Changed
 - gluon updated from 0.9.6 to 0.9.7
