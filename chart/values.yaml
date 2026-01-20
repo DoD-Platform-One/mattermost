@@ -101,7 +101,7 @@ sso:
 # Repo and image tag
 image:
   name: registry1.dso.mil/ironbank/opensource/mattermost/mattermost
-  tag: 11.2.1
+  tag: 11.3.0
   imagePullPolicy: IfNotPresent
 
 global:
