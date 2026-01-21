@@ -83,6 +83,7 @@ networkPolicies:
     app: istio-ingressgateway
     istio: ingressgateway
   controlPlaneCidr: 0.0.0.0/0
+  vpcCidr: 0.0.0.0/0
   additionalPolicies: []
 
 sso:
