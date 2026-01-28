@@ -217,21 +217,23 @@ minio:
   # Override the minio service name for easier connection setup
   service:
     nameOverride: "minio.mattermost.svc.cluster.local"
-  tenant:
-    pools:
-      - name: pool-0
-        labels:
-          app: minio
-          app.kubernetes.io/name: minio
-    configSecret:
-      name: "minio-creds-secret"
-      accessKey: "minio"
-      secretKey: "minio123" # default key, change this!
-    metrics:
-      enabled: false
-      port: 9000
-    buckets:
-      - name: mattermost
+  upstream:
+    tenant:
+      name: mattermost-minio
+      pools:
+        - name: pool-0
+          labels:
+            app: minio
+            app.kubernetes.io/name: minio
+      configSecret:
+        name: "minio-creds-secret"
+        accessKey: "minio"
+        secretKey: "minio123" # default key, change this!
+      metrics:
+        enabled: false
+        port: 9000
+      buckets:
+        - name: mattermost
   waitJob:
     enabled: false
 

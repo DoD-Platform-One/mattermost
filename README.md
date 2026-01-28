@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 11.3.0-bb.1](https://img.shields.io/badge/Version-11.3.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.3.0](https://img.shields.io/badge/AppVersion-11.3.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 11.3.0-bb.2](https://img.shields.io/badge/Version-11.3.0--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.3.0](https://img.shields.io/badge/AppVersion-11.3.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Deployment of mattermost
 
@@ -125,15 +125,15 @@ helm install mattermost chart/
 | minio.install | bool | `false` |  |
 | minio.bucketCreationImage | string | `"registry1.dso.mil/ironbank/opensource/minio/mc:RELEASE.2025-08-13T08-35-41Z"` |  |
 | minio.service.nameOverride | string | `"minio.mattermost.svc.cluster.local"` |  |
-| minio.tenant.pools[0].name | string | `"pool-0"` |  |
-| minio.tenant.pools[0].labels.app | string | `"minio"` |  |
-| minio.tenant.pools[0].labels."app.kubernetes.io/name" | string | `"minio"` |  |
-| minio.tenant.configSecret.name | string | `"minio-creds-secret"` |  |
-| minio.tenant.configSecret.accessKey | string | `"minio"` |  |
-| minio.tenant.configSecret.secretKey | string | `"minio123"` |  |
-| minio.tenant.metrics.enabled | bool | `false` |  |
-| minio.tenant.metrics.port | int | `9000` |  |
-| minio.tenant.buckets[0].name | string | `"mattermost"` |  |
+| minio.upstream.tenant.pools[0].name | string | `"pool-0"` |  |
+| minio.upstream.tenant.pools[0].labels.app | string | `"minio"` |  |
+| minio.upstream.tenant.pools[0].labels."app.kubernetes.io/name" | string | `"minio"` |  |
+| minio.upstream.tenant.configSecret.name | string | `"minio-creds-secret"` |  |
+| minio.upstream.tenant.configSecret.accessKey | string | `"minio"` |  |
+| minio.upstream.tenant.configSecret.secretKey | string | `"minio123"` |  |
+| minio.upstream.tenant.metrics.enabled | bool | `false` |  |
+| minio.upstream.tenant.metrics.port | int | `9000` |  |
+| minio.upstream.tenant.buckets[0].name | string | `"mattermost"` |  |
 | minio.waitJob.enabled | bool | `false` |  |
 | postgresql.install | bool | `false` |  |
 | postgresql.image.registry | string | `"registry1.dso.mil/ironbank"` |  |
