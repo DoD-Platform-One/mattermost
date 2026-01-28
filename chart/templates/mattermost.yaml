@@ -233,7 +233,7 @@ spec:
       {{- if .Values.fileStore.roleARN }}
       useServiceAccount: true
       {{- else }}
-      secret: {{ .Values.fileStore.secret | default .Values.minio.tenant.configSecret.name }}
+      secret: {{ .Values.fileStore.secret | default "minio-access" }}
       {{- end }}
 
   podExtensions:
