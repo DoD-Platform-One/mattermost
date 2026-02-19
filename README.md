@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 11.4.0-bb.0](https://img.shields.io/badge/Version-11.4.0--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.4.0](https://img.shields.io/badge/AppVersion-11.4.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 11.4.0-bb.1](https://img.shields.io/badge/Version-11.4.0--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.4.0](https://img.shields.io/badge/AppVersion-11.4.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Deployment of mattermost
 
@@ -48,43 +48,40 @@ helm install mattermost chart/
 |-----|------|---------|-------------|
 | domain | string | `"bigbang.dev"` |  |
 | istio.enabled | bool | `false` | Toggle istio integration |
-| istio.hardened.enabled | bool | `false` |  |
-| istio.hardened.customAuthorizationPolicies | list | `[]` |  |
-| istio.hardened.outboundTrafficPolicyMode | string | `"REGISTRY_ONLY"` |  |
-| istio.hardened.customServiceEntries | list | `[]` |  |
-| istio.hardened.clusterAuditor.enabled | bool | `false` |  |
-| istio.hardened.clusterAuditor.namespace | string | `"cluster-auditor"` |  |
-| istio.hardened.minioOperator.enabled | bool | `true` |  |
-| istio.hardened.minioOperator.namespaces[0] | string | `"minio-operator"` |  |
-| istio.hardened.minioOperator.principals[0] | string | `"cluster.local/ns/minio-operator/sa/minio-operator"` |  |
-| istio.hardened.monitoring.enabled | bool | `true` |  |
-| istio.hardened.monitoring.namespaces[0] | string | `"monitoring"` |  |
-| istio.hardened.monitoring.principals[0] | string | `"cluster.local/ns/monitoring/sa/monitoring-grafana"` |  |
-| istio.hardened.monitoring.principals[1] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-alertmanager"` |  |
-| istio.hardened.monitoring.principals[2] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-operator"` |  |
-| istio.hardened.monitoring.principals[3] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-prometheus"` |  |
-| istio.hardened.monitoring.principals[4] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-state-metrics"` |  |
-| istio.hardened.monitoring.principals[5] | string | `"cluster.local/ns/monitoring/sa/monitoring-monitoring-prometheus-node-exporter"` |  |
-| istio.hardened.kyvernoReporter.enabled | bool | `false` |  |
-| istio.hardened.kyvernoReporter.namespace | string | `"kyverno-reporter"` |  |
-| istio.mtls | object | `{"mode":"STRICT"}` | Default peer authentication |
+| istio.injection | string | `"disabled"` | Istio sidecar injection mode (enabled, disabled, or empty for no label) |
+| istio.mtls | object | `{"mode":"STRICT"}` | Mutual TLS configuration |
 | istio.mtls.mode | string | `"STRICT"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic |
-| istio.chat.enabled | bool | `true` |  |
-| istio.chat.annotations | object | `{}` |  |
-| istio.chat.labels | object | `{}` |  |
-| istio.chat.gateways[0] | string | `"istio-system/main"` |  |
-| istio.chat.hosts[0] | string | `"chat.{{ .Values.domain }}"` |  |
-| istio.injection | string | `"disabled"` |  |
+| istio.sidecar | object | `{"enabled":true,"outboundTrafficPolicyMode":"REGISTRY_ONLY"}` | Sidecar configuration for Istio |
+| istio.sidecar.enabled | bool | `true` | Enable/disable Istio Sidecar resource (restricts outbound traffic) |
+| istio.sidecar.outboundTrafficPolicyMode | string | `"REGISTRY_ONLY"` | Outbound traffic policy mode (REGISTRY_ONLY or ALLOW_ANY) |
+| istio.serviceEntries | object | `{"custom":[]}` | Service Entries Configuration |
+| istio.serviceEntries.custom | list | `[]` | List of custom Istio ServiceEntry resources |
+| istio.authorizationPolicies | object | `{"additionalPolicies":{},"custom":[],"enabled":true,"generateFromNetpol":true}` | Authorization Policies Configuration |
+| istio.authorizationPolicies.enabled | bool | `true` | Enable/disable the generation of Istio AuthorizationPolicies |
+| istio.authorizationPolicies.generateFromNetpol | bool | `true` | Generate AuthorizationPolicies from NetworkPolicy configurations |
+| istio.authorizationPolicies.custom | list | `[]` | Custom authorization policies - additional policies added via additionalPolicies |
+| istio.authorizationPolicies.additionalPolicies | object | `{}` | Additional authorization policies (map format) |
+| routes | object | `{"inbound":{"chat":{"enabled":true,"gateways":["istio-gateway/public-ingressgateway"],"hosts":["chat.{{ .Values.domain }}"],"port":8065,"selector":{"app":"mattermost"},"service":"{{ .Release.Name }}"}},"outbound":{"mattermost-external":{"enabled":true,"hosts":["securityupdatecheck.mattermost.com","customers.mattermost.com","notices.mattermost.com","api.integrations.mattermost.com","pdat.matterlytics.com","api.github.com"],"ports":[{"name":"https","number":443,"protocol":"TLS"}]},"sso":{"enabled":false,"hosts":["{{ include \"sso.host\" . }}"],"ports":[{"name":"https","number":443,"protocol":"TLS"}]}}}` | Routes configuration for bb-common |
+| routes.inbound | object | `{"chat":{"enabled":true,"gateways":["istio-gateway/public-ingressgateway"],"hosts":["chat.{{ .Values.domain }}"],"port":8065,"selector":{"app":"mattermost"},"service":"{{ .Release.Name }}"}}` | Inbound routes (creates VirtualService, ServiceEntry, NetworkPolicy, AuthorizationPolicy) |
+| routes.outbound | object | `{"mattermost-external":{"enabled":true,"hosts":["securityupdatecheck.mattermost.com","customers.mattermost.com","notices.mattermost.com","api.integrations.mattermost.com","pdat.matterlytics.com","api.github.com"],"ports":[{"name":"https","number":443,"protocol":"TLS"}]},"sso":{"enabled":false,"hosts":["{{ include \"sso.host\" . }}"],"ports":[{"name":"https","number":443,"protocol":"TLS"}]}}` | Outbound routes (creates ServiceEntry for egress traffic) |
+| routes.outbound.mattermost-external | object | `{"enabled":true,"hosts":["securityupdatecheck.mattermost.com","customers.mattermost.com","notices.mattermost.com","api.integrations.mattermost.com","pdat.matterlytics.com","api.github.com"],"ports":[{"name":"https","number":443,"protocol":"TLS"}]}` | Mattermost external services (update checks, notices, integrations, analytics) |
+| routes.outbound.sso | object | `{"enabled":false,"hosts":["{{ include \"sso.host\" . }}"],"ports":[{"name":"https","number":443,"protocol":"TLS"}]}` | SSO provider service entry (enables SSO authentication in REGISTRY_ONLY mode) |
 | ingress | object | `{"annotations":{},"enabled":false,"host":"","tlsSecret":""}` | Specification to configure an Ingress with Mattermost |
 | monitoring.enabled | bool | `false` |  |
 | monitoring.namespace | string | `"monitoring"` |  |
 | monitoring.serviceMonitor.scheme | string | `"http"` |  |
 | monitoring.serviceMonitor.tlsConfig | object | `{}` |  |
 | networkPolicies.enabled | bool | `false` |  |
-| networkPolicies.ingressLabels.app | string | `"istio-ingressgateway"` |  |
-| networkPolicies.ingressLabels.istio | string | `"ingressgateway"` |  |
-| networkPolicies.controlPlaneCidr | string | `"0.0.0.0/0"` |  |
-| networkPolicies.vpcCidr | string | `"0.0.0.0/0"` |  |
+| networkPolicies.ingress.to.mattermost:8067 | object | `{"from":{"k8s":{"monitoring/prometheus":true}}}` | Mattermost metrics ingress from monitoring |
+| networkPolicies.ingress.to.minio:9000 | object | `{"from":{"k8s":{"minio-operator/*":true}},"podSelector":{"matchLabels":{"app":"minio"}}}` | Minio ingress from minio-operator |
+| networkPolicies.ingress.to.minio-metrics | object | `{"from":{"k8s":{"monitoring/prometheus":true}},"podSelector":{"matchLabels":{"app":"minio","v1.min.io/tenant":"mattermost-minio"}}}` | Minio metrics ingress from monitoring |
+| networkPolicies.egress.definitions.storage-subnets | object | `{"to":[{"ipBlock":{"cidr":"0.0.0.0/0","except":["169.254.169.254/32"]}}]}` | Storage subnets for S3-compatible storage (override in Big Bang) |
+| networkPolicies.egress.from.mattermost | object | `{"to":{"k8s":{"logging/elasticsearch:9200":{"podSelector":{"matchLabels":{"common.k8s.elastic.co/type":"elasticsearch"}}}}}}` | Mattermost app egress (external integrations, updates, elasticsearch, etc.) |
+| networkPolicies.egress.from.wait-job | object | `{"podSelector":{"matchLabels":{"job-name":"mattermost-wait-job"}},"to":{"definition":{"kubeAPI":true}}}` | Wait job egress to kubeAPI |
+| networkPolicies.egress.from.minio | object | `{"to":{"definition":{"kubeAPI":true,"storage-subnets":true},"k8s":{"minio-operator/minio-operator:4222":true}}}` | Minio egress to minio-operator and storage |
+| networkPolicies.egress.from.minio.to.definition | object | `{"kubeAPI":true,"storage-subnets":true}` | Minio egress to storage subnets (for external S3-compatible storage) |
+| networkPolicies.egress.from.update-check | object | `{"podSelector":{"matchLabels":{"app":"mattermost-update-check"}},"to":{"cidr":{"0.0.0.0/0":true}}}` | Update check job egress |
+| networkPolicies.egress.from.tempo | object | `{"to":{"k8s":{"tempo/tempo:9411":true}}}` | Tempo egress (when istio injection is enabled) |
 | networkPolicies.additionalPolicies | list | `[]` |  |
 | sso.enabled | bool | `false` |  |
 | sso.client_id | string | `"platform1_a8604cc9-f5e9-4656-802d-d05624370245_bb8-mattermost"` |  |

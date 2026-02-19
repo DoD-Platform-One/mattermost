@@ -1,0 +1,137 @@
+suite: Network Policies Tests
+templates:
+  - templates/bigbang/network-policies.yaml
+release:
+  name: mattermost
+  namespace: mattermost
+tests:
+  - it: should not create network policies when disabled
+    set:
+      networkPolicies:
+        enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should create default network policies when enabled
+    set:
+      networkPolicies:
+        enabled: true
+    asserts:
+      - containsDocument:
+          kind: NetworkPolicy
+          apiVersion: networking.k8s.io/v1
+          name: default-ingress-deny-all
+          any: true
+      - containsDocument:
+          kind: NetworkPolicy
+          apiVersion: networking.k8s.io/v1
+          name: default-egress-deny-all
+          any: true
+      - containsDocument:
+          kind: NetworkPolicy
+          apiVersion: networking.k8s.io/v1
+          name: default-egress-allow-kube-dns
+          any: true
+
+  - it: should create mattermost:8067 monitoring ingress policy when monitoring is enabled
+    set:
+      networkPolicies:
+        enabled: true
+      monitoring:
+        enabled: true
+    asserts:
+      - containsDocument:
+          kind: NetworkPolicy
+          apiVersion: networking.k8s.io/v1
+          name: allow-ingress-to-mattermost-tcp-port-8067-from-ns-monitoring-pod-prometheus
+          any: true
+
+  - it: should have correct spec for mattermost:8067 monitoring ingress policy
+    set:
+      networkPolicies:
+        enabled: true
+      monitoring:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-ingress-to-mattermost-tcp-port-8067-from-ns-monitoring-pod-prometheus
+    asserts:
+      - equal:
+          path: spec.podSelector.matchLabels["app.kubernetes.io/name"]
+          value: mattermost
+      - equal:
+          path: spec.policyTypes[0]
+          value: Ingress
+      - equal:
+          path: spec.ingress[0].ports[0].port
+          value: 8067
+      - equal:
+          path: spec.ingress[0].ports[0].protocol
+          value: TCP
+      - equal:
+          path: spec.ingress[0].from[0].namespaceSelector.matchLabels["kubernetes.io/metadata.name"]
+          value: monitoring
+      - equal:
+          path: spec.ingress[0].from[0].podSelector.matchLabels["app.kubernetes.io/name"]
+          value: prometheus
+
+  - it: should have bb-common labels on mattermost:8067 policy
+    set:
+      networkPolicies:
+        enabled: true
+      monitoring:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-ingress-to-mattermost-tcp-port-8067-from-ns-monitoring-pod-prometheus
+    asserts:
+      - equal:
+          path: metadata.labels["network-policies.bigbang.dev/direction"]
+          value: ingress
+      - equal:
+          path: metadata.labels["network-policies.bigbang.dev/source"]
+          value: bb-common
+
+  - it: should create minio ingress from operator when minio is installed
+    set:
+      networkPolicies:
+        enabled: true
+      minio:
+        install: true
+    asserts:
+      - containsDocument:
+          kind: NetworkPolicy
+          apiVersion: networking.k8s.io/v1
+          name: allow-ingress-to-minio-tcp-port-9000-from-ns-minio-operator-any-pod
+          any: true
+
+  - it: should create wait-job kubeAPI egress when waitJob is enabled
+    set:
+      networkPolicies:
+        enabled: true
+      waitJob:
+        enabled: true
+    asserts:
+      - containsDocument:
+          kind: NetworkPolicy
+          apiVersion: networking.k8s.io/v1
+          name: allow-egress-from-wait-job-to-kubeapi
+          any: true
+
+  - it: should have correct spec for wait-job kubeAPI egress policy
+    set:
+      networkPolicies:
+        enabled: true
+      waitJob:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-egress-from-wait-job-to-kubeapi
+    asserts:
+      - equal:
+          path: spec.podSelector.matchLabels["job-name"]
+          value: mattermost-wait-job
+      - equal:
+          path: spec.policyTypes[0]
+          value: Egress

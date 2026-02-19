@@ -1,0 +1,189 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json
+suite: Routes - Outbound ServiceEntries
+templates:
+  - templates/bigbang/routes.yaml
+release:
+  name: mattermost
+  namespace: mattermost
+capabilities:
+  apiVersions:
+    - networking.istio.io/v1
+tests:
+  # Mattermost External Tests
+  - it: should create mattermost-external ServiceEntry when enabled
+    set:
+      routes:
+        outbound:
+          mattermost-external:
+            enabled: true
+    asserts:
+      - containsDocument:
+          kind: ServiceEntry
+          apiVersion: networking.istio.io/v1
+          name: mattermost-external-external
+          any: true
+
+  - it: should have correct hosts for mattermost-external
+    set:
+      routes:
+        outbound:
+          mattermost-external:
+            enabled: true
+    documentSelector:
+      path: metadata.name
+      value: mattermost-external-external
+    asserts:
+      - contains:
+          path: spec.hosts
+          content: securityupdatecheck.mattermost.com
+      - contains:
+          path: spec.hosts
+          content: customers.mattermost.com
+      - contains:
+          path: spec.hosts
+          content: notices.mattermost.com
+      - contains:
+          path: spec.hosts
+          content: api.integrations.mattermost.com
+      - contains:
+          path: spec.hosts
+          content: pdat.matterlytics.com
+      - contains:
+          path: spec.hosts
+          content: api.github.com
+
+  - it: should have correct port configuration for mattermost-external
+    set:
+      routes:
+        outbound:
+          mattermost-external:
+            enabled: true
+    documentSelector:
+      path: metadata.name
+      value: mattermost-external-external
+    asserts:
+      - equal:
+          path: spec.ports[0].number
+          value: 443
+      - equal:
+          path: spec.ports[0].name
+          value: https
+      - equal:
+          path: spec.ports[0].protocol
+          value: TLS
+
+  - it: should not create mattermost-external ServiceEntry when disabled
+    set:
+      routes:
+        outbound:
+          mattermost-external:
+            enabled: false
+    asserts:
+      - not: true
+        containsDocument:
+          kind: ServiceEntry
+          apiVersion: networking.istio.io/v1
+          name: mattermost-external-external
+          any: true
+
+  # SSO Tests
+  - it: should create SSO ServiceEntry when enabled
+    set:
+      routes:
+        outbound:
+          sso:
+            enabled: true
+      sso:
+        auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
+    asserts:
+      - containsDocument:
+          kind: ServiceEntry
+          apiVersion: networking.istio.io/v1
+          name: sso-external
+          any: true
+
+  - it: should have correct SSO host from auth_endpoint
+    set:
+      routes:
+        outbound:
+          sso:
+            enabled: true
+      sso:
+        auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
+    documentSelector:
+      path: metadata.name
+      value: sso-external
+    asserts:
+      - equal:
+          path: spec.hosts[0]
+          value: login.dso.mil
+
+  - it: should have correct port configuration for SSO
+    set:
+      routes:
+        outbound:
+          sso:
+            enabled: true
+      sso:
+        auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
+    documentSelector:
+      path: metadata.name
+      value: sso-external
+    asserts:
+      - equal:
+          path: spec.ports[0].number
+          value: 443
+      - equal:
+          path: spec.ports[0].name
+          value: https
+      - equal:
+          path: spec.ports[0].protocol
+          value: TLS
+
+  - it: should have MESH_EXTERNAL location for SSO
+    set:
+      routes:
+        outbound:
+          sso:
+            enabled: true
+      sso:
+        auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
+    documentSelector:
+      path: metadata.name
+      value: sso-external
+    asserts:
+      - equal:
+          path: spec.location
+          value: MESH_EXTERNAL
+
+  - it: should not create SSO ServiceEntry when disabled
+    set:
+      routes:
+        outbound:
+          sso:
+            enabled: false
+      sso:
+        auth_endpoint: https://login.dso.mil/auth/realms/baby-yoda/protocol/openid-connect/auth
+    asserts:
+      - not: true
+        containsDocument:
+          kind: ServiceEntry
+          apiVersion: networking.istio.io/v1
+          name: sso-external
+          any: true
+
+  - it: should work with different SSO providers
+    set:
+      routes:
+        outbound:
+          sso:
+            enabled: true
+      sso:
+        auth_endpoint: https://keycloak.bigbang.dev/auth/realms/test/protocol/openid-connect/auth
+    documentSelector:
+      path: metadata.name
+      value: sso-external
+    asserts:
+      - equal:
+          path: spec.hosts[0]
+          value: keycloak.bigbang.dev
