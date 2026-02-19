@@ -36,7 +36,7 @@ Common labels
 {{- define "mattermost.labels" -}}
 helm.sh/chart: {{ include "mattermost.chart" . }}
 {{ include "mattermost.selectorLabels" . }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.Version | replace "+" "_" | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 

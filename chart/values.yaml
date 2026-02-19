@@ -3,63 +3,78 @@ domain: bigbang.dev
 istio:
   # -- Toggle istio integration
   enabled: false
-  hardened:
-    enabled: false
-    customAuthorizationPolicies: []
-    # - name: "allow-nothing"
-    #   enabled: true
-    #   spec: {}
-    outboundTrafficPolicyMode: "REGISTRY_ONLY"
-    customServiceEntries: []
-      # - name: "allow-google"
-      #   enabled: true
-      #   spec:
-      #     hosts:
-      #       - google.com
-      #     location: MESH_EXTERNAL
-      #     ports:
-      #       - number: 443
-      #         protocol: TLS
-      #         name: https
-      #     resolution: DNS
-    clusterAuditor:
-      enabled: false
-      namespace: cluster-auditor
-    minioOperator:
-      enabled: true
-      namespaces:
-        - minio-operator
-      principals:
-        - cluster.local/ns/minio-operator/sa/minio-operator
-    monitoring:
-      enabled: true
-      namespaces:
-        - monitoring
-      principals:
-        - cluster.local/ns/monitoring/sa/monitoring-grafana
-        - cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-alertmanager
-        - cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-operator
-        - cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-prometheus
-        - cluster.local/ns/monitoring/sa/monitoring-monitoring-kube-state-metrics
-        - cluster.local/ns/monitoring/sa/monitoring-monitoring-prometheus-node-exporter
-    kyvernoReporter:
-      enabled: false
-      namespace: kyverno-reporter
-  # -- Default peer authentication
+  # -- Istio sidecar injection mode (enabled, disabled, or empty for no label)
+  injection: disabled
+
+  # -- Mutual TLS configuration
   mtls:
     # -- STRICT = Allow only mutual TLS traffic,
     # PERMISSIVE = Allow both plain text and mutual TLS traffic
     mode: STRICT
-  chat:
-    # Toggle vs creation
+
+  # -- Sidecar configuration for Istio
+  sidecar:
+    # -- Enable/disable Istio Sidecar resource (restricts outbound traffic)
     enabled: true
-    annotations: {}
-    labels: {}
-    gateways:
-      - istio-system/main
-    hosts:
-      - chat.{{ .Values.domain }}
-  injection: disabled
+    # -- Outbound traffic policy mode (REGISTRY_ONLY or ALLOW_ANY)
+    outboundTrafficPolicyMode: REGISTRY_ONLY
+
+  # -- Service Entries Configuration
+  serviceEntries:
+    # -- List of custom Istio ServiceEntry resources
+    custom: []
+
+  # -- Authorization Policies Configuration
+  authorizationPolicies:
+    # -- Enable/disable the generation of Istio AuthorizationPolicies
+    enabled: true
+    # -- Generate AuthorizationPolicies from NetworkPolicy configurations
+    generateFromNetpol: true
+    # -- Custom authorization policies - additional policies added via additionalPolicies
+    custom: []
+
+    # -- Additional authorization policies (map format)
+    additionalPolicies: {}
+
+# -- Routes configuration for bb-common
+routes:
+  # -- Inbound routes (creates VirtualService, ServiceEntry, NetworkPolicy, AuthorizationPolicy)
+  inbound:
+    chat:
+      enabled: true
+      gateways:
+        - istio-gateway/public-ingressgateway
+      hosts:
+        - chat.{{ .Values.domain }}
+      service: '{{ .Release.Name }}'
+      port: 8065
+      selector:
+        app: mattermost
+  # -- Outbound routes (creates ServiceEntry for egress traffic)
+  outbound:
+    # -- Mattermost external services (update checks, notices, integrations, analytics)
+    mattermost-external:
+      enabled: true
+      hosts:
+        - securityupdatecheck.mattermost.com
+        - customers.mattermost.com
+        - notices.mattermost.com
+        - api.integrations.mattermost.com
+        - pdat.matterlytics.com
+        - api.github.com
+      ports:
+        - number: 443
+          name: https
+          protocol: TLS
+    # -- SSO provider service entry (enables SSO authentication in REGISTRY_ONLY mode)
+    sso:
+      enabled: false
+      hosts:
+        - '{{ include "sso.host" . }}'
+      ports:
+        - number: 443
+          name: https
+          protocol: TLS
 
 # -- Specification to configure an Ingress with Mattermost
 ingress:
@@ -79,11 +94,80 @@ monitoring:
 
 networkPolicies:
   enabled: false
-  ingressLabels:
-    app: istio-ingressgateway
-    istio: ingressgateway
-  controlPlaneCidr: 0.0.0.0/0
-  vpcCidr: 0.0.0.0/0
+  ingress:
+    to:
+      # -- Mattermost metrics ingress from monitoring
+      mattermost:8067:
+        from:
+          k8s:
+            monitoring/prometheus: true
+      # -- Minio ingress from minio-operator
+      minio:9000:
+        podSelector:
+          matchLabels:
+            app: minio
+        from:
+          k8s:
+            minio-operator/*: true
+      # -- Minio metrics ingress from monitoring
+      minio-metrics:
+        podSelector:
+          matchLabels:
+            app: minio
+            v1.min.io/tenant: mattermost-minio
+        from:
+          k8s:
+            monitoring/prometheus: true
+
+  egress:
+    definitions:
+      # -- Storage subnets for S3-compatible storage (override in Big Bang)
+      storage-subnets:
+        to:
+          - ipBlock:
+              cidr: 0.0.0.0/0
+              except:
+                - 169.254.169.254/32
+    from:
+      # -- Mattermost app egress (external integrations, updates, elasticsearch, etc.)
+      mattermost:
+        to:
+          k8s:
+            logging/elasticsearch:9200:
+              podSelector:
+                matchLabels:
+                  common.k8s.elastic.co/type: elasticsearch
+      # -- Wait job egress to kubeAPI
+      wait-job:
+        podSelector:
+          matchLabels:
+            job-name: mattermost-wait-job
+        to:
+          definition:
+            kubeAPI: true
+      # -- Minio egress to minio-operator and storage
+      minio:
+        to:
+          k8s:
+            minio-operator/minio-operator:4222: true
+          # -- Minio egress to storage subnets (for external S3-compatible storage)
+          definition:
+            storage-subnets: true
+            kubeAPI: true
+      # -- Update check job egress
+      update-check:
+        podSelector:
+          matchLabels:
+            app: mattermost-update-check
+        to:
+          cidr:
+            0.0.0.0/0: true
+      # -- Tempo egress (when istio injection is enabled)
+      tempo:
+        to:
+          k8s:
+            tempo/tempo:9411: true
+
   additionalPolicies: []
 
 sso:
