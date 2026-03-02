@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # mattermost
 
-![Version: 11.4.1-bb.0](https://img.shields.io/badge/Version-11.4.1--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.4.1](https://img.shields.io/badge/AppVersion-11.4.1-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 11.4.2-bb.0](https://img.shields.io/badge/Version-11.4.2--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 11.4.2](https://img.shields.io/badge/AppVersion-11.4.2-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Deployment of mattermost
 
@@ -93,7 +93,7 @@ helm install mattermost chart/
 | sso.enable_sign_in_with_email | bool | `false` |  |
 | sso.enable_sign_in_with_username | bool | `false` |  |
 | image.name | string | `"registry1.dso.mil/ironbank/opensource/mattermost/mattermost"` |  |
-| image.tag | string | `"11.4.1"` |  |
+| image.tag | string | `"11.4.2"` |  |
 | image.imagePullPolicy | string | `"IfNotPresent"` |  |
 | global.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | replicaCount | int | `1` |  |
@@ -154,7 +154,7 @@ helm install mattermost chart/
 | postgresql.sslMode | string | `"disable"` |  |
 | database.secret | string | `""` |  |
 | database.readinessCheck.disableDefault | bool | `true` |  |
-| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:18.2"` |  |
+| database.readinessCheck.image | string | `"registry1.dso.mil/ironbank/opensource/postgres/postgresql:18.3"` |  |
 | database.readinessCheck.command[0] | string | `"/bin/sh"` |  |
 | database.readinessCheck.command[1] | string | `"-c"` |  |
 | database.readinessCheck.command[2] | string | `"until pg_isready --dbname=\"$DB_CONNECTION_CHECK_URL\"; do echo waiting for database; sleep 5; done;"` |  |

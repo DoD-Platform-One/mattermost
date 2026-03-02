@@ -3,6 +3,11 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [11.4.2-bb.0] (2026-02-28)
+### Changed
+- registry1.dso.mil/ironbank/opensource/mattermost/mattermost (source) 11.4.1 -> 11.4.2
+- registry1.dso.mil/ironbank/opensource/postgres/postgresql (source) 18.2 -> 18.3
+
 ## [11.4.1-bb.0] (2026-02-24)
 ### Changed
 - registry1.dso.mil/ironbank/opensource/mattermost/mattermost updated from 11.4.0 to 11.4.1
