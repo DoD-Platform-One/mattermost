@@ -327,7 +327,7 @@ postgresql:
   image:
     registry: "registry1.dso.mil/ironbank"
     repository: "opensource/postgres/postgresql"
-    tag: "17.6"
+    tag: "18.3"
 
     pullSecrets:
     - private-registry
