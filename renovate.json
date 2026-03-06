@@ -80,6 +80,17 @@
                 "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
             ],
             "datasourceTemplate": "docker"
+        },
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "/^chart/values\\.yaml$/"
+            ],
+            "matchStrings": [
+                "image:\\s*\\n\\s*registry:\\s*\"(?<registry>[^\"]+)\"\\s*\\n\\s*repository:\\s*\"(?<depName>[^\"]+)\"\\s*\\n\\s*tag:\\s*\"(?<currentValue>[^\"]+)\""
+            ],
+            "depNameTemplate": "{{{registry}}}/{{{depName}}}",
+            "datasourceTemplate": "docker"
         }
     ]
 }
