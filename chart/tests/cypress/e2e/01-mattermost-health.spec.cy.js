@@ -70,6 +70,7 @@ describe('Mattermost Healthcheck', function() {
         cy.get('input[id="input_email"]').type(Cypress.env('mm_email'))
         cy.get('input[id="input_name"]').type(Cypress.env('mm_user'))
         cy.get('input[id="input_password-input"]').type(Cypress.env('mm_password'))
+        cy.get('input[id="signup-body-card-form-check-terms-and-privacy"]').click()
         cy.get('button[id="saveSetting"]').click()
       }
     })
